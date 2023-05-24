@@ -16,16 +16,25 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <ul>
+                    <li class="nev-item"><i class="fa-solid fa-heart"></i></li>
+                    <li><a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name') }}
+                    </a></li>
+   
+                </ul>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,25 +42,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item me-5"><p>About Us</p></li>
+                        <li class="nav-item me-5"><p>How to use</p></li>
+                        <li class="nav-item me-5"><p>Event</p></li>
+                        <li class="nav-item me-5"><p>Contact Us</p></li>
+                        <li class="nav-item me-5"><p>FAQ</p></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
-                                </li>
-                            @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
-                                </li>
-                            @endif
+
+                        {{-- if nonregistered user -> header which has register and login buttons  --}}
+                           
+                            <li class="nav-item">
+                                <button class="btn btn-warning"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></button>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <button class="btn btn-warning"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></button>
+                            </li>
+
                         @else
+                        {{-- if register and loged in user ->  re, lo なしheader 
+                            if =Admin -> admin app else->user top page--}}
+                            @if (!request()->is('admin/*'))
+                                call admin page
+                            @endif
+                                call user page
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
