@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('YOU ARE DDDDDDDDDDDDD!') }}
+                    {{ __('YOU ARE FFFF!') }}
                 </div>
             </div>
         </div>
