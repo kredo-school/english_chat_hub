@@ -21,66 +21,78 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/button.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    
 </head>
 <body>
-    <div id="app">
+    <header>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <ul>
-                    <li class="nev-item"><i class="fa-solid fa-heart"></i></li>
-                    <li><a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name') }}
-                    </a></li>
-   
+            <div class="container-fluid">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item me-2">
+                        <a href="">
+                            <img class="logo mb-1" src="{{ asset('image/logo.png') }}" alt="logo">
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="navbar-brand fw-bold me-5" href="{{ url('/') }}" >
+                            English Chat Hub
+                        </a>
+                    </li>
                 </ul>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+                <div class="collapse navbar-collapse m-auto" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item me-5"><p>About Us</p></li>
-                        <li class="nav-item me-5"><p>How to use</p></li>
-                        <li class="nav-item me-5"><p>Event</p></li>
-                        <li class="nav-item me-5"><p>Contact Us</p></li>
-                        <li class="nav-item me-5"><p>FAQ</p></li>
+                        @guest
+                            <li class="nav-item me-5">
+                                <a href="" class="link-item">About Us</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="" class="link-item">How to use</a>
+                            </li>
+                        @endguest
+                            <li class="nav-item me-5">
+                                <a href="" class="link-item">Event</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="" class="link-item">Contact Us</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="" class="link-item">FAQ</a>
+                            </li>
                     </ul>
+                
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-
-
-                        {{-- if nonregistered user -> header which has register and login buttons  --}}
-                           
                             <li class="nav-item">
-                                <button class="btn btn-warning"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></button>
+                                <a class="nav-link" href="{{ route('login') }}"><button class="btn button btn-orange me-md-2">{{ __('LOG IN') }}</button></a>
                             </li>
                         
                             <li class="nav-item">
-                                <button class="btn btn-warning"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></button>
+                                <a class="nav-link" href="{{ route('register') }}"><button class="btn button btn-orange">{{ __('REGISTER') }}</button></a>
                             </li>
-
                         @else
-                        {{-- if register and loged in user ->  re, lo なしheader 
-                            if =Admin -> admin app else->user top page--}}
-                            @if (!request()->is('admin/*'))
-                                call admin page
-                            @endif
-                                call user page
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle base-text-color" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item base-text-color" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -94,10 +106,58 @@
                 </div>
             </div>
         </nav>
+    </header>
 
-        <main class="py-4">
+    <main>
+        <div class="container-fluid">
+            @guest
             @yield('content')
-        </main>
-    </div>
+            @else
+            @yield('content.user')
+            @endguest
+        </div>
+    </main>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="footer-items">
+                <div class="brand-group">
+                    <a class="footer-brand" href="{{ url('/') }}">
+                        English Chat Hub
+                    </a>
+                    <p class="copy-right">COPYRIGHT © English Chat Hub ALL RIGHTS RESERVED.</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        @guest
+                        <li class="me-5">
+                            <a href="" class="footer-link">About Us</a>
+                        </li>
+                        <li class=" me-5">
+                            <a href="" class="footer-link">How to use</a>
+                        </li>
+                        @endguest
+                        <li class="me-5">
+                            <a href="" class="footer-link">Event</a>
+                        </li>
+                        <li class="me-5">
+                            <a href="" class="footer-link">Contact Us</a>
+                        </li>
+                        <li class="me-5" >
+                            <a href="" class="footer-link">FAQ</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="me-5">
+                            <a href="" class="plus-footer-link">Terms of Service</a>
+                        </li>
+                        <li class="me-5">
+                            <a href="" class="plus-footer-link">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>                
+        </div>
+    </footer>
 </body>
 </html>
