@@ -20,14 +20,11 @@ class SubtitleSeeder extends Seeder
     public function run()
     {
         $subtitles = [
-            ['name' => 'Report'],
-            ['name' => 'How to use'],
-            ['name' => 'Event'],
-            ['name' => 'Other']
+            'Report', 'How to use', 'Event', 'Other'
         ];
 
         foreach ($subtitles as $subtitle) {
-            $this->subtitle->create($subtitle);
+            $this->subtitle->create(['name' => $subtitle]);
         }
     }
 }

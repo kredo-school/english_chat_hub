@@ -21,28 +21,11 @@ class RoomSeeder extends Seeder
     public function run()
     {
         $rooms = [
-            [ 
-                'name' => 'Room_1'
-            ],
-            [ 
-                'name' => 'Room_2'
-            ],
-            [ 
-                'name' => 'Room_3'
-            ],
-            [ 
-                'name' => 'Room_4'
-            ],
-            [ 
-                'name' => 'Room_5'
-            ],
-            [ 
-                'name' => 'Room_6'
-            ]
+            'Room_1','Room_2','Room_3','Room_4','Room_5','Room_6'
         ];
 
         foreach ($rooms as $room) {
-            $this->room->create($room);
+            $this->room->create(['name' => $room]);
         }
     }
 }

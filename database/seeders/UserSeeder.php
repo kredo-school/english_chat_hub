@@ -14,21 +14,14 @@ class UserSeeder extends Seeder
      * @return void
      */
 
-    private $user;
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
     public function run()
     {
-        $this->user->full_name = 'The Admin';
-        $this->user->user_name = 'The Admin';
-        $this->user->email = 'admin@admin.com';
-        $this->user->password = Hash::make('admin12345');
-        $this->user->role = 'admin';
-        $this->user->created_at = now();
-        $this->user->updated_at = now();
-        $this->user->save();
+        User::create([
+            'full_name' => 'The Admin',
+            'user_name' => 'The Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin123'),
+            'role' => 'admin'
+        ]);
     }
 }
