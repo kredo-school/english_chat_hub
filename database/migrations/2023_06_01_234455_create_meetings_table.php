@@ -20,9 +20,9 @@ class CreateMeetingsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('level_id');
             $table->string('title');
-            $table->date('date');
+            $table->timestamp('date');
             $table->unsignedBigInteger('start_at');
-            $table->unsignedBigInteger('status_id')->default(1); //default - "stand by"
+            $table->integer('status_id')->default(1); //1:stand by
 
             $table->softDeletes();
             $table->timestamps();

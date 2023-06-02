@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('image');
             $table->string('location');
             $table->date('date');
-            $table->unsignedBigInteger('status_id')->default(1);
+            $table->integer('status_id')->default(1); //1:available
             $table->softDeletes();
             $table->timestamps();
 
