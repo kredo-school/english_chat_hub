@@ -23,24 +23,18 @@ class LevelSeeder extends Seeder
         $levels = [
             [
                 'name' => 'Begginer',
-                'icon' => 'begginer.png',
-                'created_at' => now(),
-                'updated_at' => now()
+                'icon' => 'begginer.png'
             ],
             [
                 'name' => 'intermediate',
-                'icon' => 'intermediate.png',
-                'created_at' => now(),
-                'updated_at' => now()
+                'icon' => 'intermediate.png'
             ],
             [
                 'name' => 'advanced',
-                'icon' => 'advanced.png',
-                'created_at' => now(),
-                'updated_at' => now()
+                'icon' => 'advanced.png'
             ]
         ];
 
-        $this->level->insert($levels);
+        $this->level->create($levels);
     }
 }

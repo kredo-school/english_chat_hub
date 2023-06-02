@@ -22,37 +22,25 @@ class RoomSeeder extends Seeder
     {
         $rooms = [
             [ 
-                'name' => 'Room_1',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_1'
             ],
             [ 
-                'name' => 'Room_2',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_2'
             ],
             [ 
-                'name' => 'Room_3',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_3'
             ],
             [ 
-                'name' => 'Room_4',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_4'
             ],
             [ 
-                'name' => 'Room_5',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_5'
             ],
             [ 
-                'name' => 'Room_6',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Room_6'
             ]
         ];
 
-        $this->room->insert($rooms);
+        $this->room->create($rooms);
     }
 }

@@ -21,27 +21,19 @@ class SubtitleSeeder extends Seeder
     {
         $subtitles = [
             [
-                'name' => 'Report',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Report'
             ],
             [
-                'name' => 'How to use',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'How to use'
             ],
             [
-                'name' => 'Event',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Event'
             ],
             [
-                'name' => 'Other',
-                'created_at' => now(),
-                'updated_at' => now()
+                'name' => 'Other'
             ]
         ];
 
-        $this->subtitle->insert($subtitles);
+        $this->subtitle->create($subtitles);
     }
 }

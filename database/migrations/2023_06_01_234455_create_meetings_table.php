@@ -21,7 +21,7 @@ class CreateMeetingsTable extends Migration
             $table->unsignedBigInteger('level_id');
             $table->string('title');
             $table->timestamp('date');
-            $table->unsignedBigInteger('start_at');
+            $table->integer('start_at');
             $table->integer('status_id')->default(1); //1:stand by
 
             $table->softDeletes();

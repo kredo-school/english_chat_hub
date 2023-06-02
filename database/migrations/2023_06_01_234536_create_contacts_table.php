@@ -20,7 +20,7 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('title');
             $table->text('content');
-            $table->bigInteger('status_id')->default(1); //default - not started
+            $table->integer('status_id')->default(1); //default - not started
             $table->timestamps();
 
             $table->foreign('subtitle_id')->references('id')->on('subtitles');
