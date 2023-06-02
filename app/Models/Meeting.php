@@ -30,6 +30,6 @@ class Meeting extends Model
 
     public function joinMeeting()
     {
-        return $this->hasMany(JoinMeeting::class);
+        return $this->belongsToMany(User::class, 'join_meeting');
     }
 }

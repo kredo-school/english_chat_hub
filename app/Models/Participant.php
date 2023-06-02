@@ -13,6 +13,6 @@ class Participant extends Model
     // RELATION
     public function events()
     {
-        return $this->hasMany(join_event::class);
+        return $this->belongsToMany(Event::class, 'join_event');
     }
 }

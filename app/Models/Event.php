@@ -21,7 +21,7 @@ class Event extends Model
     }
     public function joinEvent()
     {
-        return $this->hasMany(JoinEvent::class);
+        return $this->belongsToMany(Participant::class, 'join_event');
     }
 
 }
