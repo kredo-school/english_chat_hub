@@ -4,13 +4,17 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    const ADMIN_ROLE_ID = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +22,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'level_id',
+        'full_name',
+        'user_name',
         'email',
         'password',
+        'avatar',
+        'comment',
+        'self_delete',
     ];
 
     /**
@@ -41,4 +50,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // RELATION
+    public function level()
+    {
+        return $this->BelongsTo(Level::class);
+    }
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+    public function meetings()
+    {
+        return $this->hasMany(Meeting::class);
+    }
+    public function joinMeeting()
+    {
+        return $this->hasMany(JoinMeeting::class);
+    }
+    public function participant(Participant $participant)
+    {
+        return $participant->where('email', $this->email)->first();
+        // User has participated events, return Participant Model
+        // If user hasn't participated any events, return NULL
+    }
 }

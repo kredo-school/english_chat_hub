@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminContoroller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminContoroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // admin page
-Route::get('/users',[AdminController::class,'showUsers']);
+Route::get('/users',[AdminController::class,'showUsers'])->name('showUsers');
+
+// Route Group
+Route::group(['middleware' => 'auth'], function () {
+    # LOGINED USERS ONLY
+
+    #LOGINED ADMIN ONLY
+    Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    });
+});
+
