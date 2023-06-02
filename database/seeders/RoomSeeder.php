@@ -41,6 +41,6 @@ class RoomSeeder extends Seeder
             ]
         ];
 
-        $this->room->create($rooms);
+        $this->room->createMany($rooms);
     }
 }

@@ -77,6 +77,6 @@ class CategorySeeder extends Seeder
         ]
         ];
 
-        $this->category->create($categories);
+        $this->category->createMany($categories);
     }
 }
