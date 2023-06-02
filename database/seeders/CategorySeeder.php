@@ -77,6 +77,8 @@ class CategorySeeder extends Seeder
         ]
         ];
 
-        $this->category->createMany($categories);
+        foreach ($categories as $category) {
+            $this->category->create($category);
+        }
     }
 }

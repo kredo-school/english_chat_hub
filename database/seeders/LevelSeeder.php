@@ -35,6 +35,8 @@ class LevelSeeder extends Seeder
             ]
         ];
 
-        $this->level->createMany($levels);
+        foreach ($levels as $level) {
+            $this->level->create($level);
+        }
     }
 }

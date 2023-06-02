@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         $this->user->user_name = 'The Admin';
         $this->user->email = 'admin@admin.com';
         $this->user->password = Hash::make('admin12345');
-        $this->user->role_id = 1;
+        $this->user->role = 'admin';
         $this->user->created_at = now();
         $this->user->updated_at = now();
         $this->user->save();
