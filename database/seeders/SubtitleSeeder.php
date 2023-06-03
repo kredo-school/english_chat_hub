@@ -12,11 +12,6 @@ class SubtitleSeeder extends Seeder
      *
      * @return void
      */
-    private $subtitle;
-    public function __construct(Subtitle $subtitle)
-    {
-        $this->subtitle = $subtitle;
-    }
     public function run()
     {
         $subtitles = [
@@ -24,7 +19,7 @@ class SubtitleSeeder extends Seeder
         ];
 
         foreach ($subtitles as $subtitle) {
-            $this->subtitle->create(['name' => $subtitle]);
+            Subtitle::create(['name' => $subtitle]);
         }
     }
 }

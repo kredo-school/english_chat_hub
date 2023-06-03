@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->text('comment');
             $table->string('image');
             $table->string('location');
-            $table->date('date');
+            $table->timestamp('date');
             $table->integer('status_id')->default(1); //1:available
             $table->softDeletes();
             $table->timestamps();

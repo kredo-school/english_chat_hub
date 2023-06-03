@@ -12,12 +12,6 @@ class CategorySeeder extends Seeder
      *
      * @return void
      */
-
-    private $category;
-    public function __construct(Category $category)
-    {
-        $this->category = $category;
-    }
     public function run()
     {
         $categories = [
@@ -78,7 +72,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            $this->category->create($category);
+            Category::create($category);
         }
     }
 }

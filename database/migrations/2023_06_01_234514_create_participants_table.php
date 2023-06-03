@@ -17,7 +17,7 @@ class CreateParticipantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->boolean('isUser')->default(false); //0:false
+            $table->boolean('isUser')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

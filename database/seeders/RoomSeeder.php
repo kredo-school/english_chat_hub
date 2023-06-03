@@ -12,12 +12,6 @@ class RoomSeeder extends Seeder
      *
      * @return void
      */
-
-    private $room;
-    public function __construct(Room $room)
-    {
-        $this->room = $room;
-    }
     public function run()
     {
         $rooms = [
@@ -25,7 +19,7 @@ class RoomSeeder extends Seeder
         ];
 
         foreach ($rooms as $room) {
-            $this->room->create(['name' => $room]);
+            Room::create(['name' => $room]);
         }
     }
 }

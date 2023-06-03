@@ -12,12 +12,6 @@ class LevelSeeder extends Seeder
      *
      * @return void
      */
-
-     private $level;
-     public function __construct(Level $level)
-     {
-        $this->level = $level;
-     }
     public function run()
     {
         $levels = [
@@ -36,7 +30,7 @@ class LevelSeeder extends Seeder
         ];
 
         foreach ($levels as $level) {
-            $this->level->create($level);
+            Level::create($level);
         }
     }
 }
