@@ -13,6 +13,9 @@
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+  <link rel="stylesheet" href="{{asset('css/button.css')}}">
+  <link rel="stylesheet" href="{{asset('css/form.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin-style.css')}}">
 
 </head>
@@ -22,10 +25,10 @@
         <img src="{{asset('img/logo.png')}}" alt="" class="logo">
         <nav id="nav-side">
           <ul class="admin-sidebar adminmenu-icon mt-5">
-            <li class="mb-5"><a href="#"><i class="fa-solid fa-users"></i></a></li>
+            <li class="mb-5"><a href="{{route('showUsers')}}"><i class="fa-solid fa-users"></i></a></li>
             <li class="mb-5"><a href="#"><i class="fa-sharp fa-solid fa-comment"></i></a></li>
-            <li class="mb-5"><a href=""><i class="fa-solid fa-inbox"></i></a></li>
-            <li class="mb-5"><a href=""><i class="fa-solid fa-calendar-check"></i></a></li>
+            <li class="mb-5"><a href="#"><i class="fa-solid fa-inbox"></i></a></li>
+            <li class="mb-5"><a href="#"><i class="fa-solid fa-calendar-check"></i></a></li>
           </ul>
         </nav>
     </header>
@@ -33,7 +36,19 @@
         <h2 class="title mt-4 ms-5 mb-5">
           {{-- Users should be replaced for each pages--}}
           <span class="highlight"> Users </span> | <span>All Users</span>
-          <a class="logout float-end"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+          {{-- <a class="dropdown-item" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+           {{ __('Logout') }}
+          </a> --}}
+
+
+          <a href="{{ route('logout') }}" class="logout float-end"  onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
         </h2>
       </section>
     <main class="container">

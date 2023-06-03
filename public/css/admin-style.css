@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
+/* style.css which kai-san creates  */
+:root {
+
+    /* ---COLORS--- */
+
+    --li-yellow: #FAEBD7;
+    --yellow: #FFD700;
+    --li-orange: #FFA500;
+    --orange: #FF7917;
+    --li-gray: #DCDCDC;
+    --gray: #6F6F6F;
+    --dark: #494949;
+
+    --active: #0d6efd;
+    --input: #73B0E8;
+
+    /*
+        color: var(--bs-primary); <=> primary color
+    */
+
+    /* ---FONTS--- */
+
+    --roundM: 'M PLUS Rounded 1c', sans-serif;
+    --raleway: 'Raleway', sans-serif;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -15,11 +41,13 @@
     background-color: #494949;
     text-align: center;
   }
+
   .logo{
     margin-top: 1rem;
     width: 50px;
     height: 49px;
   }
+
   #nav-side{
     margin-top: 6rem;
   }
@@ -79,31 +107,39 @@
   .search-status{
     position: relative;
   }
-  .search-bar{
-    width: 30%;
+  .search-bar-lg{
+    width: 60%;
     height: 40px;
+    position: inherit;
+  }
+  .search-bar-sm{
+    width: 30%;
+    float: right;
     display: inline;
   }
   .search-icon{
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  display: inline-block;
+  display: inline;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   }
-  .status-group{
+  .status-group-lg{
+    float: right;
+  }
+  .status-group-sm{
     display: inline;
     width: 50%;
     position: absolute;
     right: 0;
   }
-  .status-group li{
+  .status-group-sm li,.status-group-lg li{
     float: right;
     list-style: none;
   }
 
-  /* users table */
+  /* Users Table */
   .user-table{
     width: 100%;
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -119,18 +155,20 @@
     font-weight: normal;
     text-align: center;
   }
-  .color-2{
-    background-color: #bcbcbc;
-  }
-  table tbody tr td{
+  .usertable-tr{
     height: 150px;
     font-size: 1.2rem;
     font-weight: normal;
-    text-align: center;
   }
   .avatar-lg{
-    font-size: 5rem;
+    font-size: 4.5rem;
     color: #444;
+  }
+  .avatar-modal{
+    font-size: 6rem;
+    width: 6rem;
+    height: 6rem;
+    color: #494949;
   }
 
   /* admin footer */
