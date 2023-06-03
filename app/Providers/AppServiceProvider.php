@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Gate::define('admin', function ($user) {
-            return $user->role_id === User::ADMIN_ROLE_ID
+            return $user->role === 'admin'
                 ? Response::allow()
                 : Response::deny('You must be an administrator.');
         });
