@@ -43,9 +43,18 @@
           </a> --}}
 
 
-          <a href="{{ route('logout') }}" class="logout float-end"  onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+
+
+          <a href="{{ route('logout') }}" class="logout float-end"  onclick="LogOutOnClick()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </a>
+          <script>
+                function LogOutOnClick(){
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();
+                }
+            </script>
+
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
