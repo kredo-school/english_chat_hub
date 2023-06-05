@@ -24,13 +24,17 @@
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">
     <link rel="stylesheet" href="{{ mix('css/button.css') }}">
     <link rel="stylesheet" href="{{ mix('css/form.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
+   
+
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item me-2">
@@ -54,17 +58,17 @@
                     <ul class="navbar-nav me-auto">
                         @guest
                             <li class="nav-item me-5">
-                                <a href="" class="link-item">About Us</a>
+                                <a href="#about-us" class="link-item">About Us</a>
                             </li>
                             <li class="nav-item me-5">
-                                <a href="" class="link-item">How to use</a>
+                                <a href="#how-to-use" class="link-item">How to use</a>
                             </li>
                         @endguest
                             <li class="nav-item me-5">
                                 <a href="" class="link-item">Event</a>
                             </li>
                             <li class="nav-item me-5">
-                                <a href="" class="link-item">Contact Us</a>
+                                <a href="#" class="link-item">Contact Us</a>
                             </li>
                             <li class="nav-item me-5">
                                 <a href="" class="link-item">FAQ</a>
@@ -109,12 +113,9 @@
     </header>
 
     <main>
+        @yield('banner')
         <div class="container-fluid">
-            @guest
             @yield('content')
-            @else
-            @yield('content.user')
-            @endguest
         </div>
     </main>
 
@@ -131,17 +132,17 @@
                     <ul>
                         @guest
                         <li class="me-5">
-                            <a href="" class="footer-link">About Us</a>
+                            <a href="#about-us" class="footer-link">About Us</a>
                         </li>
                         <li class=" me-5">
-                            <a href="" class="footer-link">How to use</a>
+                            <a href="#how-to-use" class="footer-link">How to use</a>
                         </li>
                         @endguest
                         <li class="me-5">
                             <a href="" class="footer-link">Event</a>
                         </li>
                         <li class="me-5">
-                            <a href="" class="footer-link">Contact Us</a>
+                            <a href="#" class="footer-link">Contact Us</a>
                         </li>
                         <li class="me-5" >
                             <a href="" class="footer-link">FAQ</a>
