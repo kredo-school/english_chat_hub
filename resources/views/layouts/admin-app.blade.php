@@ -48,12 +48,6 @@
           <a href="{{ route('logout') }}" class="logout float-end"  onclick="LogOutOnClick()">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </a>
-          <script>
-                function LogOutOnClick(){
-                    event.preventDefault();
-                    document.getElementById('logout-form').submit();
-                }
-            </script>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
@@ -73,6 +67,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+  <script>
+    function LogOutOnClick(){
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    }
   </script>
 </body>
 
