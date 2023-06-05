@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminContoroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// admin page
-Route::get('/users',[AdminController::class,'showUsers'])->name('showUsers');
+
 
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
@@ -33,6 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::get('/',[AdminController::class,'showUsers'])->name('showUsers');
+        Route::get('/events',[AdminController::class,'showEvents'])->name('showEvents');
+        Route::get('/events/create',[AdminController::class,'createEvent'])->name('createEvent');
 
     });
 });
