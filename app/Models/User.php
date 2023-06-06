@@ -58,7 +58,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Meeting::class);
     }
-    public function joinMeeting()
+    public function joinMeetings()
     {
         return $this->belongsToMany(Meeting::class, 'join_meeting');
     }

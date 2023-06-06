@@ -11,11 +11,11 @@ class Event extends Model
     use HasFactory, SoftDeletes;
 
     // RELATION
-    public function eventLevel()
+    public function eventLevels()
     {
         return $this->belongsToMany(Level::class, 'event_level');
     }
-    public function joinEvent()
+    public function joinEvents()
     {
         return $this->belongsToMany(Participant::class, 'join_event');
     }
