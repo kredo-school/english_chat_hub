@@ -45,8 +45,8 @@
                     <tbody>
                         {{-- We will change it later to match the actual user table. --}}
                         @foreach($all_users as $user)
-                            @if ($user->user_name === 'The Admin')
-                            {{-- the admin won't show users table --}}
+                            @if ($user->role == 'admin')
+                            {{-- the admin won't show in the users table --}}
                             @else
                                 <tr class="usertable-tr">
                                     <td>{{$user->id}}</td>
@@ -57,8 +57,8 @@
                                             <i class="fa-solid fa-circle-user avatar-lg"></i>
                                         @endif
                                     </td>
-                                    <td>{{$user->username}}</td>
-                                    <td>{{$user->fullname}}</td>
+                                    <td>{{$user->user_name}}</td>
+                                    <td>{{$user->full_name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->created_at}}</td>
                                     <td>{{$user->updated_at}}</td>
@@ -90,7 +90,7 @@
                                                 show profile
                                             </button>
                                         </div>
-                                        {{-- @include('admin.users.modal.showprofile') --}}
+                                        @include('admin.users.modal.showprofile')
                                         </div>
                                     </td>
                                 </tr>
