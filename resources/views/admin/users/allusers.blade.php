@@ -45,9 +45,8 @@
                     <tbody>
                         {{-- We will change it later to match the actual user table. --}}
                         @foreach($all_users as $user)
-                            @if ($user->role == 'admin')
+                            @if ($user->role != 'admin')
                             {{-- the admin won't show in the users table --}}
-                            @else
                                 <tr class="usertable-tr">
                                     <td>{{$user->id}}</td>
                                     <td>
