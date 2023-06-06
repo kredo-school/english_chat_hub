@@ -25,10 +25,10 @@
         <img src="{{asset('img/logo.png')}}" alt="" class="logo">
         <nav id="nav-side">
           <ul class="admin-sidebar adminmenu-icon mt-5">
-            <li class="mb-5"><a href="{{route('admin.showUsers')}}"><i class="fa-solid fa-users"></i></a></li>
+            <li class="mb-5"><a href="{{route('showUsers')}}"><i class="fa-solid fa-users"></i></a></li>
             <li class="mb-5"><a href="#"><i class="fa-sharp fa-solid fa-comment"></i></a></li>
             <li class="mb-5"><a href="#"><i class="fa-solid fa-inbox"></i></a></li>
-            <li class="mb-5"><a href="{{route('admin.showEvents')}}"><i class="fa-solid fa-calendar-check"></i></a></li>
+            <li class="mb-5"><a href="#"><i class="fa-solid fa-calendar-check"></i></a></li>
           </ul>
         </nav>
     </header>
@@ -43,12 +43,9 @@
           </a> --}}
 
 
-
-
-          <a href="{{ route('logout') }}" class="logout float-end"  onclick="LogOutOnClick()">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </a>
-
+          <a href="{{ route('logout') }}" class="logout float-end"  onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
@@ -67,12 +64,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
-  <script>
-    function LogOutOnClick(){
-        event.preventDefault();
-        document.getElementById('logout-form').submit();
-    }
   </script>
 </body>
 
