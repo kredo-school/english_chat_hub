@@ -11,7 +11,7 @@ class Participant extends Model
     use HasFactory, SoftDeletes;
 
     // RELATION
-    public function events()
+    public function joinEvent()
     {
         return $this->belongsToMany(Event::class, 'join_event');
     }
