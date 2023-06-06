@@ -28,7 +28,7 @@ class Meeting extends Model
         return $this->belongsTo(Level::class);
     }
 
-    public function joinMeeting()
+    public function joinMeetings()
     {
         return $this->belongsToMany(User::class, 'join_meeting');
     }

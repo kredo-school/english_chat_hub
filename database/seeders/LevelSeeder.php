@@ -16,8 +16,8 @@ class LevelSeeder extends Seeder
     {
         $levels = [
             [
-                'name' => 'Begginer',
-                'icon' => 'begginer.png'
+                'name' => 'beginner',
+                'icon' => 'beginner.png'
             ],
             [
                 'name' => 'intermediate',

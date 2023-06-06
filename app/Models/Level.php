@@ -18,7 +18,7 @@ class Level extends Model
     {
         return $this->hasMany(Meeting::class);
     }
-    public function eventLevel()
+    public function eventLevels()
     {
         return $this->belongsToMany(Event::class, 'event_level');
     }
