@@ -35,7 +35,7 @@
     <section class="top-bar">
         <h2 class="title mt-4 ms-5 mb-5">
           {{-- Users should be replaced for each pages--}}
-          <span class="highlight"> Users </span> | <span>All Users</span>
+          <span class="highlight"> Users </span> | <span>Users</span>
           {{-- <a class="dropdown-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
