@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 
+// user controller
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,13 +27,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
     # LOGINED USERS ONLY
+    Route::group(['prefix'=>'users','as'=>'users.'], function(){
+        Route::get('/', [HomeController::class, 'index'])->name('top');
+        Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
+        Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
