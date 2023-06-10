@@ -9,6 +9,7 @@
             <div class="create-event">
                 <a type="button" href="{{route('admin.createEvent')}}"><i class="fa-solid fa-circle-plus"></i><span class="ms-2">Create New Event</span></a>
             </div>
+
             <form action="#" class="search-bar-sm">
                 <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
             </form>
@@ -31,6 +32,7 @@
         </div>
         <div class="row">
             <div class="col-12 mt-3">
+                @if ($all_events -> isNotEmpty())
                 <table class="user-table text-center">
                     <thead>
                         <tr>
@@ -45,33 +47,27 @@
                             <th>detail</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @for($i=0;$i < 3; $i++)
+                    <tbody>
+                        @foreach($all_events as $event)
                         <tr class="eventtable-tr">
-                            <td>#</td>
-                            <td>Beginner</td>
-                            <td>Your Summer...</td>
-                            <td>2023-XX-XX<br>12:00PM</td>
-                            <td>Tokyo University<br>Room #333</td>
-                            <td>20xx-xx-xx</td>
-                            <td>20xx-xx-xx</td>
+                            <td>{{ $event->id }}</td>
+                            <td>{{ $event->getEventString() }}</td>
+                            <td>{{ $event->theme }}</td>
+                            <td>{{ $event->date }}</td>
+                            <td>{{ $event->location }}</td>
+                            <td>{{ $event->created_at }}</td>
+                            <td>{{ $event->updated_at }}</td>
                             <td><i class="fa-solid fa-circle text-success"></i></td>
-                            <td><a href="{{route('admin.participants')}}"><i class="fa-solid fa-ellipsis"></i></a></td>
+                            <td><a href="#"><i class="fa-solid fa-ellipsis"></i></a></td>
                         </tr>
-                        <tr class="eventtable-tr color-2">
-                            <td>#</td>
-                            <td>Beginner</td>
-                            <td>Your Summer...</td>
-                            <td>2023-XX-XX<br>12:00PM</td>
-                            <td>Tokyo University<br>Room #333</td>
-                            <td>20xx-xx-xx</td>
-                            <td>20xx-xx-xx</td>
-                            <td><i class="fa-solid fa-circle text-success"></i></td>
-                            <td><i class="fa-solid fa-ellipsis"></i></td>
-                        </tr>
-                        @endfor
-                    </tbody> --}}
+                        @endforeach
+                    </tbody>
                 </table>
+                @else
+                    <h1 class="my-5">There is no events yet...</h1>
+
+                @endif
+
             </div>
 
         </div>

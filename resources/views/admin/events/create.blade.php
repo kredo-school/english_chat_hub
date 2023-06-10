@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-6 event-form ">
                 <h1>New Event</h1>
-                <form action="#" method="post">
+                <form action="{{ route('admin.storeEvent') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group my-4">
                         <label for="theme" class="form-label fs-5 mb-0">Theme</label>
@@ -18,28 +18,25 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="form-group my-2 col">
+                        <div class="form-group my-2">
                             <label for="date" class="form-label  fs-5 mb-0">Date</label>
                             <input type="datetime-local" name="date" id="date" class="form-control">
                             @error('date')
                                 <p class="form-text text-danger mt-0">{{$message}}</p>
                             @enderror
                         </div>
-                        <div class="form-group my-2 col">
-                            <label for="level" class="form-label fs-5 mb-0">Level</label>
-                            <select name="level" id="level" class="form-control">
-                                <option value="hidden">--Select Level--</option>
-                                <option value="Beginner">Beginner</option>
-                                <option value="Intermediate">Intermediate</option>
-                                <option value="Advanced">Advanced</option>
-                                <option value="All Level">All Level</option>
-                            </select>
-                        </div>
-                        @error('level')
+                        <div class="form-group my-3">
+                            <label for="level" class="form-label fs-5 mb-0">Level</label><br>
+                            <input type="checkbox" class="from-check-input" name="level[]" id="1" value="1"> Beginner
+                            <input type="checkbox" class="from-check-input ms-3" name="level[]" id="2" value="2"> Intermediate
+                            <input type="checkbox" class="from-check-input ms-3" name="level[]" id="3" value="3"> Advanced
+                            @error('level')
                             <p class="form-text text-danger mt-0">{{$message}}</p>
-                        @enderror
+                            @enderror
+                        </div>
+
                     </div>
-                    <div class="form-group my-4">
+                    <div class="form-group my-2">
                         <label for="location" class="form-label fs-5 mb-0">Location</label>
                         <input type="text" name="location" id="location" class="form-control">
                         @error('location')

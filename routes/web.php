@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/',[AdminController::class,'showUsers'])->name('showUsers');
         Route::get('/events',[AdminController::class,'showEvents'])->name('showEvents');
         Route::get('/events/create',[AdminController::class,'createEvent'])->name('createEvent');
+        Route::post('/events/store',[AdminController::class,'storeEvent'])->name('storeEvent');
 
     });
 });

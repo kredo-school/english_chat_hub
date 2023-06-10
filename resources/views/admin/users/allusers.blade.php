@@ -43,7 +43,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- We will change it later to match the actual user table. --}}
                         @foreach($all_users as $user)
                             @if ($user->role != 'admin')
                                 <tr class="usertable-tr">
