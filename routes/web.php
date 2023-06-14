@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
 
 
 /*
@@ -24,6 +25,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// event
+Route::get('/event', [EventController::class, 'show'])->name('event.show');
+Route::get('/{id}/eventdetail', [EventController::class, 'showDetail'])->name('show.detail');
 
 
 // Route Group
