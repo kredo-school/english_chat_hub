@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class MeetingsController extends Controller
 {
+    const DEFAULT_STATUS_ID = 1;
     private $meeting;
     public function __construct(Meeting $meeting)
     {
@@ -53,7 +54,7 @@ class MeetingsController extends Controller
         $meeting->level_id      = $request->level_id;
         $meeting->date          = $request->date;
         $meeting->start_at      = $request->start_at;
-        $meeting->status_id     = 1;
+        $meeting->status_id     = self::DEFAULT_STATUS_ID;
         $meeting->save();
         return redirect()->route('admin.chatroom.meeting.index');
     }
