@@ -11,9 +11,9 @@
                         <i class="fa-solid fa-eye-slash"></i> Negate
                     </h1>
                 </div>
-                
+
                 <div class="modal-body pb-0">
-                    <div class="col-6 mx-auto">
+                    <div class="col-8 mx-auto">
                         <div class="row">
                             <div class="col-3">ID</div>
                             <div class="col">: {{ $room->id }}</div>
@@ -22,7 +22,13 @@
                             <div class="col-3">NAME</div>
                             <div class="col">: {{ $room->name }}</div>
                         </div>
-                        <p class="text-danger text-center mb-0 mt-1">Are you sure to negate this room?</p>
+                        <p class="text-danger mb-0 mt-1">Are you sure to negate this room?</p>
+                        @if ($room->meetings->count() != 0)
+                            <p class="text-danger mb-0 mt-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> {{ $room->meetings->count() }}
+                                {{ $room->meetings->count() === 1 ? 'Meeting' : 'Meetings' }} will also negate.
+                            </p>
+                        @endif
                     </div>
                 </div>
 

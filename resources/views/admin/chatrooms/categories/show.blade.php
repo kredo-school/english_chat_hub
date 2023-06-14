@@ -2,6 +2,10 @@
 
 @section('title', 'Show Category')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
 
@@ -29,20 +33,29 @@
 
         <!-- Table Head -->
         <div class="w-100 mb-0 pb-0" style="border-bottom: 2px solid var(--dark);">
-            <div class="container mb-3">
-                <div class="mb-2">
-                    <span class="fs-1"><strong class="fs-2">"{{ $category->name }}"</strong> detail</span>
-                    <span class="ms-3 fs-4">
-                        @if ($category->deleted_at)
-                        <i class="fa-solid fa-circle text-danger"></i>
-                        @else
-                        <i class="fa-solid fa-circle text-success"></i>
-                        @endif
-                    </span>
-                </div>
-
-                <div class="row">
-                    <p class="py-0">{{ $category->description }}</p>
+            <div class="container my-3 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-center align-items-center" style="background-color: {{ $category->color }};width: 5rem;height: 5rem;">
+                            <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}" style="width: 3rem;height: 3rem;">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-2">
+                            <span class="fs-1"><strong class="fs-2">"{{ $category->name }}"</strong> detail</span>
+                            <span class="ms-3 fs-4">
+                                @if ($category->deleted_at)
+                                <i class="fa-solid fa-circle text-danger"></i>
+                                @else
+                                <i class="fa-solid fa-circle text-success"></i>
+                                @endif
+                            </span>
+                        </div>
+        
+                        <div class="row">
+                            <p class="py-0">{{ $category->description }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="d-flex justify-content-between container">

@@ -3,41 +3,31 @@
         <div class="modal-content position-relative">
 
             <div class="modal-header border-0 justify-content-center">
-                <h1 class="mb-0 pb-0 text-capitalize">{{ $meeting->title }}</h1>
+                <h4 class="mb-0 pb-0 text-capitalize fw-normal">
+                    <strong>"{{ $meeting->title }}"</strong> members
+                </h4>
             </div>
 
-            <div class="modal-body pt-0">
-                <div class="border-bottom">
-                    <div class="col-8 mx-auto">
-                        <span class="text-white bg-secondary rounded-top px-2 py-1">
-                            Members
-                        </span>
-                    </div>
-                </div>
+            <div class="modal-body pt-0 border-top border-dark">
                 <div class="col-8 mx-auto overflow-auto">
                     <ul class="list-group list-group-flush">
                         @forelse ($meeting->joinMeetings as $user)
                             <li class="list-group-item">
                                 <div class="d-flex align-items-center gap-5">
                                     @if ($user->avatar)
-
-                                    {{-- Change URL for background-image --}}
-                                    <div class="rounded-circle border border-danger d-flex align-items-center justify-content-center position-relative"
-                                    style="height: 3rem;width: 3rem;background-image: url('#');background-size: cover;background-repeat: no-repeat;background-position: center;">
-                                            <div class="rounded-circle border border-danger d-flex align-items-center justify-content-center bg-white"
-                                                style="height: 1.5rem;width: 1.5rem;position: absolute;bottom: -0.25rem;right: -0.5rem">
+                                        <div class="avatar-wrap">
+                                            <img src="{{ asset('/storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}" class="avatar">
+                                            <div class="level-wrap">
                                                 <img src="{{ asset('image/level/' . $user->level->icon) }}"
-                                                    alt="{{ $user->level->icon }}" style="height: 1rem;width: 1rem;">
+                                                    alt="{{ $user->level->name }}" class="level-icon">
                                             </div>
                                         </div>
                                     @else
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center position-relative"
-                                            style="height: 3rem;width: 3rem;">
-                                            <i class="fa-solid fa-circle-user text-danger display-5"></i>
-                                            <div class="rounded-circle border border-danger d-flex align-items-center justify-content-center bg-white"
-                                                style="height: 1.5rem;width: 1.5rem;position: absolute;bottom: -0.25rem;right: -0.5rem">
+                                        <div class="avatar-wrap">
+                                            <i class="fa-solid fa-circle-user display-5"></i>
+                                            <div class="level-wrap">
                                                 <img src="{{ asset('image/level/' . $user->level->icon) }}"
-                                                    alt="{{ $user->level->icon }}" style="height: 1rem;width: 1rem;">
+                                                    alt="{{ $user->level->name }}" class="level-icon">
                                             </div>
                                         </div>
                                     @endif

@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="modal-body pb-0">
-                    <div class="col-6 mx-auto">
+                    <div class="col-8 mx-auto">
                         <div class="row">
                             <div class="col-3">ID</div>
                             <div class="col">: {{ $category->id }}</div>
@@ -22,7 +22,13 @@
                             <div class="col-3">TITLE</div>
                             <div class="col">: {{ $category->name }}</div>
                         </div>
-                        <p class="text-danger text-center mb-0 mt-1">Are you sure to negate this category?</p>
+                        <p class="text-danger mb-0 mt-1">Are you sure to negate this category?</p>
+                        @if ($category->meetings->count() != 0)
+                            <p class="text-danger mb-0 mt-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> {{ $category->meetings->count() }}
+                                {{ $category->meetings->count() === 1 ? 'Meeting' : 'Meetings' }} will also negate.
+                            </p>
+                        @endif
                     </div>
                 </div>
 
@@ -76,7 +82,7 @@
                     </button>
                     <button type="submit" class="btn btn-success">Activate</button>
                 </div>
-                
+
             </form>
         </div>
     </div>

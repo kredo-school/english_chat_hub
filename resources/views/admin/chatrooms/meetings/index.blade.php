@@ -2,6 +2,10 @@
 
 @section('title', 'All Meetings')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         

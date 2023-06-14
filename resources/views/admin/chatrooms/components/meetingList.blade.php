@@ -7,8 +7,9 @@
                     <tr>
                         <td style="width: 50px">{{ $loop->index + 1 }}</td>
                         <td class="text-start">{{ $meeting->title }}</td>
-                        <td class="text-start">{{ $meeting->date }} {{ $meeting->start_at }} : 00~</td>
-                        <td>{{ request()->is('*/room/*') ? $meeting->category->name : $meeting->room->name }}</td>
+                        <td>{{ $meeting->user->user_name }}</td>
+                        <td>{{ $meeting->date }} {{ $meeting->start_at }} : 00~</td>
+                        <td>{{ request()->is('*/room/*') ? $meeting->category()->withTrashed()->first()->name : $meeting->room()->withTrashed()->first()->name }}</td>
                         <td style="width: 100px">
                             @if ($meeting->deleted_at)
                                 <i class="fa-solid fa-eye-slash text-danger"></i>

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="content">
-        
+
         <!-- Chatroom Bar -->
         @include('admin.chatrooms.components.bar')
 
@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>
-                                <a href="{{ route('admin.chatroom.category.show', $category->id) }}" class="text-start">
+                                <a href="{{ route('admin.chatroom.category.show', $category->id) }}" class="text-start text-decoration-none">
                                     @if ($category->deleted_at)
                                         <span class="text-danger">{{ $category->name }}</span>
                                     @else
@@ -57,11 +57,13 @@
                                 </a>
                             </td>
                             <td>
-                                <div class="d-flex align-items-center justify-content-center mx-auto" style="height: 3rem;width: 3rem;background-color: {{ $category->color }}">
-                                    <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}" style="width: 2rem;height:2rem;">
+                                <div class="d-flex align-items-center justify-content-center mx-auto"
+                                    style="height: 3rem;width: 3rem;background-color: {{ $category->color }}">
+                                    <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}"
+                                        style="width: 2rem;height:2rem;">
                                 </div>
                             </td>
-                            <td>{{ $category->meetings->count() }}</td>
+                            <td>{{ $category->meetings()->withTrashed()->count() }}</td>
                             <td>
                                 @if ($category->deleted_at)
                                     <i class="fa-solid fa-eye-slash text-danger"></i>

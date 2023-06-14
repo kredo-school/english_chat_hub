@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('css/button.css')}}">
   <link rel="stylesheet" href="{{asset('css/form.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin-style.css')}}">
+  @yield('style')
 
 </head>
 

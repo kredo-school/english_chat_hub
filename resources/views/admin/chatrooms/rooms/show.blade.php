@@ -2,6 +2,10 @@
 
 @section('title', 'Show Room')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         <!-- Chatroom Bar -->

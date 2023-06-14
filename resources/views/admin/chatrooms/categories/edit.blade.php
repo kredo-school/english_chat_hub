@@ -24,10 +24,10 @@
 
                 <div class="my-4 row">
                     <label for="color" class="form-label">Icon Color</label>
-                    
+
                     <div class="row">
                         <div class="col-6">
-                            <div class="mx-auto form-control d-flex align-items-center justify-content-center rounded-0 mb-4"
+                            <div class="mx-auto form-control d-flex align-items-center justify-content-center rounded-0 mb-4" id="category-img"
                                 style="width: 6rem;height: 6rem;background-color: {{ $category->color }}">
                                 <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}"
                                     style="width: 4rem;height: 4rem;">

@@ -29,7 +29,7 @@ class MeetingsController extends Controller
         $all_categories = Category::all();
         $all_rooms = Room::all();
         $all_levels = Level::all();
-        $meeting = $this->meeting->withoutTrashed()->findOrFail($id);
+        $meeting = $this->meeting->withTrashed()->findOrFail($id);
         return view('admin.chatrooms.meetings.edit')
             ->with('meeting', $meeting)
             ->with('all_categories', $all_categories)

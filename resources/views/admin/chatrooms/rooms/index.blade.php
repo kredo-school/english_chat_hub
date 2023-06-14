@@ -42,12 +42,12 @@
                             <td>{{ $room->id }}</td>
                             <td>
                                 <a href="{{ route('admin.chatroom.room.show', $room->id) }}"
-                                    class="text-decoration-noen text-capitalize">
+                                    class="text-decoration-none text-capitalize">
                                     {{ $room->name }}
                                 </a>
                             </td>
                             <td>zoom_account_sample</td>
-                            <td>{{ $room->Meetings->count() }}</td>
+                            <td>{{ $room->Meetings()->withTrashed()->count() }}</td>
                             <td>
                                 @if ($room->deleted_at)
                                     <i class="fa-solid fa-eye-slash text-danger"></i>

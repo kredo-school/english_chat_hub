@@ -12,7 +12,7 @@ class CategoriesController extends Controller
 {
     private $category;
     private $meeting;
-    const ICON_FOLDER = 'public/image/category/';
+    const ICON_FOLDER = 'image/category/';
 
     public function __construct(Category $category, Meeting $meeting)
     {
@@ -31,7 +31,7 @@ class CategoriesController extends Controller
         $this->meeting->updateStatus();
         
         $category = $this->category->withTrashed()->findOrFail($id);
-        $meetings = $category->meetings()->latest()->paginate(10);
+        $meetings = $category->meetings()->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.categories.show')
             ->with('category', $category)
             ->with('meetings', $meetings)
@@ -74,7 +74,7 @@ class CategoriesController extends Controller
             'description' => 'required|min:5|max:100'
         ]);
         
-        $category->name = str_replace(" ", "_", ucwords($request->name));
+        $category->name = str_replace(" ", "_", ucwords(strtolower($request->name)));
         $category->color = $request->color;
         $category->description = $request->description;
         if ($request->icon) {
