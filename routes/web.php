@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/events',[AdminController::class,'showEvents'])->name('showEvents');
         Route::get('/events/create',[AdminController::class,'createEvent'])->name('createEvent');
         Route::post('/events/store',[AdminController::class,'storeEvent'])->name('storeEvent');
+        Route::get('/events/edit/{event}',[AdminController::class,'editEvent'])->name('editEvent');
+        Route::patch('/events/update/{id}',[AdminController::class,'updateEvent'])->name('updateEvent');
+        Route::delete('/events/destroy/{id}',[AdminController::class,'destroyEvent'])->name('destroyEvent');
 
     });
 });
