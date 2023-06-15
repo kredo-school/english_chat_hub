@@ -19,6 +19,6 @@ mix.js('resources/js/app.js', 'public/js')
 
 
 
-    .sass('resources/scss/event.scss', 'public/css')
 
+    
     .sourceMaps();
