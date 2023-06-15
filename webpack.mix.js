@@ -21,5 +21,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/faq.scss', 'public/css')
 
 
+
     .sass('resources/scss/admin-style.scss', 'public/css')
     .sourceMaps();
