@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\MeetingsController;
 use App\Http\Controllers\Admin\RoomsController;
 use App\Http\Controllers\Admin\CategoriesController;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,15 +24,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/faq', function () {
+    return view('faq');
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+// Contact Us form
+Route::get('/contact-us/create', [ContactController::class, 'create'])->name('contact-us.create');
+Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store');
 
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
     # LOGINED USERS ONLY
+    Route::group(['prefix'=>'users','as'=>'users.'], function(){
+        Route::get('/', [HomeController::class, 'index'])->name('top');
+        Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
+        Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
