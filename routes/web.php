@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
+
 
 
 /*
@@ -20,11 +22,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/faq', function () {
+    return view('faq');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+// Contact Us form
+Route::get('/contact-us/create', [ContactController::class, 'create'])->name('contact-us.create');
+Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store');
 
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
