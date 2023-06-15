@@ -11,7 +11,7 @@
         <!-- Status Bar -->
         <div class="serch-status position-relative" style="min-height: 38px;height: auto;">
             <div class="create-event">
-                <a type="button" href="{{ route('admin.chatroom.category.add') }}">
+                <a type="button" href="{{ route('admin.chatrooms.categories.add') }}">
                     <i class="fa-solid fa-circle-plus"></i>
                     <span class="ms-2">Create New Category</span>
                 </a>
@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>
-                                <a href="{{ route('admin.chatroom.category.show', $category->id) }}" class="text-start text-decoration-none">
+                                <a href="{{ route('admin.chatrooms.categories.show', $category->id) }}" class="text-start text-decoration-none">
                                     @if ($category->deleted_at)
                                         <span class="text-danger">{{ $category->name }}</span>
                                     @else
@@ -78,7 +78,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a type="button" class="dropdown-item"
-                                            href="{{ Route('admin.chatroom.category.edit', $category->id) }}">Edit</a>
+                                            href="{{ Route('admin.chatrooms.categories.edit', $category->id) }}">Edit</a>
                                     </li>
                                     <li>
                                         @if ($category->deleted_at)

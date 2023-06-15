@@ -38,9 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/events',[AdminController::class,'showEvents'])->name('showEvents');
         Route::get('/events/create',[AdminController::class,'createEvent'])->name('createEvent');
         Route::post('/events/store',[AdminController::class,'storeEvent'])->name('storeEvent');
-        Route::group(['prefix' => 'chatroom', 'as' => 'chatroom.'], function () {
+        Route::group(['prefix' => 'chatrooms', 'as' => 'chatrooms.'], function () {
             #MEETING
-            Route::group(['prefix' => 'meeting', 'as' => 'meeting.'], function () {
+            Route::group(['prefix' => 'meetings', 'as' => 'meetings.'], function () {
                 Route::get('/', [MeetingsController::class, 'index'])->name('index');
                 Route::get('/{id}/edit', [MeetingsController::class, 'edit'])->name('edit');
                 Route::patch('/{id}/update', [MeetingsController::class, 'update'])->name('update');
@@ -48,14 +48,14 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::delete('/{id}/delete', [MeetingsController::class, 'delete'])->name('delete');
             });
             #ROOM
-            Route::group(['prefix' => 'room', 'as' => 'room.'], function () {
+            Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
                 Route::get('/', [RoomsController::class, 'index'])->name('index');
                 Route::get('/{id}/show', [RoomsController::class, 'show'])->name('show');
                 Route::patch('/{id}/restore', [RoomsController::class, 'restore'])->name('restore');
                 Route::delete('/{id}/delete', [RoomsController::class, 'delete'])->name('delete');
             });
             #CATEGORIES
-            Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+            Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
                 Route::get('/', [CategoriesController::class, 'index'])->name('index');
                 Route::get('/add', [CategoriesController::class, 'add'])->name('add');
                 Route::get('/{id}/show', [CategoriesController::class, 'show'])->name('show');

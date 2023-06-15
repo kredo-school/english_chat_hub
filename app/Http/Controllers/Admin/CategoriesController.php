@@ -51,7 +51,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'          => 'required|min:1|max:20|unique:categories,name',
+            'name'          => 'required|max:20|unique:categories,name',
             'color'         => 'required|regex:/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', //Hex Color
             'icon'          => 'required|mimes:jpg,jpeg,png,gif',
             'description'   => 'required|min:5|max:100'
@@ -62,19 +62,19 @@ class CategoriesController extends Controller
         $this->category->description = $request->description;
         $this->category->icon = $this->saveIcon($request);
         $this->category->save();
-        return redirect()->route('admin.chatroom.category.index');
+        return redirect()->route('admin.chatrooms.categories.index');
     }
     public function update(Request $request, $id)
     {
         $category = $this->category->withTrashed()->findOrFail($id);
         $request->validate([
-            'name' => 'required|min:1|max:20|unique:categories,name,' . $category->id,
+            'name' => 'required|max:20|unique:categories,name,' . $category->id,
             'color'=> 'required|regex:/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/',
             'icon' => 'mimes:jpg,jpeg,png,gif',
             'description' => 'required|min:5|max:100'
         ]);
         
-        $category->name = str_replace(" ", "_", ucwords(strtolower($request->name)));
+        $category->name = ucwords(strtolower($request->name));
         $category->color = $request->color;
         $category->description = $request->description;
         if ($request->icon) {
@@ -82,7 +82,7 @@ class CategoriesController extends Controller
             $category->icon = $this->saveIcon($request);
         }
         $category->save();
-        return redirect()->route('admin.chatroom.category.index');
+        return redirect()->route('admin.chatrooms.categories.index');
     }
     public function delete($id)
     {
@@ -92,13 +92,13 @@ class CategoriesController extends Controller
         }
         $category->delete();
 
-        return redirect()->route('admin.chatroom.category.index');
+        return redirect()->route('admin.chatrooms.categories.index');
     }
     public function restore($id)
     {
         $category = $this->category->withTrashed()->findOrFail($id);
         $category->restore();
-        return redirect()->route('admin.chatroom.category.index');
+        return redirect()->route('admin.chatrooms.categories.index');
     }
 
     public function deleteIcon($id)

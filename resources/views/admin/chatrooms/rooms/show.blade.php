@@ -13,7 +13,7 @@
 
         <!-- Status Bar -->
         <div class="serch-status position-relative" style="min-height: 38px;height: auto;">
-            <a href="{{ route('admin.chatroom.room.index') }}" class="d-inline text-decoration-none text-secondary fs-4">
+            <a href="{{ route('admin.chatrooms.rooms.index') }}" class="d-inline text-decoration-none text-secondary fs-4">
                 <i class="fa-solid fa-angle-left"></i> Back
             </a>
             <div class="status-group-sm">

@@ -41,12 +41,12 @@ class RoomsController extends Controller
             $meeting->delete();
         }
         $room->delete();
-        return redirect()->route('admin.chatroom.room.index');
+        return redirect()->route('admin.chatrooms.rooms.index');
     }
     public function restore($id)
     {
         $room = $this->room->withTrashed()->findOrFail($id);
         $room->restore();
-        return redirect()->route('admin.chatroom.room.index');
+        return redirect()->route('admin.chatrooms.rooms.index');
     }
 }

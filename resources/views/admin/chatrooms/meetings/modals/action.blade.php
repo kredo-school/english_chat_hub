@@ -2,7 +2,7 @@
 <div class="modal fade" id="delete-{{ $meeting->id }}">
     <div class="modal-dialog border-danger">
         <div class="modal-content border-danger">
-            <form action="{{ Route('admin.chatroom.meeting.delete', $meeting->id) }}" method="post">
+            <form action="{{ route('admin.chatrooms.meetings.delete', $meeting->id) }}" method="post">
                 @csrf
                 @method('DELETE')
 
@@ -42,7 +42,7 @@
 <div class="modal fade" id="restore-{{ $meeting->id }}">
     <div class="modal-dialog border-success">
         <div class="modal-content border-success">
-            <form action="{{ Route('admin.chatroom.meeting.restore', $meeting->id) }}" method="post">
+            <form action="{{ Route('admin.chatrooms.meetings.restore', $meeting->id) }}" method="post">
                 @csrf
                 @method('PATCH')
 

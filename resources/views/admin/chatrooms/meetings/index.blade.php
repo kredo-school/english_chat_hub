@@ -97,7 +97,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
                                             <a type="button" class="dropdown-item"
-                                                href="{{ Route('admin.chatroom.meeting.edit', $meeting->id) }}">Edit</a>
+                                                href="{{ route('admin.chatrooms.meetings.edit', $meeting->id) }}">Edit</a>
                                         </li>
                                         <li>
                                             @if (!$meeting->room()->withTrashed()->first()->deleted_at && !$meeting->category()->withTrashed()->first()->deleted_at && $meeting->deleted_at)

@@ -41,7 +41,7 @@
                         <tr>
                             <td>{{ $room->id }}</td>
                             <td>
-                                <a href="{{ route('admin.chatroom.room.show', $room->id) }}"
+                                <a href="{{ route('admin.chatrooms.rooms.show', $room->id) }}"
                                     class="text-decoration-none text-capitalize">
                                     {{ $room->name }}
                                 </a>

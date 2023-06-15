@@ -7,7 +7,7 @@
 
         <div class="col-6 mx-auto event-form pt-0">
             <h1 class="text-center">Create Categroy</h1>
-            <form action="{{ route('admin.chatroom.category.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.chatrooms.categories.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="my-4">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="mt-5 text-end">
-                    <a href="{{ route('admin.chatroom.category.index') }}" class="button btn-gray">Cancel</a>
+                    <a href="{{ route('admin.chatrooms.categories.index') }}" class="button btn-gray">Cancel</a>
                     <button type="submit" class="button btn-orange">Create</button>
                 </div>
 

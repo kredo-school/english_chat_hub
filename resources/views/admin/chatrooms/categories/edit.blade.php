@@ -7,7 +7,7 @@
 
         <div class="col-6 mx-auto event-form pt-0">
             <h1 class="text-center">Edit Categroy</h1>
-            <form action="{{ route('admin.chatroom.category.update', $category->id) }}" method="post"
+            <form action="{{ route('admin.chatrooms.categories.update', $category->id) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="mt-5 text-end">
-                    <a href="{{ route('admin.chatroom.category.index') }}" class="button btn-gray">Cancel</a>
+                    <a href="{{ route('admin.chatrooms.categories.index') }}" class="button btn-gray">Cancel</a>
                     <button type="submit" class="button btn-orange">Save</button>
                 </div>
 

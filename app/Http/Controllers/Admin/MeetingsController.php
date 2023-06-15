@@ -56,12 +56,12 @@ class MeetingsController extends Controller
         $meeting->start_at      = $request->start_at;
         $meeting->status_id     = self::DEFAULT_STATUS_ID;
         $meeting->save();
-        return redirect()->route('admin.chatroom.meeting.index');
+        return redirect()->route('admin.chatrooms.meetings.index');
     }
     public function delete($id)
     {
         $this->meeting->findOrFail($id)->delete();
-        return redirect()->route('admin.chatroom.meeting.index');
+        return redirect()->route('admin.chatrooms.meetings.index');
     }
     public function restore($id)
     {
@@ -69,6 +69,6 @@ class MeetingsController extends Controller
         $meeting->status_id = 1;
         $meeting->save();
         $meeting->restore();
-        return redirect()->route('admin.chatroom.meeting.index');
+        return redirect()->route('admin.chatrooms.meetings.index');
     }
 }

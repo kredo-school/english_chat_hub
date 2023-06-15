@@ -7,7 +7,7 @@
 
         <div class="col-6 mx-auto event-form pt-0">
             <h1 class="text-center">Edit Meeting</h1>
-            <form action="{{ route('admin.chatroom.meeting.update', $meeting->id) }}" method="post">
+            <form action="{{ route('admin.chatrooms.meetings.update', $meeting->id) }}" method="post">
                 @csrf
                 @method('PATCH')
 
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="mt-5 text-end">
-                    <a href="{{ route('admin.chatroom.meeting.index') }}" class="button btn-gray">Cancel</a>
+                    <a href="{{ route('admin.chatrooms.meetings.index') }}" class="button btn-gray">Cancel</a>
                     <button type="submit" class="button btn-orange">Save</button>
                 </div>
 

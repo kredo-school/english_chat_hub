@@ -2,7 +2,7 @@
 <div class="modal fade" id="delete-{{ $room->id }}">
     <div class="modal-dialog border-danger">
         <div class="modal-content border-danger">
-            <form action="{{ Route('admin.chatroom.room.delete', $room->id) }}" method="post">
+            <form action="{{ route('admin.chatrooms.rooms.delete', $room->id) }}" method="post">
                 @csrf
                 @method('DELETE')
 
@@ -47,7 +47,7 @@
 <div class="modal fade" id="restore-{{ $room->id }}">
     <div class="modal-dialog border-success">
         <div class="modal-content border-success">
-            <form action="{{ Route('admin.chatroom.room.restore', $room->id) }}" method="post">
+            <form action="{{ route('admin.chatrooms.rooms.restore', $room->id) }}" method="post">
                 @csrf
                 @method('PATCH')
 
