@@ -19,5 +19,7 @@ const mix = require('laravel-mix');
  .sass('resources/scss/contact-us.scss', 'public/css')
  .sass('resources/scss/modal.scss', 'public/css')
  .sass('resources/scss/faq.scss', 'public/css')
+
+
  .sass('resources/scss/admin-style.scss', 'public/css')
  .sourceMaps();
