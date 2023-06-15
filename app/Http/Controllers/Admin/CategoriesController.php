@@ -101,7 +101,7 @@ class CategoriesController extends Controller
         return redirect()->route('admin.chatrooms.categories.index');
     }
 
-    public function deleteIcon($id)
+    public function deleteCategoryIcon($id)
     {
         $category = $this->category->withTrashed()->findOrFail($id);
         $iconPath = self::ICON_FOLDER . '/' . $category->icon;
@@ -109,7 +109,7 @@ class CategoriesController extends Controller
             Storage::disk('public')->delete($iconPath);
         }
     }
-    public function saveIcon(Request $request)
+    public function saveCategoryIcon(Request $request)
     {
         $iconName = str_replace(" ", "_", strtolower($request->name)) . "." . $request->icon->extension();
         $request->icon->move(public_path(self::ICON_FOLDER), $iconName);
