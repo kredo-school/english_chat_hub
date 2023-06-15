@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/button.scss', 'public/css')
     .sass('resources/scss/form.scss', 'public/css')
     .sass('resources/scss/style.scss', 'public/css')
@@ -19,6 +19,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/contact-us.scss', 'public/css')
     .sass('resources/scss/modal.scss', 'public/css')
     .sass('resources/scss/faq.scss', 'public/css')
-    .sass('resources/scss/admin-style.scss', 'public/css')
 
+
+
+    .sass('resources/scss/admin-style.scss', 'public/css')
     .sourceMaps();
