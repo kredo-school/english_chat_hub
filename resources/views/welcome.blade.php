@@ -3,7 +3,7 @@
 @section('title', 'welcome page')
 
 @section('banner')
-<div class="banner" id="banner" style="background-image: url(../image/welcome/lights.png);">
+<div class="banner" id="banner" style="background-image: url(../image/lights.png);">
     <div class="banner-text">
         <h2 class="welcoming mt-5">Welcome 
             <br>English Chat Hub
@@ -64,8 +64,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-3">
   
-                        <div class="description mx-auto" style="background-image: url({{ asset('image/welcome/bg-tag.png') }});">
-                            <img src="image/welcome/chat-icon.png" alt="chat-icon" class="icon mx-auto">
+                        <div class="description mx-auto" style="background-image: url({{ asset('image/bg-tag.png') }});">
+                            <img src="image/chat-icon.png" alt="chat-icon" class="icon mx-auto">
                             <h4 class="title">Chat Room</h4>
                             <div class="instruction">
                                 <p class="mx-auto instruct-text">You can choose a chat room matching your favorite timing, topic, and level.
@@ -81,8 +81,8 @@
             <div class="use-item">
                 <div class="row justify-content-center">
                     <div class="col-md-3">
-                        <div class="description mx-auto" style="background-image: url({{ asset('image/welcome/bg-tag.png') }});">
-                            <img src="image/welcome/event-icon.png" alt="event-icon" class="icon mx-auto">
+                        <div class="description mx-auto" style="background-image: url({{ asset('image/bg-tag.png') }});">
+                            <img src="image/event-icon.png" alt="event-icon" class="icon mx-auto">
                             <h4 class="title">Chat Room</h4>
                             <div class="instruction">
                                 <p class="mx-auto instruct-text">You can get opportunities to speak English face-to-face on any topic/level of your choice
@@ -106,21 +106,21 @@
                 {{-- foreach --}}
                 <div class="row justify-content-center mb-5 mt-2">
                     <div class="col-md-1">
-                        <img src="image/welcome/avatar.png" alt="avatar" class="avatar">
+                        <img src="image/avatar.png" alt="avatar" class="avatar">
                     </div>
                     <div class="col-md-3"> 
                         <div class="profile-user mt-2">
                             <div class="avatar-level">
-                            <img src="image/welcome/begginer.png" alt="begginer" width="20px" height="25.18px" class="begginer">
+                            <img src="image/begginer.png" alt="begginer" width="20px" height="25.18px" class="begginer">
                             </div>
                             <h3 class="username fs-3">KEI</h3>
                         </div>
                         <div class="review-level mt-2">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star-white.png" alt="star" class="star">
-                            <img src="image/welcome/star-white.png" alt="star" class="star">
+                            <img src="image/star.png" alt="star" class="star">
+                            <img src="image/star.png" alt="star" class="star">
+                            <img src="image/star.png" alt="star" class="star">
+                            <img src="image/star-white.png" alt="star" class="star">
+                            <img src="image/star-white.png" alt="star" class="star">
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -138,7 +138,7 @@
                 <p>You want to start English Chat Hub?
                 <br>Register or Login first!
                 </p>
-                <img src="image/welcome/go-hand.png" alt="go-hand" class="go-hand mb-2">
+                <img src="image/go-hand.png" alt="go-hand" class="go-hand mb-2">
                 <button class="btn button btn-orange start">Getting Started</button>
             </div>  
         </div>
