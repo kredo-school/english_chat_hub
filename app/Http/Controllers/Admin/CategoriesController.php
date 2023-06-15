@@ -78,8 +78,8 @@ class CategoriesController extends Controller
         $category->color = $request->color;
         $category->description = $request->description;
         if ($request->icon) {
-            $this->deleteIcon($id);
-            $category->icon = $this->saveIcon($request);
+            $this->deleteCategoryIcon($id);
+            $category->icon = $this->saveCategoryIcon($request);
         }
         $category->save();
         return redirect()->route('admin.chatrooms.categories.index');
