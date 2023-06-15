@@ -17,8 +17,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/style.scss', 'public/css')
     .sass('resources/scss/welcome.scss', 'public/css')
 
+
+
+
     .sass('resources/scss/admin-style.scss', 'public/css')
-
-
-
     .sourceMaps();
