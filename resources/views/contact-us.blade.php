@@ -79,7 +79,7 @@
                             </div>
                             <div class="buttons">
                                 <a href="{{ url('/') }}" class="button btn-gray">Cancel</a>
-                                <button type="submit" class="button btn-orange" data-bs-toggle="modal" data-bs-target="#contact-us-result">Submit</button>
+                                <button type="submit" class="button btn-orange" >Submit</button>
 
                                 {{-- Modal --}}
                                 @if (session('success'))
