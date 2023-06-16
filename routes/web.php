@@ -28,6 +28,14 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
+Route::get('/privacy_policy', function () {
+    return view('privacy');
+})->name('privacy');
+
+Route::get('terms_of_service', function () {
+    return view('terms');
+})->name('terms');
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

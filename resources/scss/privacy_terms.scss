@@ -1,0 +1,23 @@
+#white-wrap {
+    background-color: #fff !important;
+    position: relative;
+
+    h3 {
+        padding-left: 1rem;
+    }
+
+    h4 {
+        padding-left: 2rem;
+    }
+
+    p {
+        padding-left: 3rem;
+        margin-bottom: 3rem;
+        line-height: 2rem;
+    }
+
+}
+
+main > .container-fluid {
+    display: none;
+}
