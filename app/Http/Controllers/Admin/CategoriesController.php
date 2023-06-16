@@ -18,9 +18,10 @@ class CategoriesController extends Controller
         return view('admin.chatrooms.categories.index')
             ->with('all_categories', $all_categories);
     }
-    public function show($id, Meeting $meeting)
+    public function show($id)
     {
         // update Meetings Status
+        $meeting = new Meeting;
         $meeting->updateStatus();
         
         $category = Category::withTrashed()->findOrFail($id);
@@ -41,7 +42,7 @@ class CategoriesController extends Controller
         ->with('category', $category);
     }
 
-    public function store(Request $request, Category $category)
+    public function store(Request $request)
     {
         $request->validate([
             'name'          => 'required|max:20|unique:categories,name',
@@ -50,11 +51,15 @@ class CategoriesController extends Controller
             'description'   => 'required|min:5|max:100'
         ]);
 
-        $category->name = str_replace(" ", "_", ucwords($request->name));
-        $category->color = $request->color;
-        $category->description = $request->description;
-        $category->icon = $this->saveCategoryIcon($request);
-        $category->save();
+        $name = ucwords(strtolower($request->name));
+        $iconName = $this->saveCategoryIcon($request);
+        Category::create([
+            'name' => $name,
+            'color' => $request->color,
+            'description' => $request->description,
+            'icon' => $iconName
+        ]);
+
         return redirect()->route('admin.chatrooms.categories.index');
     }
     public function update(Request $request, $id)
