@@ -9,44 +9,33 @@ use App\Http\Controllers\Controller;
 
 class RoomsController extends Controller
 {
-    private $room;
-    private $meeting;
-    public function __construct(Room $room, Meeting $meeting)
-    {
-        $this->room = $room;
-        $this->meeting = $meeting;
-    }
     public function index()
     {
-        $all_rooms = $this->room->withTrashed()->latest()->get();
+        $all_rooms = Room::withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.rooms.index')
             ->with('all_rooms', $all_rooms);
     }
-    public function show($id)
+    public function show($id, Meeting $meeting)
     {
         // update Meetings Status
-        $this->meeting->updateStatus();
+        $meeting->updateStatus();
 
-        $room = $this->room->withTrashed()->findOrFail($id);
+        $room = Room::withTrashed()->findOrFail($id);
         $meetings = $room->meetings()->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.rooms.show')
             ->with('room', $room)
             ->with('meetings', $meetings)
-            ->with('statusColor', $this->meeting->statusColor());
+            ->with('statusColor', $meeting->statusColor());
     }
-    public function delete($id)
+    public function delete(Room $room)
     {
-        $room = $this->room->findOrFail($id);
-        foreach ($room->meetings as $meeting) {
-            $meeting->delete();
-        }
+        $room->meetings()->delete();
         $room->delete();
         return redirect()->route('admin.chatrooms.rooms.index');
     }
     public function restore($id)
     {
-        $room = $this->room->withTrashed()->findOrFail($id);
-        $room->restore();
+        Room::withTrashed()->findOrFail($id)->restore();
         return redirect()->route('admin.chatrooms.rooms.index');
     }
 }

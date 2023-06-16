@@ -10,32 +10,25 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
-    private $category;
-    private $meeting;
     const ICON_FOLDER = 'image/category/';
 
-    public function __construct(Category $category, Meeting $meeting)
-    {
-        $this->category = $category;
-        $this->meeting = $meeting;
-    }
     public function index()
     {
-        $all_categories = $this->category->withTrashed()->paginate(10);
+        $all_categories = Category::withTrashed()->paginate(10);
         return view('admin.chatrooms.categories.index')
             ->with('all_categories', $all_categories);
     }
-    public function show($id)
+    public function show($id, Meeting $meeting)
     {
         // update Meetings Status
-        $this->meeting->updateStatus();
+        $meeting->updateStatus();
         
-        $category = $this->category->withTrashed()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
         $meetings = $category->meetings()->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.categories.show')
             ->with('category', $category)
             ->with('meetings', $meetings)
-            ->with('statusColor', $this->meeting->statusColor());
+            ->with('statusColor', $meeting->statusColor());
     }
     public function add()
     {
@@ -43,12 +36,12 @@ class CategoriesController extends Controller
     }
     public function edit($id)
     {
-        $category = $this->category->withTrashed()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
         return view('admin.chatrooms.categories.edit')
         ->with('category', $category);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
         $request->validate([
             'name'          => 'required|max:20|unique:categories,name',
@@ -57,16 +50,16 @@ class CategoriesController extends Controller
             'description'   => 'required|min:5|max:100'
         ]);
 
-        $this->category->name = str_replace(" ", "_", ucwords($request->name));
-        $this->category->color = $request->color;
-        $this->category->description = $request->description;
-        $this->category->icon = $this->saveIcon($request);
-        $this->category->save();
+        $category->name = str_replace(" ", "_", ucwords($request->name));
+        $category->color = $request->color;
+        $category->description = $request->description;
+        $category->icon = $this->saveCategoryIcon($request);
+        $category->save();
         return redirect()->route('admin.chatrooms.categories.index');
     }
     public function update(Request $request, $id)
     {
-        $category = $this->category->withTrashed()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
         $request->validate([
             'name' => 'required|max:20|unique:categories,name,' . $category->id,
             'color'=> 'required|regex:/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/',
@@ -84,26 +77,23 @@ class CategoriesController extends Controller
         $category->save();
         return redirect()->route('admin.chatrooms.categories.index');
     }
-    public function delete($id)
+    public function delete(Category $category)
     {
-        $category = $this->category->findOrFail($id);
-        foreach ($category->meetings as $meeting) {
-            $meeting->delete();
-        }
+        $category->meetings()->delete();
         $category->delete();
 
         return redirect()->route('admin.chatrooms.categories.index');
     }
     public function restore($id)
     {
-        $category = $this->category->withTrashed()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
         $category->restore();
         return redirect()->route('admin.chatrooms.categories.index');
     }
 
     public function deleteCategoryIcon($id)
     {
-        $category = $this->category->withTrashed()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
         $iconPath = self::ICON_FOLDER . '/' . $category->icon;
         if (Storage::disk('public')->exists($iconPath)) {
             Storage::disk('public')->delete($iconPath);

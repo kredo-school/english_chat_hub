@@ -38,8 +38,8 @@ class Meeting extends Model
     {
         // Set Live Time
         $liveTime = [
-            'date' => now()->timezone('Asia/Tokyo')->format('Y-m-d'),
-            'time' => now()->timezone('Asia/Tokyo')->format('H')
+            'date' => now()->format('Y-m-d'),
+            'time' => now()->format('H')
         ];
 
         // Change Status id

@@ -12,25 +12,21 @@ use App\Http\Controllers\Controller;
 class MeetingsController extends Controller
 {
     const DEFAULT_STATUS_ID = 1;
-    private $meeting;
-    public function __construct(Meeting $meeting)
+    public function index(Meeting $meeting)
     {
-        $this->meeting = $meeting;
-        $this->meeting->updateStatus();
-    }
-    public function index()
-    {
-        $all_meetings = $this->meeting->withTrashed()->latest()->paginate(10);
+        // update Meetings Status
+        $meeting->updateStatus();
+        $all_meetings = $meeting->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.meetings.index')
             ->with('all_meetings', $all_meetings)
-            ->with('statusColor', $this->meeting->statusColor());
+            ->with('statusColor', $meeting->statusColor());
     }
     public function edit($id)
     {
+        $meeting        = Meeting::withTrashed()->findOrFail($id);
         $all_categories = Category::all();
-        $all_rooms = Room::all();
-        $all_levels = Level::all();
-        $meeting = $this->meeting->withTrashed()->findOrFail($id);
+        $all_rooms      = Room::all();
+        $all_levels     = Level::all();
         return view('admin.chatrooms.meetings.edit')
             ->with('meeting', $meeting)
             ->with('all_categories', $all_categories)
@@ -47,7 +43,7 @@ class MeetingsController extends Controller
             'date'          => 'required|date|after_or_equal:today',
             'start_at'      => 'required'
         ]);
-        $meeting = $this->meeting->findOrFail($id);
+        $meeting = Meeting::withTrashed()->findOrFail($id);
         $meeting->title         = $request->title;
         $meeting->room_id       = $request->room_id;
         $meeting->category_id   = $request->category_id;
@@ -58,15 +54,15 @@ class MeetingsController extends Controller
         $meeting->save();
         return redirect()->route('admin.chatrooms.meetings.index');
     }
-    public function delete($id)
+    public function delete(Meeting $meeting)
     {
-        $this->meeting->findOrFail($id)->delete();
+        $meeting->delete();
         return redirect()->route('admin.chatrooms.meetings.index');
     }
     public function restore($id)
     {
-        $meeting = $this->meeting->withTrashed()->findOrFail($id);
-        $meeting->status_id = 1;
+        $meeting = Meeting::withTrashed()->findOrFail($id);
+        $meeting->status_id = self::DEFAULT_STATUS_ID;
         $meeting->save();
         $meeting->restore();
         return redirect()->route('admin.chatrooms.meetings.index');
