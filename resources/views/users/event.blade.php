@@ -6,6 +6,10 @@
   <img src="{{ asset('/image/event.top.png')}}" alt="event-image" class="event-image-top">
 @endsection
 
+@section('style')
+  <link rel="stylesheet" href="{{ mix('css/event.css') }}">
+@endsection
+
 @section('content')
 <div class="container-fluid align-items-center">
   <div class="m-5">

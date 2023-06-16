@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="{{ mix('css/contact-us.css') }}">
     <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
     <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/event.css') }}">
 
    
 
