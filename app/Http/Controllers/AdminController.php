@@ -48,9 +48,9 @@ class AdminController extends Controller
     public function storeEvent(Request $request)
     {
         $request->validate([
-            'theme' => 'required|min:1|max:255',
-            'comment' => 'required|min:1|max:255',
-            'location' => 'required|min:1|max:255',
+            'theme' => 'required|max:255',
+            'comment' => 'required|max:255',
+            'location' => 'required|max:255',
             'date' => 'required',
         ]);
 
@@ -98,9 +98,9 @@ class AdminController extends Controller
     public function updateEvent($id, Request $request)
     {
         $request->validate([
-            'theme' => 'required|min:1|max:255',
-            'comment' => 'required|min:1|max:255',
-            'location' => 'required|min:1|max:255',
+            'theme' => 'required|max:255',
+            'comment' => 'required|max:255',
+            'location' => 'required|max:255',
             'date' => 'required',
         ]);
 
