@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Level;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -47,9 +48,9 @@ class AdminController extends Controller
     public function storeEvent(Request $request)
     {
         $request->validate([
-            'theme' => 'required|min:1|max:255',
-            'comment' => 'required|min:1|max:255',
-            'location' => 'required|min:1|max:255',
+            'theme' => 'required|max:255',
+            'comment' => 'required|max:255',
+            'location' => 'required|max:255',
             'date' => 'required',
         ]);
 
@@ -62,7 +63,7 @@ class AdminController extends Controller
         $this->event->save();
 
         foreach($request->level as $level) {
-            $this->event->eventLevels()->attach($level);
+            $this->event->levels()->attach($level);
         }
 
         return redirect()->route('admin.showEvents');
@@ -75,5 +76,58 @@ class AdminController extends Controller
         $request->image->storeAs(self::LOCAL_STORAGE_FOLDER,$image_name);
         return $image_name;
 
+    }
+    public function deleteImage($image_name){
+        $image_path = self::LOCAL_STORAGE_FOLDER.$image_name;
+
+        if(Storage::disk('local')->exists($image_path)){
+            Storage::disk('local')->delete($image_path);
+        }
+    }
+
+    public function editEvent(Event $event)
+    {
+        $eventLevels = $event->levels->pluck('id')->toArray();
+
+        return view('admin.events.edit')
+            ->with('event',$event)
+            ->with('eventLevels',$eventLevels);
+
+    }
+
+    public function updateEvent($id, Request $request)
+    {
+        $request->validate([
+            'theme' => 'required|max:255',
+            'comment' => 'required|max:255',
+            'location' => 'required|max:255',
+            'date' => 'required',
+        ]);
+
+        $event = $this->event->findOrFail($id);
+
+        $event->theme = $request->theme;
+        $event->comment = $request->comment;
+        $event->location = $request->location;
+        $event->date = $request->date;
+        if($request->image){
+            $this->deleteImage($event->image);
+            $event->image = $this->saveImage($request);
+        }
+
+        $event->save();
+        $event->levels()->detach();
+
+        foreach($request->level as $level) {
+            $event->levels()->attach($level);
+        }
+
+        return redirect()->route('admin.showEvents');
+    }
+
+    public function destroyEvent($id)
+    {
+        Event::destroy($id);
+        return redirect()->back();
     }
 }
