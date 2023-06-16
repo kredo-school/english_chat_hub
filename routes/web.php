@@ -57,7 +57,7 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
     # LOGINED USERS ONLY
-    Route::group(['prefix'=>'users','as'=>'users.'], function(){
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('/', [HomeController::class, 'index'])->name('top');
         Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
@@ -67,16 +67,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::get('/',[AdminController::class,'showUsers'])->name('showUsers');
-      
-        Route::group(['prefix' => 'events'],function(){
-            Route::get('/',[AdminController::class,'showEvents'])->name('showEvents');
-            Route::get('/create',[AdminController::class,'createEvent'])->name('createEvent');
-            Route::post('store',[AdminController::class,'storeEvent'])->name('storeEvent');
-            Route::get('/{event}/edit/',[AdminController::class,'editEvent'])->name('editEvent');
-            Route::patch('/{event}',[AdminController::class,'updateEvent'])->name('updateEvent');
-            Route::delete('/{event}',[AdminController::class,'destroyEvent'])->name('destroyEvent');
-          });
+        Route::get('/', [AdminController::class, 'showUsers'])->name('showUsers');
+
+        Route::group(['prefix' => 'events'], function () {
+            Route::get('/', [AdminController::class, 'showEvents'])->name('showEvents');
+            Route::get('/create', [AdminController::class, 'createEvent'])->name('createEvent');
+            Route::post('store', [AdminController::class, 'storeEvent'])->name('storeEvent');
+            Route::get('/{event}/edit/', [AdminController::class, 'editEvent'])->name('editEvent');
+            Route::patch('/{event}', [AdminController::class, 'updateEvent'])->name('updateEvent');
+            Route::delete('/{event}', [AdminController::class, 'destroyEvent'])->name('destroyEvent');
+        });
 
         Route::group(['prefix' => 'chatrooms', 'as' => 'chatrooms.'], function () {
             #MEETING
@@ -105,5 +105,6 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::patch('/{id}/restore', [CategoriesController::class, 'restore'])->name('restore');
                 Route::delete('/{category}/delete', [CategoriesController::class, 'delete'])->name('delete');
             });
+        });
     });
 });
