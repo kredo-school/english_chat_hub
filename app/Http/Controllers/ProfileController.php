@@ -43,9 +43,9 @@ class ProfileController extends Controller
         $request->validate([
             'avatar' => 'max:1048|mimes:jpeg,jpg,png,gif',
             'level_id' => 'required',
-            'user_name' => 'required|max:50',
-            'comment' => 'max:100',
-            'email' => 'required|max:50'
+            'user_name' => 'required|max:250',
+            'comment' => 'max:250',
+            'email' => 'required|max:250'
         ]);
 
         $user->level_id = $request->level_id;

@@ -51,14 +51,28 @@
                         @foreach($all_events as $event)
                         <tr class="eventtable-tr">
                             <td>{{ $event->id }}</td>
-                            <td>{{ $event->getEventString() }}</td>
+                            <td>{!! $event->getEventString() !!}</td>
                             <td>{{ $event->theme }}</td>
                             <td>{{ $event->date }}</td>
                             <td>{{ $event->location }}</td>
                             <td>{{ $event->created_at }}</td>
                             <td>{{ $event->updated_at }}</td>
                             <td><i class="fa-solid fa-circle text-success"></i></td>
-                            <td><a href="#"><i class="fa-solid fa-ellipsis"></i></a></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn" data-bs-toggle="dropdown">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('admin.editEvent', $event->id)}}">Edit event info</a>
+                                    <a class="dropdown-item" href="#"> Participants List</a>
+                                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-event-{{$event->id}}">
+                                        Delete
+                                     </button>
+                                </div>
+                                @include('admin.events.modal.delete-event')
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
