@@ -63,7 +63,7 @@
                         <span class="ms-1">{{$all_events[$i]->location}}</span>
                       </p>
                       <p class="text-end">
-                        <a href="{{ route('show.detail', $all_events[$i]->id)}}">>>more</a>
+                        <a href="{{ route('events.show', $all_events[$i]->id)}}">>>more</a>
                       </p>
                     </div>
                     <div class="event-card-footer">

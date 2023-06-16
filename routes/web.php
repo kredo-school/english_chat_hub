@@ -25,9 +25,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// event
-Route::get('/event', [EventController::class, 'show'])->name('event.show');
-Route::get('/{id}/eventdetail', [EventController::class, 'showDetail'])->name('show.detail');
+//user event
+Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
+    Route::get('/', [EventController::class, 'index'])->name('index');
+    Route::get('/{event}', [EventController::class, 'show'])->name('show');
+});
+
 
 
 // Route Group
