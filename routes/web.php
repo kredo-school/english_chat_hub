@@ -44,6 +44,16 @@ Auth::routes();
 Route::get('/contact-us/create', [ContactController::class, 'create'])->name('contact-us.create');
 Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store');
 
+
+
+
+
+
+
+
+
+
+
 // Route Group
 Route::group(['middleware' => 'auth'], function () {
     # LOGINED USERS ONLY
@@ -58,9 +68,16 @@ Route::group(['middleware' => 'auth'], function () {
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/',[AdminController::class,'showUsers'])->name('showUsers');
-        Route::get('/events',[AdminController::class,'showEvents'])->name('showEvents');
-        Route::get('/events/create',[AdminController::class,'createEvent'])->name('createEvent');
-        Route::post('/events/store',[AdminController::class,'storeEvent'])->name('storeEvent');
+      
+        Route::group(['prefix' => 'events'],function(){
+            Route::get('/',[AdminController::class,'showEvents'])->name('showEvents');
+            Route::get('/create',[AdminController::class,'createEvent'])->name('createEvent');
+            Route::post('store',[AdminController::class,'storeEvent'])->name('storeEvent');
+            Route::get('/{event}/edit/',[AdminController::class,'editEvent'])->name('editEvent');
+            Route::patch('/{event}',[AdminController::class,'updateEvent'])->name('updateEvent');
+            Route::delete('/{event}',[AdminController::class,'destroyEvent'])->name('destroyEvent');
+          });
+
         Route::group(['prefix' => 'chatrooms', 'as' => 'chatrooms.'], function () {
             #MEETING
             Route::group(['prefix' => 'meetings', 'as' => 'meetings.'], function () {
@@ -88,6 +105,5 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::patch('/{id}/restore', [CategoriesController::class, 'restore'])->name('restore');
                 Route::delete('/{category}/delete', [CategoriesController::class, 'delete'])->name('delete');
             });
-        });
     });
 });

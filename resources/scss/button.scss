@@ -1,11 +1,13 @@
 /* ---BUTTON--- */
 
-/* 
+/*
     <button class="button btn-orange">Submit</button>
     <a href="..." class="button btn-gray">Cancel</a>
     <button class="btn button btn-primary">Save</button>
-    
+
 */
+
+@import 'variables';
 
 .button,
 .btn.button {
@@ -78,5 +80,17 @@
       z-index: -1;
     }
   }
-
 }
+
+//Delete button
+.btn-delete{
+  background: linear-gradient(to top, var(--delete), #FF8E8E);
+
+  &:hover {
+    background-color: #fff;
+    background: 0;
+    border: 1px solid var(--delete);
+    color: var(--delete)!important;
+  }
+}
+
