@@ -11,16 +11,16 @@ class Event extends Model
     use HasFactory, SoftDeletes;
 
     // RELATION
-    public function eventLevels()
+    public function levels()
     {
         return $this->belongsToMany(Level::class, 'event_level');
     }
 
     public function getEventString() {
         $eventString = '';
-        $eventLevels = $this->eventLevels;
-        foreach($eventLevels as $key => $event) {
-            $comma = ($key != ($eventLevels->count() - 1)) ? ', ' : '';
+        $levels = $this->levels;
+        foreach($levels as $key => $event) {
+            $comma = ($key != ($levels->count() - 1)) ? "<br/>" : '';
             $name = ucfirst($event->name);
             $eventString .= "{$name} {$comma}";
         }
