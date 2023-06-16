@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800&family=Raleway:wght@400;600;700;800&display=swap');
+
+:root {
+ /* ---COLORS--- */
+
+  --li-yellow:#FAEBD7;
+  --yellow:#FFD700;
+  --li-orange:#FFA500;
+  --orange:#FF7917;
+  --li-gray:#DCDCDC;
+  --gray:#6F6F6F;
+  --dark:#494949;
+  --active:#0d6efd;
+  --input:#73B0E8;
+
+  /* 
+      color: var(--bs-primary); <=> primary color
+  */
+  
+  /* ---FONTS--- */
+
+  --roundM:'M PLUS Rounded 1c', sans-serif;
+  --raleway:'Raleway', sans-serif;
+}
+
+.modal-content {
+    width: 400px;
+    height: 200px; 
+  }
+  
+  .text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-text {
+    width: 60%;
+    text-align: center;
+  }
+  
+  h3.success-title {
+    font-family: var(--roundM);
+    font-size: 24px;
+    font-weight: bolder;
+    color: #4ECB71;
+    text-align: center;
+  }
+  
+  .success-message {
+    font-family: var(--roundM);
+    font-size: 16px;
+    font-weight: 700;
+    color: #6E6E6E;
+    text-align: center;
+  }
