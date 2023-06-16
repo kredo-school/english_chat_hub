@@ -25,7 +25,14 @@
     <link rel="stylesheet" href="{{ mix('css/button.css') }}">
     <link rel="stylesheet" href="{{ mix('css/form.css') }}">
     <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
+
+    
+
+    <link rel="stylesheet" href="{{ mix('css/contact-us.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
     <link rel="stylesheet" href="{{ mix('css/event.css') }}">
+
    
 
 
@@ -59,20 +66,20 @@
                     <ul class="navbar-nav me-auto">
                         @guest
                             <li class="nav-item me-5">
-                                <a href="#about-us" class="link-item">About Us</a>
+                                <a href="{{ url('/') }}#about-us" class="link-item">About Us</a>
                             </li>
                             <li class="nav-item me-5">
-                                <a href="#how-to-use" class="link-item">How to use</a>
+                                <a href="{{ url('/') }}#how-to-use" class="link-item">How to use</a>
                             </li>
                         @endguest
                             <li class="nav-item me-5">
                                 <a href="{{ route('events.index') }}" class="link-item">Event</a>
                             </li>
                             <li class="nav-item me-5">
-                                <a href="#" class="link-item">Contact Us</a>
+                                <a href="{{ route('contact-us.create') }}" class="link-item">Contact Us</a>
                             </li>
                             <li class="nav-item me-5">
-                                <a href="" class="link-item">FAQ</a>
+                                <a href="{{ url('/faq') }}" class="link-item">FAQ</a>
                             </li>
                     </ul>
                 
@@ -133,20 +140,20 @@
                     <ul>
                         @guest
                         <li class="me-5">
-                            <a href="#about-us" class="footer-link">About Us</a>
+                            <a href="{{ url('/') }}#about-us" class="footer-link">About Us</a>
                         </li>
                         <li class=" me-5">
-                            <a href="#how-to-use" class="footer-link">How to use</a>
+                            <a href="{{ url('/') }}#how-to-use" class="footer-link">How to use</a>
                         </li>
                         @endguest
                         <li class="me-5">
                             <a href="{{ route('events.index') }}" class="footer-link">Event</a>
                         </li>
                         <li class="me-5">
-                            <a href="#" class="footer-link">Contact Us</a>
+                            <a href="{{ route('contact-us.create') }}" class="footer-link">Contact Us</a>
                         </li>
                         <li class="me-5" >
-                            <a href="" class="footer-link">FAQ</a>
+                            <a href="{{ url('faq') }}" class="footer-link">FAQ</a>
                         </li>
                     </ul>
                     <ul>
@@ -161,5 +168,7 @@
             </div>                
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    @yield('script')
 </body>
 </html>
