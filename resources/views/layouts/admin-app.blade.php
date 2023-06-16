@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('css/button.css')}}">
   <link rel="stylesheet" href="{{asset('css/form.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin-style.css')}}">
+  @yield('style')
 
 </head>
 
@@ -26,7 +27,7 @@
         <nav id="nav-side">
           <ul class="admin-sidebar adminmenu-icon mt-5">
             <li class="mb-5"><a href="{{route('admin.showUsers')}}"><i class="fa-solid fa-users"></i></a></li>
-            <li class="mb-5"><a href="#"><i class="fa-sharp fa-solid fa-comment"></i></a></li>
+            <li class="mb-5"><a href="{{ route('admin.chatrooms.meetings.index') }}"><i class="fa-sharp fa-solid fa-comment"></i></a></li>
             <li class="mb-5"><a href="#"><i class="fa-solid fa-inbox"></i></a></li>
             <li class="mb-5"><a href="{{route('admin.showEvents')}}"><i class="fa-solid fa-calendar-check"></i></a></li>
           </ul>

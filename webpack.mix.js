@@ -16,9 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/form.scss', 'public/css')
     .sass('resources/scss/style.scss', 'public/css')
     .sass('resources/scss/welcome.scss', 'public/css')
+    .sass('resources/scss/admin_chatroom.scss', 'public/css')
     .sass('resources/scss/contact-us.scss', 'public/css')
     .sass('resources/scss/modal.scss', 'public/css')
     .sass('resources/scss/faq.scss', 'public/css')
-
-
     .sourceMaps();
