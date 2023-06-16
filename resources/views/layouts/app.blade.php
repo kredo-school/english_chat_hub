@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ mix('css/button.css') }}">
     <link rel="stylesheet" href="{{ mix('css/form.css') }}">
     <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
-   
+   @yield('style')
 
 
 
