@@ -2,6 +2,10 @@
 
 @section('title', 'FAQ')
 
+@section('style')
+    <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
+@endsection
+
 @section('content')
 <div class="main">
     <div class="section-header">

@@ -24,13 +24,7 @@
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">
     <link rel="stylesheet" href="{{ mix('css/button.css') }}">
     <link rel="stylesheet" href="{{ mix('css/form.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
-
-    
-
-    <link rel="stylesheet" href="{{ mix('css/contact-us.css') }}">
     <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
 
     @yield('style')
     
