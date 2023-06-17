@@ -117,6 +117,9 @@ Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
                 Route::delete('/{category}/delete', [CategoriesController::class, 'delete'])->name('delete');
             });
         });
+
+        Route::group(['prefix' => 'inbox', 'as' => 'inbox.'],function(){
+            Route::get('/',[AdminController::class,'showInbox'])->name('show');
+        });
     });
-});
 });
