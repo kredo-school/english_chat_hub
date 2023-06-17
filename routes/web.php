@@ -59,8 +59,8 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
-    Route::get('/event', [EventController::class, 'show'])->name('show');
-    Route::get('/events/{event}', [EventController::class, 'showDetail'])->name('show.detail');
+    Route::get('/', [EventController::class, 'index'])->name('index');
+    Route::get('/{event}', [EventController::class, 'show'])->name('show');
 });
 
 // Route Group
