@@ -20,7 +20,7 @@
             <div class="join-users my-2 mx-auto">
                 <div class="join-user">
                     @if($user->avatar)
-                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="rounded-circle" id="avatar-sm">
+                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" class="rounded-circle" id="avatar-sm">
                     @else
                         <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
                     @endif
@@ -42,7 +42,7 @@
                                     @if($user->avatar)
                                     <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="avatar-md">
                                     @else
-                                    <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center "></i>
+                                    <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
                                     @endif
                                 </div>
                                 {{-- show user's level icon --}}

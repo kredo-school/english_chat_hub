@@ -16,7 +16,7 @@
                 <div class="card col-lg-3 col-md-6 mb-4 p-0">
                     <a href="" class="">
                       <div class="card-top" style="height: 156.31px; background-color: {{$category->color}};">
-                        <img src="{{ asset('image/category/' .$category->icon) }}" alt="" class="card-img-top" style="height: 80px; width:80px;"></a>
+                        <img src="{{ asset('image/category/' .$category->icon) }}" alt="" class="card-img-top"></a>
                       </div>
 
                       <div class="card-body">

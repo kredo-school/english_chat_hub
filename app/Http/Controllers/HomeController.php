@@ -19,7 +19,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(Category $category, User $user, Meeting $meeting,)
+    public function __construct(Category $category, User $user, Meeting $meeting)
     {
         $this->category = $category;
         $this->user = $user;
