@@ -9,60 +9,88 @@
 
 @import 'variables';
 
-.button, .btn.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: top;
-    gap: 0.1rem;
-    min-width: 160px;
-    max-width: 500px;
-    height: 45px;
-    border: 0;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    font-family: var(--raleway);
-    color: #fff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+.button,
+.btn.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  gap: 0.1rem;
+  min-width: 160px;
+  max-width: 500px;
+  padding: 1em;
+  height: 45px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: var(--raleway);
+  color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  .btn-gray {
-    background: linear-gradient(to top, var(--dark), #B7B7B7);
+.btn-gray {
+  background: linear-gradient(to top, var(--dark), #B7B7B7);
 
-    &:hover {
+  &:hover {
+    background-color: #fff;
+    background: 0;
+    border: 1px solid var(--dark);
+    position: relative;
+    background-clip: text;
+    background-image: linear-gradient(to top, var(--dark), #B7B7B7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-color: #fff;
-      background: 0;
-      border: 1px solid var(--dark);
-      color: var(--dark);
+      z-index: -1;
     }
   }
+}
 
-  //Delete button
-  .btn-delete{
-    background: linear-gradient(to top, var(--delete), #FF8E8E);
+.btn-orange {
+  background: linear-gradient(to top, var(--orange), #FFD700);
 
-    &:hover {
+  &:hover {
+    background-color: #fff;
+    background: 0;
+    border: 1px solid var(--orange);
+    position: relative;
+    background-clip: text;
+    background-image: linear-gradient(to top, var(--orange), #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-color: #fff;
-      background: 0;
-      border: 1px solid var(--delete);
-      color: var(--delete)!important;
-    }
-
-  }
-
-  .btn-orange {
-    background: linear-gradient(to top, var(--orange), #FFD700);
-
-    &:hover {
-      background-color: #fff;
-      background: 0;
-      border: 1px solid var(--orange);
-
-      /* color: var(--orange); */
-      background-image: linear-gradient(to top, var(--orange), #FFD700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      z-index: -1;
     }
   }
+}
+
+//Delete button
+.btn-delete{
+  background: linear-gradient(to top, var(--delete), #FF8E8E);
+
+  &:hover {
+    background-color: #fff;
+    background: 0;
+    border: 1px solid var(--delete);
+    color: var(--delete)!important;
+  }
+}
+

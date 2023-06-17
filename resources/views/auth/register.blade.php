@@ -22,9 +22,9 @@
                                         placeholder="John Smith" value="{{ old('full_name') }}">
 
                                     @error('full_name')
-                                        <span class="text-danger small" role="alert">
+                                        <div class="text-danger small" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
 
@@ -35,9 +35,9 @@
                                         placeholder="John" value="{{ old('user_name') }}">
 
                                     @error('user_name')
-                                        <span class="invalid-feedback" role="alert">
+                                        <div class="text-danger small" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
 
@@ -48,9 +48,9 @@
                                         placeholder="example@example.com" value="{{ old('email') }}">
 
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
+                                        <div class="text-danger small" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
 
@@ -62,9 +62,9 @@
                                             placeholder="Enter Password">
 
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
                                         @enderror
                                     </div>
                                     <div class="col">
@@ -80,7 +80,7 @@
                                             value="" required>
                                         <label for="policy" class="form-check-label">
                                             I have read and agree to the
-                                            <a href="privacy.html">Privacy Policy</a>
+                                            <a href="{{ route('privacy') }}">Privacy Policy</a>
                                         </label>
                                     </div>
 
