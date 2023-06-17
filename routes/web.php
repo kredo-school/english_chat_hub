@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,19 +40,22 @@ Route::get('terms_of_service', function () {
 
 Auth::routes();
 
+
+
+//user event
+Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
+    Route::get('/', [EventController::class, 'index'])->name('index');
+    Route::get('/{event}', [EventController::class, 'show'])->name('show');
+});
+
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 // Contact Us form
 Route::get('/contact-us/create', [ContactController::class, 'create'])->name('contact-us.create');
 Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store');
-
-
-
-
-
-
-
-
 
 
 
@@ -64,6 +69,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     });
+  
+//user event
+Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
+    Route::get('/event', [EventController::class, 'show'])->name('show');
+    Route::get('/events/{event}', [EventController::class, 'showDetail'])->name('show.detail');
+});
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -107,4 +118,5 @@ Route::group(['middleware' => 'auth'], function () {
             });
         });
     });
+});
 });
