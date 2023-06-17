@@ -56,11 +56,11 @@
                                   <i class="fa-solid fa-ellipsis"></i>
                               </button>
                           <div class="dropdown-menu">
-                              <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">
+                              <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#message-detail-{{ $message->id }}">
                                   Show Message
                                </button>
                           </div>
-                          {{-- @include('admin.events.modal.delete-event') --}}
+                          @include('admin.inbox.modal.message-detail')
                           </div>
                       </td>
                   </tr>
