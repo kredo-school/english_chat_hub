@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="start-button">
-        <button class="btn button btn-orange start">Getting Started</button>
+        <button class="button btn-orange">Getting Started</button>
     </div>
 </div> 
 @endsection
