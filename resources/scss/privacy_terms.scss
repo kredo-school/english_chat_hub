@@ -1,7 +1,8 @@
 #white-wrap {
     background-color: #fff !important;
     position: relative;
-
+    padding-top: calc(72px + 1rem);
+    
     h3 {
         padding-left: 1rem;
     }
@@ -18,6 +19,12 @@
 
 }
 
-main > .container-fluid {
+main>.container-fluid {
     display: none;
+}
+
+#privacy-link {
+    position: absolute;
+    top: calc(72px + 50px);
+    right: 10%;
 }
