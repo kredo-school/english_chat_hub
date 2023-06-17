@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Level;
+use App\Models\Contact;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
@@ -129,5 +130,13 @@ class AdminController extends Controller
     {
         Event::destroy($id);
         return redirect()->back();
+    }
+
+    // Inbox
+    public function showInbox(Contact $contact)
+    {
+        $all_messages = Contact::all();
+
+        return view('admin.inbox.index')->with('all_messages',$all_messages);
     }
 }
