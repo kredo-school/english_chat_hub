@@ -29,11 +29,8 @@
     <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
     <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
 
-
+    @yield('style')
    
-
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     
 </head>
@@ -86,11 +83,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><button class="btn button btn-orange me-md-2">{{ __('LOG IN') }}</button></a>
+                                <a class="nav-link" href="{{ route('login') }}"><button class="button btn-orange me-md-2">{{ __('LOG IN') }}</button></a>
                             </li>
                         
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}"><button class="btn button btn-orange">{{ __('REGISTER') }}</button></a>
+                                <a class="nav-link" href="{{ route('register') }}"><button class="button btn-orange">{{ __('REGISTER') }}</button></a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -155,10 +152,10 @@
                     </ul>
                     <ul>
                         <li class="me-5">
-                            <a href="" class="plus-footer-link">Terms of Service</a>
+                            <a href="{{ route('terms') }}" class="plus-footer-link">Terms of Service</a>
                         </li>
                         <li class="me-5">
-                            <a href="" class="plus-footer-link">Privacy Policy</a>
+                            <a href="{{ route('privacy') }}" class="plus-footer-link">Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
