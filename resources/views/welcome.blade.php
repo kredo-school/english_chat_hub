@@ -2,6 +2,10 @@
 
 @section('title', 'welcome page')
 
+@section('style')
+    <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
+@endsection
+
 @section('banner')
 <div class="banner" id="banner" style="background-image: url(../image/welcome/lights.png);">
     <div class="banner-text">
