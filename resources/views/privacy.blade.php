@@ -7,11 +7,10 @@
 @endsection
 
 @section('banner')
-<div id="white-wrap" class="pb-3" style="padding-top: calc(72px + 1rem)">
+<div id="white-wrap" class="pb-3">
 
     <div class="container mt-3 p-0 text-center">
-        <a href="{{ asset('image/text/privacy_policy.pdf') }}" download="{{ asset('image/text/privacy_policy.pdf') }}"
-            style="position: absolute;top: calc(72px + 50px);right: 10%;">Download</a>
+        <a href="{{ asset('image/text/privacy_policy.pdf') }}" download="{{ asset('image/text/privacy_policy.pdf') }}" id="privacy-link">Download</a>
         <h2 class="h3">Privacy Policy</h2>
         <p>Last Updated: 29th July 2023.
             <br>This Privacy Policy ("Policy") explains the information collection, use, and sharing practices of

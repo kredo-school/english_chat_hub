@@ -7,7 +7,7 @@
 @endsection
 
 @section('banner')
-    <div id="white-wrap" class="class="pb-3" style="padding-top: calc(72px + 1rem)"">
+    <div id="white-wrap" class="pb-3">
 
         <div class="container mt-3 p-0">
             <h2 class="h3 text-center">
