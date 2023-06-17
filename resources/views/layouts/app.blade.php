@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ mix('css/button.css') }}">
     <link rel="stylesheet" href="{{ mix('css/form.css') }}">
     <link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
+
+    
+
     <link rel="stylesheet" href="{{ mix('css/contact-us.css') }}">
     <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
     <link rel="stylesheet" href="{{ mix('css/faq.css') }}">
@@ -67,7 +70,7 @@
                             </li>
                         @endguest
                             <li class="nav-item me-5">
-                                <a href="" class="link-item">Event</a>
+                                <a href="{{ route('events.index') }}" class="link-item">Event</a>
                             </li>
                             <li class="nav-item me-5">
                                 <a href="{{ route('contact-us.create') }}" class="link-item">Contact Us</a>
@@ -141,7 +144,7 @@
                         </li>
                         @endguest
                         <li class="me-5">
-                            <a href="" class="footer-link">Event</a>
+                            <a href="{{ route('events.index') }}" class="footer-link">Event</a>
                         </li>
                         <li class="me-5">
                             <a href="{{ route('contact-us.create') }}" class="footer-link">Contact Us</a>
