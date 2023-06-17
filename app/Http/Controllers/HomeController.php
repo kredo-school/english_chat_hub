@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Meeting;
+use App\Models\Participant;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(Category $category, User $user, Meeting $meeting)
+    public function __construct(Category $category, User $user, Meeting $meeting,)
     {
         $this->category = $category;
         $this->user = $user;
@@ -43,8 +44,18 @@ class HomeController extends Controller
 
     public function show(){
         $user = Auth::user();
+        $participant = Participant::where('email', $user->email)->first();
 
         return view('users.reserved.show_details')
-        ->with('user', $user);
+        ->with('user', $user)
+        ->with('participant', $participant);
+    }
+
+    public function showUser(Meeting $meeting){
+        $all_users = $meeting->joinMeetings;
+
+        return view('users.reserved.join_users')
+        ->with('meeting', $meeting)
+        ->with('all_users', $all_users);
     }
 }
