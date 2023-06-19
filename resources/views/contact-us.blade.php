@@ -54,7 +54,7 @@
                                 @enderror
                             </div>
 
-                            <!-- category -->
+                            <!-- subtitle -->
                             <div class="mb-3">
                                 <label for="subtitle" class="form-label">Subtitle</label>
                                 <select class="form-select" name="subtitle_id">
@@ -63,6 +63,10 @@
                                         @foreach ($all_subtitles as $subtitle)
                                             <option value="{{ $subtitle->id }}" id="{{ $subtitle->id }}">{{ $subtitle->name }}</option>
                                         @endforeach
+
+                                        @if (Auth::check())
+                                            <option value="review">Review</option>
+                                        @endif
                                 
                                         {{-- Error --}}
                                         @error('subtitle-id')
@@ -71,10 +75,37 @@
                                 </select>
                             </div>
 
+                            @if (Auth::check())
+                                <div class="mb-3" id="rating-input" style="display: none;">
+                                    <label for="rating" class="form-label">Rating this app</label>
+                                    <div class="form-group">
+                                        <input class="star1 radioBtnStar" type="radio" name="comment[rating]" value="1" required>
+                                        <label for="star1"><i class="starPicker starIcon1 fa-solid fa-star"></i></label>
+                                
+                                        <input class="star2 radioBtnStar" type="radio" name="comment[rating]" value="2">
+                                        <label for="star2"><i class="starPicker starIcon2 fa-solid fa-star"></i></label>
+                                
+                                        <input class="star3 radioBtnStar" type="radio" name="comment[rating]" value="3">
+                                        <label for="star3"><i class="starPicker starIcon3 fa-solid fa-star"></i></label>
+                                
+                                        <input class="star4 radioBtnStar" type="radio" name="comment[rating]" value="4">
+                                        <label for="star4"><i class="starPicker starIcon4 fa-solid fa-star"></i></label>
+                                
+                                        <input class="star5 radioBtnStar" type="radio" name="comment[rating]" value="5">
+                                        <label for="star5"><i class="starPicker starIcon5 fa-solid fa-star"></i></label>
+                                    </div>
+                                </div>    
+                            @endif
+
                             <!-- message -->
                             <div class="mb-3">
-                                <label for="content" class="form-label">Message</label>
-                                <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+                                @if (Auth::check())
+                                    <label for="content" class="form-label" id="comments" style="display: none;">Review Comments</label>
+                                    <label for="content" class="form-label" id="message" style="display: none;">Message</label>
+                                @else               
+                                    <label for="content" class="form-label">Message</label>
+                                @endif
+                                    <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
 
                                 {{-- Error --}}
                                 @error('content')
@@ -113,9 +144,25 @@
 @endsection
 
 @section('script')
+    <script src="{{ mix('js/contact-us.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#contact-us-result').modal('show');
         });
+
+        $(document).ready(function() {
+        $('select[name="subtitle_id"]').change(function() {
+            if ($(this).val() !== 'review') {
+                $('#rating-input').hide(),
+                $('#comments').hide();
+                $('#message').show();
+            } else {
+                $('#rating-input').show(),
+                $('#comments').show();
+                $('#message').hide();
+            }
+        });
+    });
     </script>
+
 @endsection
