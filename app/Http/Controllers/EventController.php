@@ -13,7 +13,6 @@ class EventController extends Controller
 
     public function index(){
         $all_events = Event::all();
-        // dd($all_events[1]->levels()->count());
         return view('users.event')
         ->with('all_events' , $all_events);
     }
@@ -23,14 +22,8 @@ class EventController extends Controller
         ->with('event', $event);
     }
 
-    // public function joinForm(Event $event, Participant $participant){
     public function joinForm(){
-        // $all_events = Event::all();
-        // $participant = Participant::all();
-        // dd($all_events);
         return view('users.event_join_form');
-        // ->with('all_events', $all_events)
-        // ->with('participant', $participant);
     }
 
 
