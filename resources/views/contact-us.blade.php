@@ -25,7 +25,11 @@
                             <!-- username -->
                             <div class="mb-3">
                                 <label for="name" class="form-label">User Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Username">
+                                @if ($user)
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ $user->user_name }}" readonly>
+                                @else
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Username">
+                                @endif
 
                                 {{-- Error --}}
                                 @error('name')
@@ -36,7 +40,11 @@
                             <!-- email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="example">
+                                @if ($user)
+                                    <input type="text" name="email" id="email" class="form-control" value="{{ $user->email }}" readonly>                           
+                                @else
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="example">                           
+                                @endif
 
                                 {{-- Error --}}
                                 @error('email')
@@ -64,7 +72,7 @@
                                             <option value="{{ $subtitle->id }}" id="{{ $subtitle->id }}">{{ $subtitle->name }}</option>
                                         @endforeach
 
-                                        @if (Auth::check())
+                                        @if ($user)
                                             <option value="review">Review</option>
                                         @endif
                                 
@@ -75,7 +83,7 @@
                                 </select>
                             </div>
 
-                            @if (Auth::check())
+                            @if ($user)
                                 <div class="mb-3" id="rating-input" style="display: none;">
                                     <label for="rating" class="form-label">Rating this app</label>
                                     <div class="form-group">
@@ -99,7 +107,7 @@
 
                             <!-- message -->
                             <div class="mb-3">
-                                @if (Auth::check())
+                                @if ($user)
                                     <label for="content" class="form-label" id="comments" style="display: none;">Review Comments</label>
                                     <label for="content" class="form-label" id="message" style="display: none;">Message</label>
                                 @else               
