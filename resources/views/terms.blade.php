@@ -7,7 +7,7 @@
 @endsection
 
 @section('banner')
-    <div id="white-wrap" class="py-3">
+    <div id="white-wrap" class="pb-3">
 
         <div class="container mt-3 p-0">
             <h2 class="h3 text-center">
