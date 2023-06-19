@@ -40,19 +40,6 @@ Route::get('terms_of_service', function () {
 
 Auth::routes();
 
-
-
-//user event
-Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
-    Route::get('/', [EventController::class, 'index'])->name('index');
-    Route::get('/{event}', [EventController::class, 'show'])->name('show');
-});
-
-
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 // Contact Us form
 Route::get('/contact-us/create', [ContactController::class, 'create'])->name('contact-us.create');
 Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store');
@@ -60,7 +47,8 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
     Route::get('/', [EventController::class, 'index'])->name('index');
-    Route::get('/{event}', [EventController::class, 'show'])->name('show');
+    Route::get('/{event}/show', [EventController::class, 'show'])->name('show');
+    Route::get('/join', [EventController::class, 'joinForm'])->name('joinForm');
 });
 
 // Route Group

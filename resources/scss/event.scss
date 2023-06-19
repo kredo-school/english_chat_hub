@@ -58,7 +58,7 @@ main{
     width: 25px;
   }
 
-  .card-body {
+  .event-card-body {
     color: var(--gray) !important;
     font: 2em var(--raleway);
     min-height: 500px;
@@ -74,7 +74,7 @@ main{
 //   end of event page
   
 // event detail
-  .event-detail-container {
+  .event-container {
     width: auto;
     height: 100vh;
   }
@@ -117,4 +117,11 @@ main{
     font-family: var(--raleway);
     color: var(--gray);
     display: inline-block;
+  }
+
+  // event_join_form
+  .event-join-card{
+    transform: translate(0, 50%);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: var(--gray)!important;
   }
