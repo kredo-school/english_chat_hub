@@ -72,6 +72,13 @@ main{
     font: 2em var(--roundM);
   }
 //   end of event page
+
+// carousel
+.carousel-control-prev
+.carousel-control-next{
+  color: #ff7917,  !important;
+}
+// end of carousel
   
 // event detail
   .event-container {
@@ -81,8 +88,8 @@ main{
   
   .event-detail-card {
     width: 100%;
-    top: 40%;
-    transform: translate(0, -50%);
+    top: 10%;
+    // transform: translate(0, -50%);
     border-radius: 1rem !important;
     display: flex;
   }
