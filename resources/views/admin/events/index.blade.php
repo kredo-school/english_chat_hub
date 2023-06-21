@@ -65,7 +65,7 @@
                                     </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('admin.editEvent', $event->id)}}">Edit event info</a>
-                                    <a class="dropdown-item" href="#"> Participants List</a>
+                                    <a class="dropdown-item" href="{{ route('admin.showParticipants',$event->id)}}"> Participants List</a>
                                     <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-event-{{$event->id}}">
                                         Delete
                                      </button>

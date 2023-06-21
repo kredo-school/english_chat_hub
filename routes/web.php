@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/{event}/edit/', [AdminController::class, 'editEvent'])->name('editEvent');
             Route::patch('/{event}', [AdminController::class, 'updateEvent'])->name('updateEvent');
             Route::delete('/{event}', [AdminController::class, 'destroyEvent'])->name('destroyEvent');
+            Route::get('/{id}/participants',[AdminController::class,'showParticipants'])->name('showParticipants');
         });
 
         Route::group(['prefix' => 'chatrooms', 'as' => 'chatrooms.'], function () {

@@ -13,6 +13,11 @@ class Participant extends Model
     // RELATION
     public function joinEvents()
     {
-        return $this->belongsToMany(Event::class, 'join_event');
+        return $this->belongsToMany(Event::class, 'join_event','participant_id','event_id')
+            ->withTimestamps();
     }
+
+    protected $fillable = ['name','email'];
+
+
 }
