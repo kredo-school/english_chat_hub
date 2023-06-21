@@ -7,37 +7,29 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Level;
 use App\Models\Contact;
+use App\Models\Participant;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 
 class AdminController extends Controller
 {
-    private $user;
+
     private $event;
-    private $level;
-
+   
     const LOCAL_STORAGE_FOLDER = '/public/images/';
-
-    public function __construct(User $user, Event $event, Level $level)
-    {
-        $this->user = $user;
-        $this->event = $event;
-        $this->level = $level;
-
-    }
 
     // Users
     public function showUsers()
     {
-        $all_users = $this->user->all();
+        $all_users = User::all();
         return view('admin.users.allusers')->with('all_users',$all_users);
     }
 
     // Events
     public function showEvents()
     {
-        $all_events = $this->event->all();
+        $all_events = Event::all();
         return view('admin.events.index')->with('all_events',$all_events);
     }
 
@@ -132,8 +124,19 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function showParticipants(Event $event,$event_id)
+    {
+        $event = Event::find($event_id);
+        $participants = $event->participants;
+    
+        return view('admin.events.participants', compact('event', 'participants'))
+            ->with('event',$event);
+
+    }
+    
+
     // Inbox
-    public function showInbox(Contact $contact)
+    public function showInbox()
     {
         $all_messages = Contact::all();
 

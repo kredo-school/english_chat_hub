@@ -7,11 +7,10 @@
     <div class="col content">
         <div class="row search-status participants">
             <div class="col-6 participants-left">
-                <h1 class="fs-2">Things You Are Challenging</h1>
-                <ul class="fs-5">
-                    <li>Level: Beginner, Intermediate</li>
-                    <li>Date: 2023-07-30 12:00PM</li>
-                    <li>Location: Tokyo University Room#333</li>
+                <h1 class="fs-2">Theme: {{ $event->theme }}</h1>
+                <ul class="fs-5">Level: {{ $event->getEventStrComma() }}</li>
+                    <li>Date: {{ $event->date }}</li>
+                    <li>Location: {{ $event->location }}</li>
                 </ul>
             </div>
             <div class="col-6 participants-right">
@@ -34,6 +33,10 @@
         </div>
         <div class="row">
             <div class="col-12 mt-3">
+            @if ($participants)
+                @if ($participants->isEmpty())
+                    <p>No participants.</p>
+                @else
                 <table class="user-table text-center table-bordered">
                     <thead>
                         <tr>
@@ -47,19 +50,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for($i=0; $i < 10; $i++)
-                        <tr class="inbox-tr">
-                            <td>#</td>
-                            <td>Kei Sasaki</td>
-                            <td>kei@gmail.com</td>
-                            <td>20xx-xx-xx</td>
-                            <td>20xx-xx-xx</td>
-                            <td><i class="fa-solid fa-circle text-success"></i></td>
-                            <td><i class="fa-solid fa-ellipsis"></i></td>
-                        </tr>
-                        @endfor
+                        @foreach ($participants as $participant)
+                            <th>{{ $participant->id }}</th>
+                            <th>{{ $participant->name }}</th>
+                            <th>{{ $participant->email }}</th>
+                            <th>{{ $participant->created_at }}</th>
+                            <th>{{ $participant->updated_at }}</th>
+                            <th></th>
+                            <th></th>
+                        @endforeach
                     </tbody>
                 </table>
+                @endif
+            @endif
             </div>
         </div>
         <hr>
