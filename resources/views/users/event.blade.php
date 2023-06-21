@@ -26,7 +26,7 @@
     @if($all_events->isNotEmpty())
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        @for($i = 0, $indicator = 1, $indicatorCount = 0; $i < count($all_events); $i++, $indicator++)          
+        @for($i = 0, $indicator = 1, $indicatorCount = 0; $i < count($all_events); $i++, $indicator++)
           @if($indicator == 3)
             @if ($i === 2)
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $indicatorCount }}" class="active" aria-current="true" aria-label="Slide {{ $indicatorCount + 1 }}"></button>
@@ -36,7 +36,6 @@
             @php($indicator = 1) 
             @php($indicatorCount++)
           @endif
-
         @endfor
       </div>
       <div class="carousel-inner">
@@ -53,7 +52,7 @@
               <div class="col-lg-4 col-md-6 gx-0 p-0 mx-auto event-info mb-5">
                 <div class="card event-card mb-2">
                   <img src="{{ asset('storage/images/' . $all_events[$i]->image) }}" class="card-img-top"  alt="{{$all_events[$i]->image}}">
-                    <div class="card-body text-start m-5">
+                    <div class="event-card-body text-start m-5">
                       <p>
                         <i class="fa-regular fa-comment"></i>
                         <span class="ms-1">{{$all_events[$i]->theme}}</span>
@@ -71,13 +70,13 @@
                       </p>
                     </div>
                     <div class="event-card-footer">
-                      @if ($all_events[$i]->eventLevels->count() === 3)
+                      @if ($all_events[$i]->levels()->count() === 3)
                         <p class=mb-0>all users available</p>
                       @else
                         <span>mainly for</span>
-                      @foreach ($all_events[$i]->eventLevels as $level)
-                        <img src="{{asset('image/level/'. $level->icon)}}"  class="mb-2 icon-sm" alt="{{$level->name}}">
-                      @endforeach
+                        @foreach ($all_events[$i]->levels as $level)
+                          <img src="{{asset('image/level/'. $level->icon)}}"  class="mb-2 icon-sm" alt="{{$level->name}}">
+                        @endforeach
                       @endif
                     </div>
                 </div>
@@ -102,6 +101,8 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    @else
+      <h1 class="text-center text-muted mt-5">Sorry<i class="fa-solid fa-face-sad-tear"></i>...No Event yet...</h1>
     @endif
   
 
