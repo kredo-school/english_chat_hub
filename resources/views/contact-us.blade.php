@@ -12,7 +12,6 @@
 
             <!-- card -->
             <div class="card shadow pd-4 mb-5">
-
                 <div class="card-header bg-white border-0">
                     <h1 class="text-center m-0 pt-5 pb-3 display-5 fw-bold contact-us-title">Contact Form</h1>
                 </div>
@@ -68,18 +67,18 @@
                                 <select class="form-select" name="subtitle_id">
                                     <option value="" class="dropdown-placeholder">-- Select Subtitle --</option>
 
-                                        @foreach ($all_subtitles as $subtitle)
+                                    @foreach ($all_subtitles as $subtitle)
+                                        @if ($subtitle->id == 5 && $user)
                                             <option value="{{ $subtitle->id }}" id="{{ $subtitle->id }}">{{ $subtitle->name }}</option>
-                                        @endforeach
-
-                                        @if ($user)
-                                            <option value="review">Review</option>
+                                        @elseif($subtitle->id != 5)
+                                            <option value="{{ $subtitle->id }}" id="{{ $subtitle->id }}">{{ $subtitle->name }}</option>   
                                         @endif
-                                
-                                        {{-- Error --}}
-                                        @error('subtitle-id')
-                                            <div class="text-danger small">{{ $message }}</div>
-                                        @enderror
+                                    @endforeach
+
+                                    {{-- Error --}}
+                                    @error('subtitle-id')
+                                        <div class="text-danger small">{{ $message }}</div>
+                                    @enderror
                                 </select>
                             </div>
 
@@ -87,19 +86,19 @@
                                 <div class="mb-3" id="rating-input" style="display: none;">
                                     <label for="rating" class="form-label">Rating this app</label>
                                     <div class="form-group">
-                                        <input class="star1 radioBtnStar" type="radio" name="comment[rating]" value="1" required>
+                                        <input class="star1 radioBtnStar" type="radio" name="rating" value="1">
                                         <label for="star1"><i class="starPicker starIcon1 fa-solid fa-star"></i></label>
                                 
-                                        <input class="star2 radioBtnStar" type="radio" name="comment[rating]" value="2">
+                                        <input class="star2 radioBtnStar" type="radio" name="rating" value="2">
                                         <label for="star2"><i class="starPicker starIcon2 fa-solid fa-star"></i></label>
                                 
-                                        <input class="star3 radioBtnStar" type="radio" name="comment[rating]" value="3">
+                                        <input class="star3 radioBtnStar" type="radio" name="rating" value="3">
                                         <label for="star3"><i class="starPicker starIcon3 fa-solid fa-star"></i></label>
                                 
-                                        <input class="star4 radioBtnStar" type="radio" name="comment[rating]" value="4">
+                                        <input class="star4 radioBtnStar" type="radio" name="rating" value="4">
                                         <label for="star4"><i class="starPicker starIcon4 fa-solid fa-star"></i></label>
                                 
-                                        <input class="star5 radioBtnStar" type="radio" name="comment[rating]" value="5">
+                                        <input class="star5 radioBtnStar" type="radio" name="rating" value="5">
                                         <label for="star5"><i class="starPicker starIcon5 fa-solid fa-star"></i></label>
                                     </div>
                                 </div>    
@@ -156,20 +155,18 @@
     <script>
         $(document).ready(function() {
             $('#contact-us-result').modal('show');
-        });
-
-        $(document).ready(function() {
-        $('select[name="subtitle_id"]').change(function() {
-            if ($(this).val() !== 'review') {
-                $('#rating-input').hide(),
-                $('#comments').hide();
-                $('#message').show();
-            } else {
-                $('#rating-input').show(),
-                $('#comments').show();
-                $('#message').hide();
-            }
-        });
+            
+            $('select[name="subtitle_id"]').change(function() {
+                if ($(this).val() != 5) {
+                    $('#rating-input').hide().prop('disabled', true).find('input').val(''),
+                    $('#comments').hide();
+                    $('#message').show();
+                } else {
+                    $('#rating-input').show().prop('disabled', false),
+                    $('#comments').show();
+                    $('#message').hide();
+                }
+            });
     });
     </script>
 

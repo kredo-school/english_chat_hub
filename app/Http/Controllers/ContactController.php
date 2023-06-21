@@ -40,12 +40,15 @@ class ContactController extends Controller
             'email'         => 'required|email|max:50',
             'title'         => 'required|max:50',
             'content'       => 'max:1000',
+            'rating'        => ($request->subtitle_id == 5) ? 'required|integer' : 'nullable',
             'subtitle_id'   => 'required',
         ]);
 
-        $this->contact->name        = $request->name;
-        $this->contact->email       = $request->email;
+        $user = $request->user();
+        $this->contact->name        = $request->name ?? $user->user_name;
+        $this->contact->email       = $request->email ?? $user->email;
         $this->contact->content     = $request->content;
+        $this->contact->rating      = $request->rating;
         $this->contact->title       = $request->title;
         $this->contact->subtitle_id = $request->subtitle_id;
         $this->contact->save();

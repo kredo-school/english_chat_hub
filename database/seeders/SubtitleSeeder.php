@@ -15,7 +15,7 @@ class SubtitleSeeder extends Seeder
     public function run()
     {
         $subtitles = [
-            'Report', 'How to use', 'Event', 'Other'
+            'Report', 'How to use', 'Event', 'Other', 'Review'
         ];
 
         foreach ($subtitles as $subtitle) {
