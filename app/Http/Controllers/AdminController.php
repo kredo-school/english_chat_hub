@@ -16,17 +16,14 @@ class AdminController extends Controller
 {
     private $user;
     private $event;
-    private $level;
-    private $participant;
+   
 
     const LOCAL_STORAGE_FOLDER = '/public/images/';
 
-    public function __construct(User $user, Event $event, Level $level, Participant $participant)
+    public function __construct(User $user, Event $event)
     {
         $this->user = $user;
         $this->event = $event;
-        $this->level = $level;
-        $this->participant = $participant;
 
     }
 
