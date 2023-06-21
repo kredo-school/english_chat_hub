@@ -16,21 +16,35 @@ class Event extends Model
         return $this->belongsToMany(Level::class, 'event_level');
     }
 
-    public function getEventString() {
+    public function getEventString()
+    {
         $eventString = '';
         $levels = $this->levels;
-        foreach($levels as $key => $event) {
+        foreach ($levels as $key => $event) {
             $comma = ($key != ($levels->count() - 1)) ? "<br/>" : '';
             $name = ucfirst($event->name);
             $eventString .= "{$name} {$comma}";
         }
+        return $eventString;
+    }
 
+    public function getEventStrComma()
+    {
+        $eventString = '';
+        $levels = $this->levels;
+        foreach ($levels as $key => $event) {
+            $comma = ($key != ($levels->count() - 1)) ? " , " : '';
+            $name = ucfirst($event->name);
+            $eventString .= "{$name} {$comma}";
+        }
         return $eventString;
     }
 
     public function joinEvents()
     {
-        return $this->belongsToMany(Participant::class, 'join_event');
-    }
+        return $this->belongsToMany(Participant::class, 'join_event', 'event_id', 'participant_id')
+            ->withTimestamps();
 
+    }
+    protected $fillable = ['theme'];
 }
