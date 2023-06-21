@@ -58,7 +58,7 @@ main{
     width: 25px;
   }
 
-  .card-body {
+  .event-card-body {
     color: var(--gray) !important;
     font: 2em var(--raleway);
     min-height: 500px;
@@ -72,17 +72,24 @@ main{
     font: 2em var(--roundM);
   }
 //   end of event page
+
+// carousel
+.carousel-control-prev
+.carousel-control-next{
+  color: #ff7917,  !important;
+}
+// end of carousel
   
 // event detail
-  .event-detail-container {
+  .event-container {
     width: auto;
     height: 100vh;
   }
   
   .event-detail-card {
     width: 100%;
-    top: 40%;
-    transform: translate(0, -50%);
+    top: 10%;
+    // transform: translate(0, -50%);
     border-radius: 1rem !important;
     display: flex;
   }
@@ -117,4 +124,11 @@ main{
     font-family: var(--raleway);
     color: var(--gray);
     display: inline-block;
+  }
+
+  // event_join_form
+  .event-join-card{
+    transform: translate(0, 50%);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: var(--gray)!important;
   }

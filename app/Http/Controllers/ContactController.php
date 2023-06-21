@@ -5,24 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Subtitle;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class ContactController extends Controller
 {
     private $contact;
     private $subtitle;
 
-    public function __construct(Contact $contact, Subtitle $subtitle){
-        $this->contact = $contact;
-        $this->subtitle = $subtitle;
+    private $user;
+
+    public function __construct(Contact $contact, Subtitle $subtitle, User $user){
+        $this->contact      = $contact;
+        $this->subtitle     = $subtitle;
+        $this->user         = $user;
     }
 
     
-    public function create(){
+    public function create(){  
         $all_subtitles = $this->subtitle->all();
-        return view('contact-us')->with('all_subtitles', $all_subtitles);
+        $user = Auth::user();
+        return view('contact-us')
+        ->with('all_subtitles', $all_subtitles)
+        ->with('user', $user);
     }
+    
 
     public function store(Request $request)
     {
