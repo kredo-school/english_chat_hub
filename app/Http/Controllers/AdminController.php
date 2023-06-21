@@ -14,23 +14,15 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    private $user;
+
     private $event;
    
-
     const LOCAL_STORAGE_FOLDER = '/public/images/';
-
-    public function __construct(User $user, Event $event)
-    {
-        $this->user = $user;
-        $this->event = $event;
-
-    }
 
     // Users
     public function showUsers()
     {
-        $all_users = $this->user->all();
+        $all_users = User::all();
         return view('admin.users.allusers')->with('all_users',$all_users);
     }
 
