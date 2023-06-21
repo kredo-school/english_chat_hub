@@ -44,7 +44,7 @@
           <table class="mx-auto mt-2">
             <tr>
               <th>10:00~10:45</th>
-              <td>a</td>
+              <td><a href="{{ route('users.meeting.create') }}" class="text-muted text-decoration-none">a</a></td>
               <td>a</td>
               <td>a</td>
               <td>a</td>

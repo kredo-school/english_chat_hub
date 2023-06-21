@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MeetingController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/reserch/create', [MeetingController::class, 'create'])->name('meeting.create');
+        Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
     });
 
     #LOGINED ADMIN ONLY

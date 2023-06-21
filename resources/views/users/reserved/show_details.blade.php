@@ -33,8 +33,21 @@
                       <div class="category-item">
                         <button class="btn btn-light text-warning" id="btn-join">JOIN</button>
                       </div>
-                      <div class="category-item">
-                        <i class="fa-solid fa-ellipsis"></i>
+                      {{-- create EDIT & DELETE select box --}}
+                      <div class="category-item dropdown">
+                        <button class="btn shadow-none" data-bs-toggle="dropdown">
+                          <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                          <div class="dropdown-menu">
+                            <a href="" class="dropdown-item">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                            </a>
+                            <button data-bs-toggle="modal" data-bs-target="" class="dropdown-item text-danger">
+                                <i class="fa-regular fa-trash-can"></i> Delete
+                            </button>
+                          </div>
+                          {{-- @include('') --}}
+
                       </div>
                     </div>
                     @empty
