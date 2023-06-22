@@ -11,8 +11,8 @@ class Meeting extends Model
 {
     use HasFactory, SoftDeletes;
     const STATUS = [
-        'stand by'      => ['id' => 1, 'color' => 'warning'],
-        'in session'    => ['id' => 2, 'color' => 'success'],
+        'stand_by'      => ['id' => 1, 'color' => 'warning'],
+        'in_session'    => ['id' => 2, 'color' => 'success'],
         'done'          => ['id' => 3, 'color' => 'secondary']
     ];
     const UNIT_MEETING_TIME = 45;   // minutes / 1 meeting
