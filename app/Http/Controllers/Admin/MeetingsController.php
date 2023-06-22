@@ -48,7 +48,7 @@ class MeetingsController extends Controller
         $meeting->category_id   = $request->category_id;
         $meeting->level_id      = $request->level_id;
         $meeting->date          = $request->date;
-        $meeting->start_at      = date('G:i:s', strtotime($request->start_at . ':00:00'));
+        $meeting->start_at      = date('H:i:s', strtotime($request->start_at . ':00:00'));
         $meeting->status_id     = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         return redirect()->route('admin.chatrooms.meetings.index');
