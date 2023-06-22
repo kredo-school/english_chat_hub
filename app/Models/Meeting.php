@@ -56,7 +56,7 @@ class Meeting extends Model
                 $meetingEndAt   = $meetingTime->copy()->addMinutes(self::UNIT_MEETING_TIME);
                 # Compare Time
                 if ($meetingOpenAt <= $currentTime && $meetingEndAt >= $currentTime) {
-                    $meeting->status_id = self::STATUS['in session']['id'];
+                    $meeting->status_id = self::STATUS['in_session']['id'];
                 } elseif ($meetingEndAt < $currentTime) {
                     $meeting->status_id = self::STATUS['done']['id'];
                 }

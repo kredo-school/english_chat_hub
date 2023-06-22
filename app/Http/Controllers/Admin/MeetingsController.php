@@ -49,7 +49,7 @@ class MeetingsController extends Controller
         $meeting->level_id      = $request->level_id;
         $meeting->date          = $request->date;
         $meeting->start_at      = date('G:i:s', strtotime($request->start_at . ':00:00'));
-        $meeting->status_id     = Meeting::STATUS['stand by']['id'];
+        $meeting->status_id     = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         return redirect()->route('admin.chatrooms.meetings.index');
     }
@@ -61,7 +61,7 @@ class MeetingsController extends Controller
     public function restore($id)
     {
         $meeting = Meeting::withTrashed()->findOrFail($id);
-        $meeting->status_id = Meeting::STATUS['stand by']['id'];
+        $meeting->status_id = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         $meeting->restore();
         return redirect()->route('admin.chatrooms.meetings.index');
