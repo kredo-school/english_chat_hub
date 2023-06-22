@@ -33,11 +33,8 @@
         </div>
         <div class="row">
             <div class="col-12 mt-3">
-            @if ($participants)
-                @if ($participants->isEmpty())
-                    <p>No participants.</p>
-                @else
-                <table class="user-table text-center table-bordered">
+                @if ($participants && $participants->isNotEmpty())
+                <table class="table table-striped text-center align-middle">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -51,18 +48,24 @@
                     </thead>
                     <tbody>
                         @foreach ($participants as $participant)
-                            <th>{{ $participant->id }}</th>
+                        <tr class="usertable-tr">
+                            <td>{{ $participant->id }}</td>
                             <th>{{ $participant->name }}</th>
                             <th>{{ $participant->email }}</th>
                             <th>{{ $participant->created_at }}</th>
                             <th>{{ $participant->updated_at }}</th>
                             <th></th>
                             <th></th>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
+                @else
+                <div class="m-4 text-center">
+                    <h1 class="my-5">There is No Participants yet.</h1>
+                </div>
+               
                 @endif
-            @endif
             </div>
         </div>
         <hr>

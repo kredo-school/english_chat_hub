@@ -42,9 +42,8 @@ class Event extends Model
 
     public function joinEvents()
     {
-        return $this->belongsToMany(Participant::class, 'join_event', 'event_id', 'participant_id')
-            ->withTimestamps();
+        return $this->belongsToMany(Participant::class, 'join_event', 'event_id', 'participant_id');
 
     }
-    protected $fillable = ['theme'];
+    
 }

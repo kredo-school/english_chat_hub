@@ -15,15 +15,24 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
 
+ 
     private $event;
    
     const LOCAL_STORAGE_FOLDER = '/public/images/';
 
+    public function __construct(Event $event)
+    {
+        $this->event = $event;
+    }
+
     // Users
     public function showUsers()
     {
-        $all_users = User::all();
-        return view('admin.users.allusers')->with('all_users',$all_users);
+        $all_users = User::withTrashed()->latest()->get();
+        
+        if ($all_users->isNotEmpty()) {
+            return view('admin.users.allusers')->with('all_users', $all_users);
+        }
     }
 
     // Events
@@ -124,12 +133,13 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function showParticipants(Event $event,$event_id)
+    public function showParticipants($event_id)
     {
-        $event = Event::find($event_id);
-        $participants = $event->participants;
+        $event = Event::findOrFail($event_id);
+        $participants = $event->joinEvents()->get();
     
-        return view('admin.events.participants', compact('event', 'participants'))
+        return view('admin.events.participants')
+            ->with('participants',$participants)
             ->with('event',$event);
 
     }
