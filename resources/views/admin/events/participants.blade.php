@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-12 mt-3">
-                @if ($participants && $participants->isNotEmpty())
+                @if ($participants->isNotEmpty())
                 <table class="table table-striped text-center align-middle">
                     <thead>
                         <tr>
