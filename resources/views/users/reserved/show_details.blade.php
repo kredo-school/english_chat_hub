@@ -55,31 +55,36 @@
                     @endforelse
                     
                   <h3 class="fs-3 ms-5 mt-4">Event</h3>
-                  @forelse($participant->joinEvents as $event)
-                    <div class="category-room mx-auto mb-2 py-2">
-                      <div class="category-item">
-                        {{ $event->date }}
+                  @if(empty($participant))
+                    <p>No participant</p>
+                  @else
+                      @forelse($participant->joinEvents as $event)
+                      <div class="category-room mx-auto mb-2 py-2">
+                        <div class="category-item">
+                          {{ $event->date }}
+                        </div>
+                        {{-- <div class="category-item">
+                          <img src="image/begginer.png" alt="">
+                        </div> --}}
+                        <div class="category-item">
+                          {{ $event->comment }}
+                        </div>
+                        <div class="category-item">
+                          {{ $event->location }}
+                        </div>
+                        <div class="category-item">
+                          {{ $event->joinEvents->count() }}members
+                          {{-- {{ dd($event->joinEvents )}} --}}
+                        </div>
+                        <div class="category-item">
+                          <i class="fa-solid fa-trash-can text-danger"></i>
+                        </div>
                       </div>
-                      {{-- <div class="category-item">
-                        <img src="image/begginer.png" alt="">
-                      </div> --}}
-                      <div class="category-item">
-                        {{ $event->comment }}
-                      </div>
-                      <div class="category-item">
-                        {{ $event->location }}
-                      </div>
-                      <div class="category-item">
-                        {{ $event->joinEvents->count() }}members
-                        {{-- {{ dd($event->joinEvents )}} --}}
-                      </div>
-                      <div class="category-item">
-                        <i class="fa-solid fa-trash-can text-danger"></i>
-                      </div>
-                    </div>
-                    @empty
-                        <p>No reserved</p>
-                    @endforelse
+                      @empty
+                            <p>No reserved</p>
+                      @endforelse
+                  @endif
+                  
             </div>
           </div>
       
