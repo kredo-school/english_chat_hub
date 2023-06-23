@@ -49,21 +49,30 @@
                     <div class="text-end mt-0">
                         {{-- Modal --}}
                         @if (auth()->check())
-                            <button class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
-                                data-bs-target="#join-event-{{ $event->id }}">
-                                Join!!
-                            </button>
+                            @if (!$isJoined)
+                                <button class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
+                                    data-bs-target="#join-event-{{ $event->id }}">
+                                    Join!!
+                                </button>
+                            @endif
                         @else
-                            <a href="{{ route('events.joinForm') }}" class="button btn-orange m-4 mt-0">
+                            <a href="{{ route('events.joinForm', $event->id) }}" class="button btn-orange m-4 mt-0">
                                 Join!!
                             </a>
                         @endif
                     </div>
-                    @include('users.modals.join_event')
+                    @include('users.events.modals.join_event')
                 </div>
                 <!-- end of right side -->
             </div>
         </div>
     </div>
+@endsection
 
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#join-event-result').modal('show');
+        });
+    </script>
 @endsection
