@@ -51,6 +51,8 @@
                                     @else
                                         <p class="fs-6 mt-1 mb-0">---No comment---</p>
                                     @endif
+                                    {{--using empty() --}}
+                                    {{-- <p class="fs-5 mt-1 mb-0">{{ empty($user->comment) ? '---No comment---' : $user->comment }}</p> --}}
                             </div>
                         </div>
                     </div>

@@ -60,16 +60,9 @@ class HomeController extends Controller
     }
 
     public function showMeeting(Category $category){
-        // dd($category);
-        // $all_meetings = $this->meeting->all();
-        // $category = Category::findOrFail($category->id);
-        // $all_meetings = $category->$all_meetings;
         $all_meetings = $category->meetings->all();
         $user = Auth::user();
 
-        return view('users.research.show')
-        ->with('all_meetings', $all_meetings)
-        ->with('category', $category)
-        ->with('user', $user);
+        return view('users.research.show', compact('all_meetings', 'category', 'user'));
     }
 }
