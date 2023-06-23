@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 
 class MeetingsController extends Controller
 {
-    const DEFAULT_STATUS_ID = 1;
     public function index(Meeting $meeting)
     {
         // update Meetings Status
@@ -41,7 +40,7 @@ class MeetingsController extends Controller
             'category_id'   => 'required',
             'level_id'      => 'required',
             'date'          => 'required|date|after_or_equal:today',
-            'start_at'      => 'required'
+            'start_at'      => 'required|integer|min:0|max:24'
         ]);
         $meeting = Meeting::withTrashed()->findOrFail($id);
         $meeting->title         = $request->title;
@@ -49,8 +48,8 @@ class MeetingsController extends Controller
         $meeting->category_id   = $request->category_id;
         $meeting->level_id      = $request->level_id;
         $meeting->date          = $request->date;
-        $meeting->start_at      = $request->start_at;
-        $meeting->status_id     = self::DEFAULT_STATUS_ID;
+        $meeting->start_at      = date('H:i:s', strtotime($request->start_at . ':00:00'));
+        $meeting->status_id     = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         return redirect()->route('admin.chatrooms.meetings.index');
     }
@@ -62,7 +61,7 @@ class MeetingsController extends Controller
     public function restore($id)
     {
         $meeting = Meeting::withTrashed()->findOrFail($id);
-        $meeting->status_id = self::DEFAULT_STATUS_ID;
+        $meeting->status_id = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         $meeting->restore();
         return redirect()->route('admin.chatrooms.meetings.index');

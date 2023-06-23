@@ -36,7 +36,7 @@
                     </div>
                     <div class="row mb-3 border-bottom">
                         <div class="col-4 fw-bold">Start At</div>
-                        <div class="col">{{ $meeting->start_at }} : 00~</div>
+                        <div class="col">{{ date('G:i', strtotime($meeting->start_at)) }}~</div>
                     </div>
                 </div>
             </div>

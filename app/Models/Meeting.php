@@ -2,13 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Meeting extends Model
 {
     use HasFactory, SoftDeletes;
+    const STATUS = [
+        'stand_by'      => ['id' => 1, 'color' => 'warning'],
+        'in_session'    => ['id' => 2, 'color' => 'success'],
+        'done'          => ['id' => 3, 'color' => 'secondary']
+    ];
+    const UNIT_MEETING_TIME = 45;   // minutes / 1 meeting
+    const MEETING_OPEN_FROM = 15;   //minutes before
 
     // RELATION
     public function user()
@@ -36,37 +44,32 @@ class Meeting extends Model
     // Update Status_id
     public function updateStatus()
     {
-        // Set Live Time
-        $liveTime = [
-            'date' => now()->format('Y-m-d'),
-            'time' => now()->format('H')
-        ];
+        // Get Compare time
+        $currentTime = now();
+        $checkMeetings = $this->where('status_id', '!=', self::STATUS['done']['id'])->get();
 
-        // Change Status id
-        $checks = $this->where('status_id', '!=', 3)->get();
-        if ($checks->count() != 0) {
-            foreach ($checks as $check) {
-                # Compare Date
-                if ($check->date === $liveTime['date']) {
-                    # Compare Time
-                    if ($check->start_at == $liveTime['time']) {
-                        $check->status_id = 2;
-                    } elseif ($check->start_at < $liveTime['time']) {
-                        $check->status_id = 3;
-                    }
-                } elseif ($check->date < $liveTime['date']) {
-                    $check->status_id = 3;
+        // Change Status_id
+        if ($checkMeetings->count() != 0) {
+            foreach ($checkMeetings as $meeting) {
+                $meetingTime = Carbon::parse($meeting->date . $meeting->start_at);
+                $meetingOpenAt  = $meetingTime->copy()->subMinutes(self::MEETING_OPEN_FROM);
+                $meetingEndAt   = $meetingTime->copy()->addMinutes(self::UNIT_MEETING_TIME);
+                # Compare Time
+                if ($meetingOpenAt <= $currentTime && $meetingEndAt >= $currentTime) {
+                    $meeting->status_id = self::STATUS['in_session']['id'];
+                } elseif ($meetingEndAt < $currentTime) {
+                    $meeting->status_id = self::STATUS['done']['id'];
                 }
-                $check->save();
+                $meeting->save();
             }
         }
-    } 
+    }
     public function statusColor()
     {
-        return $statusColor = [
-            1 => 'warning',     //stand by
-            2 => 'success',     //in session
-            3 => 'secondary'    //done
-        ];
+        $statusColor = [];
+        foreach (self::STATUS as $status) {
+            $statusColor[$status['id']] = $status['color'];
+        }
+        return $statusColor;
     }
 }

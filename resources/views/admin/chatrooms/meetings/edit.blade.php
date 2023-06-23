@@ -36,7 +36,7 @@
                         <label for="start-at" class="form-label">Start At</label>
                         <div class="input-group">
                             <input type="text" name="start_at" id="start-at" class="form-control text-end"
-                                value="{{ old('start_at', $meeting->start_at) }}">
+                                value="{{ old('start_at', date('G', strtotime($meeting->start_at))) }}">
                             <span class="input-group-text"> : 00</span>
                             {{-- ERROR --}}
                             @error('start_at')

@@ -13,11 +13,16 @@ class Participant extends Model
     // RELATION
     public function joinEvents()
     {
-        return $this->belongsToMany(Event::class, 'join_event','participant_id','event_id')
-            ->withTimestamps();
+        return $this->belongsToMany(Event::class, 'join_event','participant_id','event_id');
+
     }
 
     protected $fillable = ['name','email'];
 
+     // 全参加者を取得するスコープを定義
+     public function scopeAllParticipants($query)
+     {
+         return $query->withTrashed();
+     }
+ }
 
-}
