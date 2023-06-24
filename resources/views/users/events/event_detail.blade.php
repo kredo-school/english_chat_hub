@@ -50,9 +50,14 @@
                         {{-- Modal --}}
                         @if (auth()->check())
                             @if (!$isJoined)
-                                <button class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
+                                <button type="button" class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
                                     data-bs-target="#join-event-{{ $event->id }}">
                                     Join!!
+                                </button>
+                            @else
+                                <button type="button" class="button btn-gray m-4 mt-0" data-bs-toggle="modal" 
+                                    data-bs-target="#cancel-event-{{ $event->id }}">
+                                    Cancel Event
                                 </button>
                             @endif
                         @else
