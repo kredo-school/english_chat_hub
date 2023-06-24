@@ -48,13 +48,15 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
     Route::get('/', [EventController::class, 'index'])->name('index');
-    Route::get('/{event}/show', [EventController::class, 'showGuest'])->name('showGuest');
+    Route::get('/{event}/show', [EventController::class, 'show'])->name('show');
     Route::get('/{event_id}/join', [EventController::class, 'joinForm'])->name('joinForm');
     Route::post('/{event_id}/store', [EventController::class, 'storeGuest'])->name('storeGuest');
 });
     Route::group(['middleware' => 'auth'], function(){
-        Route::get('/{event}/show', [EventController::class, 'showAuth'])->name('events.showAuth');
-        Route::post('/{event_id}/store',[EventController::class, 'storeAuth'])->name('events.storeAuth');
+        Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
+            Route::post('/{event_id}/storeAuth',[EventController::class, 'storeAuth'])->name('storeAuth');
+            Route::delete('/{event_id}/delete',[EventController::class,'destroyAuthParticipant'])->name('destroyAuthParticipant');        
+        });
     });
 
 // Route Group

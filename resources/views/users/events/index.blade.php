@@ -66,11 +66,7 @@
                         <span class="ms-1">{{$all_events[$i]->location}}</span>
                       </p>
                       <p class="text-end">
-                        @if (auth()->check())
-                          <a href="{{ route('events.showAuth', $all_events[$i]->id)}}">>>more</a>
-                        @else
-                          <a href="{{ route('events.showGuest', $all_events[$i]->id)}}">>>more</a>
-                        @endif
+                          <a href="{{ route('events.show', $all_events[$i]->id)}}">>>more</a>
                       </p>
                     </div>
                     <div class="event-card-footer">
@@ -108,6 +104,4 @@
     @else
       <h1 class="text-center text-muted mt-5">Sorry<i class="fa-solid fa-face-sad-tear"></i>...No Event yet...</h1>
     @endif
-  
-
     @endsection
