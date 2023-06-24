@@ -14,17 +14,18 @@
                   @forelse($all_meetings as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
-                        {{ $meeting->date }}<br>{{ $meeting->start_at}} : 00〜
+                        {{ $meeting->date }}<br>{{ $meeting->start_at }} : 00〜
                       </div>
+                      {{-- fix later --}}
                       {{-- <div class="category-item">
                         <img src="image/begginer.png" alt="">
                       </div> --}}
                       <div class="category-item">
-                        {{ $meeting->title}}
+                        {{ $meeting->title }}
                       </div>
                       <div class="category-item">
-                        {{-- <a href="{{ route('', ['meeting' => $meeting->id]) }}" class="text-muted"> --}}
-                        <i class="fa-solid fa-users"></i>
+                        <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting->id]) }}" class="text-muted">
+                          <i class="fa-solid fa-users"></i>
                         </a>
                       </div>
                       <div class="category-item">

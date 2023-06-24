@@ -8,13 +8,13 @@
                    <p class="modal-text mx-auto mb-3 fs-4">〜{{ $meeting->title }}〜</p>
                    <p class="modal-text mx-auto mb-3">Date: {{ $meeting->date }}</p>
                    <p class="modal-text mx-auto mb-3">Time: {{ $meeting->start_at }}</p>
-                   <p class="modal-text mx-auto mb-3">Level: {{$meeting->level->name }}</p>
+                   <p class="modal-text mx-auto mb-3">Level: {{ $meeting->level->name }}</p>
                 </div>
 
                 {{-- button --}}
                 <div class="buttons mt-5 mb-3 text-center">
                     <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
-                    <button type="" class="button btn-orange">Reservation</button>
+                    <button class="button btn-orange">Reservation</button>
                 </div> 
             </div>
         </div>
