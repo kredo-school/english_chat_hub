@@ -64,10 +64,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [HomeController::class, 'index'])->name('top');
         Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
         Route::get('/reserved/show/{meeting}', [HomeController::class, 'showUser'])->name('reserved.show.users');
+        Route::get('/research/show/{category}', [HomeController::class, 'showMeeting'])->name('research.show');
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/reserch/create', [MeetingController::class, 'create'])->name('meeting.create');
+        Route::get('/research/create', [MeetingController::class, 'create'])->name('meeting.create');
         Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
     });
 

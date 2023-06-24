@@ -39,7 +39,7 @@
     width: 60%;
     text-align: center;
   }
-  
+
   h3.success-title {
     font-family: var(--roundM);
     font-size: 24px;
@@ -55,3 +55,14 @@
     color: #6E6E6E;
     text-align: center;
   }
+
+  .modal-title{
+    color: var(--gray);
+    font-family: var(--roundM);
+  }
+
+  .modal-text{
+    color: var(--gray);
+    font-family: var(--raleway);
+  }
+  
