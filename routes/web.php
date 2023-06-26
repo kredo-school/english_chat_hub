@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', [AdminController::class, 'showUsers'])->name('showUsers');
+        Route::delete('/users/{user}/deactivate', [AdminController::class, 'deactivate'])->name('users.deactivate');
+        Route::patch('/users/{id}/activate', [AdminController::class, 'activate'])->name('users.activate');
 
         Route::group(['prefix' => 'events'], function () {
             Route::get('/', [AdminController::class, 'showEvents'])->name('showEvents');
