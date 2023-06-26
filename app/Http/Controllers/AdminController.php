@@ -34,9 +34,9 @@ class AdminController extends Controller
             return view('admin.users.allusers')->with('all_users', $all_users);
         }
     }
-    public function deactivate($id)
+    public function deactivate(User $user)
     {
-        User::destroy($id);
+        $user->delete();
         return redirect()->back();
     }
 
