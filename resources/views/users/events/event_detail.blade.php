@@ -13,7 +13,7 @@
                 <!-- left side picture -->
                 <div class="col-lg-6 col-md-12 event-detail-pic">
                     <div class="event-detail-img">
-                        <img src="{{ asset('/storage/images/' . $event->image) }}" alt="{{ $event->image }}">
+                        <img src="{{ asset('/storage/images/' . $event->image) }}" alt="{{ $event->image }}" class="card-img-thumbnail">
                     </div>
                 </div>
                 <!-- end of left side picture -->

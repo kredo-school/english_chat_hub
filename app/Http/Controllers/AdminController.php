@@ -34,6 +34,17 @@ class AdminController extends Controller
             return view('admin.users.allusers')->with('all_users', $all_users);
         }
     }
+    public function deactivate($id)
+    {
+        User::destroy($id);
+        return redirect()->back();
+    }
+
+    public function activate($id)
+    {
+        User::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back();
+    }
 
     // Events
     public function showEvents()
