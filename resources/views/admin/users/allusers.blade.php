@@ -60,22 +60,17 @@
                                     <td>{{$user->created_at}}</td>
                                     <td>{{$user->updated_at}}</td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn" data-bs-toggle="dropdown">
+                                    <div class="dropdown">
+                                        @if ($user->trashed())
+                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
+                                                <i class="fa-solid fa-circle text-danger"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
                                                 <i class="fa-solid fa-circle text-success"></i>
                                             </button>
-                                        <div class="dropdown-menu">
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle text-success"></i> activate
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle text-danger"></i> diactivate
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle text-dark"></i> deleted
-                                                </a>
-                                        </div>
-                                        </div>
+                                        @endif
+                                    </div>
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -88,6 +83,7 @@
                                             </button>
                                         </div>
                                         @include('admin.users.modal.showprofile')
+                                        @include('admin.users.modal.status')
                                         </div>
                                     </td>
                                 </tr>

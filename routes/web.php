@@ -48,13 +48,15 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
     Route::get('/', [EventController::class, 'index'])->name('index');
-    Route::get('/{event}/show', [EventController::class, 'showGuest'])->name('showGuest');
+    Route::get('/{event}/show', [EventController::class, 'show'])->name('show');
     Route::get('/{event_id}/join', [EventController::class, 'joinForm'])->name('joinForm');
     Route::post('/{event_id}/store', [EventController::class, 'storeGuest'])->name('storeGuest');
 });
     Route::group(['middleware' => 'auth'], function(){
-        Route::get('/{event}/show', [EventController::class, 'showAuth'])->name('events.showAuth');
-        Route::post('/{event_id}/store',[EventController::class, 'storeAuth'])->name('events.storeAuth');
+        Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
+            Route::post('/{event_id}/storeAuth',[EventController::class, 'storeAuth'])->name('storeAuth');
+            Route::delete('/{event_id}/delete',[EventController::class,'destroyAuthParticipant'])->name('destroyAuthParticipant');        
+        });
     });
 
 // Route Group
@@ -64,16 +66,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [HomeController::class, 'index'])->name('top');
         Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
         Route::get('/reserved/show/{meeting}', [HomeController::class, 'showUser'])->name('reserved.show.users');
+        Route::get('/research/show/{category}', [HomeController::class, 'showMeeting'])->name('research.show');
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/reserch/create', [MeetingController::class, 'create'])->name('meeting.create');
+        Route::get('/research/create', [MeetingController::class, 'create'])->name('meeting.create');
         Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
     });
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', [AdminController::class, 'showUsers'])->name('showUsers');
+        Route::delete('/users/{user}/deactivate', [AdminController::class, 'deactivate'])->name('users.deactivate');
+        Route::patch('/users/{id}/activate', [AdminController::class, 'activate'])->name('users.activate');
 
         Route::group(['prefix' => 'events'], function () {
             Route::get('/', [AdminController::class, 'showEvents'])->name('showEvents');

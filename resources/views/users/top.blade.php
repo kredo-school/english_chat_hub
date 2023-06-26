@@ -14,7 +14,7 @@
             <div class="row mt-3 justify-content-center">
               @forelse($all_categories as $category)
                 <div class="card col-lg-3 col-md-6 mb-4 p-0">
-                    <a href="" class="">
+                    <a href="{{ route('users.research.show', $category->id) }}" class="text-muted text-decoration-none">
                       <div class="card-top" style="height: 156.31px; background-color: {{$category->color}};">
                         <img src="{{ asset('image/category/' .$category->icon) }}" alt="" class="card-img-top"></a>
                       </div>

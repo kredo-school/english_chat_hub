@@ -13,7 +13,7 @@
                 <!-- left side picture -->
                 <div class="col-lg-6 col-md-12 event-detail-pic">
                     <div class="event-detail-img">
-                        <img src="{{ asset('/storage/images/' . $event->image) }}" alt="{{ $event->image }}">
+                        <img src="{{ asset('/storage/images/' . $event->image) }}" alt="{{ $event->image }}" class="card-img-thumbnail">
                     </div>
                 </div>
                 <!-- end of left side picture -->
@@ -50,9 +50,14 @@
                         {{-- Modal --}}
                         @if (auth()->check())
                             @if (!$isJoined)
-                                <button class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
+                                <button type="button" class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
                                     data-bs-target="#join-event-{{ $event->id }}">
                                     Join!!
+                                </button>
+                            @else
+                                <button type="button" class="button btn-gray m-4 mt-0" data-bs-toggle="modal" 
+                                    data-bs-target="#cancel-event-{{ $event->id }}">
+                                    Cancel Event
                                 </button>
                             @endif
                         @else
