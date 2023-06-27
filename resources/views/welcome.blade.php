@@ -106,34 +106,40 @@
             <div class="section-header">
                 <h3 class="mx-auto">Testimonial</h3>
             </div>
-            <div class="reviews">
-                {{-- foreach --}}
-                <div class="row justify-content-center mb-5 mt-2">
-                    <div class="col-md-1">
-                        <img src="image/welcome/avatar.png" alt="avatar" class="avatar">
+            @foreach ($all_reviewers as $reviewer)    
+            <div class="reviews swiper-container">
+                <div class="row justify-content-center mb-5 mt-2 swiper-wrapper">
+                    <div class="col-md-1 slider-item">
+                        @if($reviewer->avatar)
+                        <img src="{{ asset('storage/avatars/'.$users[$loop->index]->avatar) }}" alt="" class="avatar-md" >
+                        @else
+                        <i class="fa-solid fa-user avatar-icon"></i>
+                        @endif
                     </div>
-                    <div class="col-md-3"> 
+                    <div class="col-md-3 slider-item" style="flex-direction: column;"> 
                         <div class="profile-user mt-2">
-                            <div class="avatar-level">
-                            <img src="image/welcome/begginer.png" alt="begginer" width="20px" height="25.18px" class="begginer">
+                            <div class="user-level">
+                                <img src="{{ asset('image/level/'.$users[$loop->index]->level->icon)}}" alt="" width="20px" height="25px" class="">
                             </div>
-                            <h3 class="username fs-3">KEI</h3>
+                            <h3 class="username fs-3">{{ $reviewer->name }}</h3>
                         </div>
-                        <div class="review-level mt-2">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star.png" alt="star" class="star">
-                            <img src="image/welcome/star-white.png" alt="star" class="star">
-                            <img src="image/welcome/star-white.png" alt="star" class="star">
-                        </div>
+                        <div class="rating-level mt-3">
+                            @for ($i = 0; $i < 5; $i++) 
+                                @if ($i < $reviewer->rating)
+                                <i class="starPicker fa-solid fa-star on"></i>                                          
+                                @else
+                                <i class="starPicker fa-solid fa-star off"></i>    
+                                @endif                                  
+                            @endfor
+                        </div> 
                     </div>
-                    <div class="col-md-8">
-                        <p class="review">This is a place where you can talk casually and enjoyably even if you are not confident in your English!</p>
+                    <div class="col-md-8 review slider-item">
+                        <p class="review-content">{{ $reviewer->content }}</p>
                     </div>
                 </div>
-                <hr style="height: 2px;background-color: white;border: 0;opacity: 1 !important;">
-                {{-- eachend --}}
             </div>
+            <hr class="slider-item" style="height: 2px;background-color: white;border: 0;opacity: 1 !important;">
+            @endforeach
         </div>
 
         <!-- Last message -->
