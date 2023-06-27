@@ -121,6 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'inbox', 'as' => 'inbox.'],function(){
             Route::get('/',[AdminController::class,'showInbox'])->name('show');
+            Route::put('/{id}', [AdminController::class, 'updateStatus'])->name('update_status');
         });
     });
 });

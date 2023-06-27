@@ -163,4 +163,12 @@ class AdminController extends Controller
 
         return view('admin.inbox.index')->with('all_messages',$all_messages);
     }
+    public function updateStatus(Request $request, $id)
+    {
+        $message = Contact::findOrFail($id);
+        $message->status_id = $request->input('status');
+        $message->save();
+    
+        return redirect()->back();
+    }
 }
