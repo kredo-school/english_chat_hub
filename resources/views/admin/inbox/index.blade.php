@@ -13,7 +13,7 @@
             <ul>
                 <li>
                     <i class="fs-4 pt-2 fa-solid fa-circle text-secondary icon-status"></i>
-                    <span class="fs-4">not started</span>
+                    <span class="fs-4">done</span>
                 </li>
                 <li>
                     <i class="fs-4 pt-2 fa-solid fa-circle text-danger icon-status"></i>
@@ -21,7 +21,7 @@
                 </li>
                 <li>
                     <i class="fs-4 pt-2 fa-solid fa-circle text-success icon-status"></i>
-                    <span class="fs-4 pe-3">done</span>
+                    <span class="fs-4 pe-3">not started</span>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,29 @@
                       <td>{{ $message->title }}</td>
                       <td>{{ $message->created_at }}</td>
                       <td>{{ $message->updated_at }}</td>
-                      <td><i class="fa-solid fa-circle text-success"></i></td>
+                      <td>
+                        <div class="dropdown">
+                            <form class="d-inline" method="POST" action="{{ route('admin.inbox.update_status', $message->id) }}">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn dropdown" type="submit" data-bs-toggle="dropdown">
+                                    @if ($message->status_id === 1)
+                                        <i class="fa-solid fa-circle text-success"></i>
+                                    @elseif ($message->status_id === 2)
+                                        <i class="fa-solid fa-circle text-danger"></i>
+                                    @elseif ($message->status_id === 0)
+                                        <i class="fa-solid fa-circle text-dark"></i>
+                                    @endif
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item" type="submit" name="status" value="1">not started</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="status" value="2">in progress</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="status" value="0">done</button></li>
+                                </ul>
+                            </form>
+                        </div>
+                        
+                      </td>
                       <td>
                           <div class="dropdown">
                               <button class="btn" data-bs-toggle="dropdown">
@@ -78,5 +100,4 @@
   </div>
 </div>
 </div>
-
 @endsection
