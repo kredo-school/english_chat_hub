@@ -11,6 +11,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MeetingController; 
+use App\Http\Controllers\WelcomeController; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +25,8 @@ use App\Http\Controllers\MeetingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('/');
+
 
 Route::get('/faq', function () {
     return view('faq');
@@ -121,6 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'inbox', 'as' => 'inbox.'],function(){
             Route::get('/',[AdminController::class,'showInbox'])->name('show');
+            Route::put('/{message}', [AdminController::class, 'updateStatus'])->name('update_status');
         });
     });
 });

@@ -38,7 +38,6 @@ main{
   max-height: 300px;
 }
 
-
 .event-h2 {
     font-family: "M PLUS Rounded 1c", sans-serif;
     text-align: center;
@@ -74,9 +73,16 @@ main{
 //   end of event page
 
 // carousel
-.carousel-control-prev
-.carousel-control-next{
-  color: #ff7917,  !important;
+.chevron{
+  filter: invert(0) sepia(135%) saturate(100000%) hue-rotate(-51deg) brightness(100%) contrast(100%);
+}
+.chevron-left{
+  left: -50px!important;
+  width: auto!important;
+}
+.chevron-right{
+  right: -50px!important;
+  width: auto!important;
 }
 // end of carousel
   
@@ -89,28 +95,14 @@ main{
   .event-detail-card {
     width: 100%;
     top: 10%;
-    // transform: translate(0, -50%);
-    border-radius: 1rem !important;
+    border-radius: 1rem;
     display: flex;
   }
-  
-  /* .box {
-    width: 100%;
-  }
-  
-  .event-detail-img {
-    width: 47%;
-    border-radius: 1rem;
-    margin: 1%;
-    display: inline-block;
-    box-sizing: border-box;
-  } */
-  
+
   .event-detail-pic{
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
   
   .event-detail-title {
@@ -130,5 +122,5 @@ main{
   .event-join-card{
     transform: translate(0, 50%);
     font-family: 'M PLUS Rounded 1c', sans-serif;
-    color: var(--gray)!important;
+    color: var(--gray);
   }
