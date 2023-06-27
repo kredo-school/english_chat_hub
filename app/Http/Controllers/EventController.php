@@ -75,5 +75,10 @@ class EventController extends Controller
         return redirect()->back();        
     } 
 
+    public function cancel(Event $event){
+        $participant = Participant::where('email', Auth::user()->email)->first();
+        $participant->joinEvents()->detach($event);
+        return redirect()->back();
+    }
 
 }
