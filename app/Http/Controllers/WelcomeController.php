@@ -9,14 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class WelcomeController extends Controller
 {
-    private $contact;
-    private $user;
-
-    public function __construct(Contact $contact, User $user){
-        $this->contact      = $contact;
-        $this->user         = $user;
-    }
-
     public function index(){  
         $all_reviewers       = Contact::where('subtitle_id', 5)->latest()->paginate(3);
         $users               = [];
