@@ -26,7 +26,7 @@ class ModifyStartAtInMeetings extends Migration
     public function down()
     {
         Schema::table('meetings', function (Blueprint $table) {
-            $table->int('start_at')->default(null)->change();
+            $table->integer('start_at')->default(null)->change();
         });
     }
 }
