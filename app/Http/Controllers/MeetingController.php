@@ -11,18 +11,11 @@ use App\Models\Room;
 
 class MeetingController extends Controller
 {
-    public function __construct(Level $level, Category $category, Meeting $meeting, Room $room){
-        $this->level = $level;
-        $this->category = $category;
-        $this->meeting = $meeting;
-        $this->room = $room;
-    }
-
     public function create(){
-        $all_levels = $this->level->all();
-        $all_categories = $this->category->all();
-        $all_rooms = $this->room->all();
-
+        $all_levels = Level::all();
+        $all_categories = Category::all();
+        $all_rooms = Room::all();
+        
         return view('users.research.create_meeting')
         ->with('all_levels', $all_levels)
         ->with('all_categories', $all_categories)
@@ -39,14 +32,15 @@ class MeetingController extends Controller
             'category_id'  => 'required'
         ]);
 
-        $this->meeting->user_id      = Auth::user()->id;
-        $this->meeting->title        = $request->title;
-        $this->meeting->date         = $request->date;
-        $this->meeting->start_at     = $request->start_at;
-        $this->meeting->room_id      = $request->room_id;
-        $this->meeting->level_id     = $request->level_id;
-        $this->meeting->category_id  = $request->category_id;
-        $this->meeting->save();
+        Meeting::create([
+            'user_id'      => auth()->user()->id,
+            'title'        => $request->title,
+            'date'         => $request->date,
+            'start_at'     => $request->start_at,
+            'room_id'      => $request->room_id,
+            'level_id'     => $request->level_id,
+            'category_id'  => $request->category_id
+       ]);
         return redirect()->route('users.top');
     }
 
@@ -91,7 +85,7 @@ class MeetingController extends Controller
 
     public function cancel(Meeting $meeting){
         $user = Auth::user();
-        $user->joinMeetings()->detach($meeting);
+        $user->joinMeetings()->detach($meeting->id);
         return redirect()->back();
     }
 
