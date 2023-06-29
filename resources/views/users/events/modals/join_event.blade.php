@@ -8,7 +8,7 @@
                 </h2>
             </div>
             <div class="modal-body">
-                <p class="h6 text-muted text-center">Join an event on {{$event->date}} at {{$event->location}}?</p>
+                <p class="h6 text-muted text-center">Join the event on {{$event->date}} at {{$event->location}}?</p>
             </div>
             <div class="modal-footer border-0">
                 <form action="{{route('events.storeAuth', $event)}}" method="post" class="mt-0">
@@ -20,6 +20,30 @@
         </div>
     </div>
 </div>
+
+{{-- Cancel Event Modal for Auth::user() --}}
+<div class="modal fade" id="cancel-event-{{$event->id}}">
+    <div class="modal-dialog">
+        <div class="modal-content border-1">
+            <div class="modal-header border-danger">
+                <h2 class="modal-title text-danger">
+                    Confirmed detail
+                </h2>
+            </div>
+            <div class="modal-body">
+                <p class="h6 text-muted text-center">Cancel the event on {{$event->date}} at {{$event->location}}?</p>
+            </div>
+            <div class="modal-footer border-0">
+                <form action="{{route('events.destroyAuthParticipant', $event->id)}}" method="post" class="mt-0">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button btn-gray">Cancel Event</button>  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {{-- Success Modal --}}
 @if (session('success'))
