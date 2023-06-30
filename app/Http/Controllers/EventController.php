@@ -86,6 +86,14 @@ class EventController extends Controller
         $participant = Participant::where('email', Auth::user()->email)->first();
         $participant->joinEvents()->where('event_id', $event_id)->detach();
         return redirect()->route('events.show', $event_id);
+
+    }
+  
+    public function cancel(Event $event)
+    {
+        $participant = Participant::where('email', Auth::user()->email)->first();
+        $participant->joinEvents()->detach($event->id);
+        return redirect()->back();
     }
 
 }

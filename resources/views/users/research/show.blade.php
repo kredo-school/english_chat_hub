@@ -14,7 +14,7 @@
                   @forelse($all_meetings as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
-                        {{ $meeting->date }}<br>{{ $meeting->start_at }} : 00〜
+                        {{ $meeting->date }}<br>{{ $meeting->start_at }}
                       </div>
                       {{-- fix later --}}
                       {{-- <div class="category-item">

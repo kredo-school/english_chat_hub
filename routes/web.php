@@ -73,6 +73,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/research/create', [MeetingController::class, 'create'])->name('meeting.create');
         Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
+        Route::get('/research/edit/{meeting}', [MeetingController::class, 'edit'])->name('meeting.edit');
+        Route::patch('/research/update/{meeting}', [MeetingController::class, 'update'])->name('meeting.update');
+        Route::delete('/research/delete/{meeting}', [MeetingController::class, 'delete'])->name('meeting.delete');
+        Route::post('/research/cancel/{meeting}', [MeetingController::class, 'cancel'])->name('meeting.cancel');
+        Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
     });
 
     #LOGINED ADMIN ONLY
