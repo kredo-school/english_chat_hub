@@ -34,9 +34,6 @@
                         </a>
                       </div>
                     </div>
-                    {{-- INCLUEDE MODAL --}}
-                    @include('users.research.modals.reservation')
-                    
                   @empty
                         <p>No meeting</p>
                   @endforelse
@@ -69,5 +66,8 @@
               @include('users.reserved.show')
           </div>
       </div>
+
+      {{-- INCLUEDE MODAL --}}
+      @include('users.research.modals.reservation')
   </div>
 @endsection

@@ -36,7 +36,6 @@ main{
 
 .card-img-top{
   max-height: 300px;
-  object-fit: cover;
 }
 
 .event-h2 {
@@ -104,13 +103,6 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .event-detail-img{
-    height: 90%;
-    max-height: 500px;
-    width: 90%;
-    object-fit: cover;
   }
   
   .event-detail-title {
