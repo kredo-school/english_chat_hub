@@ -61,13 +61,16 @@ class EventController extends Controller
 
     public function storeAuth($event_id, Request $request)
     {
-        if (Auth::user()->id) {
-            $participant = Participant::where('email', Auth::user()->email)->first();
+        if (Auth::check()) {
+            $user = Auth::user();
+            $participant = Participant::where('email', $user->email)->first();
+    
             if (!$participant) {
                 $participant = new Participant;
-                $participant->name = Auth::user()->user_name;
-                $participant->email = Auth::user()->email;
+                $participant->name = $user->user_name;
+                $participant->email = $user->email;
                 $participant->isUser = true;
+                $participant->user_id = $user->id; // ユーザーの user_id を格納
                 $participant->save();
             }
         }
