@@ -37,14 +37,8 @@
                               <option value="{{ $level->id }}">{{ $level->name }}</option>
                             @endif
                           @endforeach
-
-
-
-                        {{-- <option value="" selected disable>Select English Level</option>
-                        <option value="1">Begginer</option>
-                        <option value="2">Intermediate</option>
-                        <option value="3">Advanced</option> --}}
                       </select>
+                      
                   </div>
               </div>
               

@@ -9,13 +9,13 @@
                   {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
                 </div>
                 <div class="reserved-item">
-                  {{ $meeting->category->name}}
+                  {{ $meeting->category->name }}
                 </div>
               </div>
               @php $count++; @endphp
               @endif
           @empty
-              <p>No reserved</p>
+              <p>Not reserved Chat Room</p>
           @endforelse
 
           <a href="{{ route('users.reserved.show.details') }}"><p class="text-end pe-4 pt-1 pb-3 fs-5">My Schedule</p></a>

@@ -2,6 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ mix('css/users-style.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
 @endsection
 
 @section('content')
@@ -14,13 +15,13 @@
                   @forelse($user->joinMeetings as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
-                        {{ $meeting->date }}<br>{{ $meeting->start_at}}〜
+                        {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
                       </div>
                       {{-- <div class="category-item">
                         <img src="image/begginer.png" alt="">
                       </div> --}}
                       <div class="category-item">
-                        {{ $meeting->category->name}}
+                        {{ $meeting->category->name }}
                       </div>
                       <div class="category-item">
                         {{ $meeting->title }}
@@ -31,29 +32,41 @@
                         </a>
                       </div>
                       <div class="category-item">
-                        <button class="btn btn-light text-warning" id="btn-join">JOIN</button>
+                        {{-- +A  show button before 15min of meeting--}}
+                        <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button> 
+                        @include('users.reserved.modals.join')
                       </div>
+
+                      
                       {{-- create EDIT & DELETE select box --}}
                       <div class="category-item dropdown">
-                        <button class="btn shadow-none" data-bs-toggle="dropdown">
+                        <a class="text-muted" data-bs-toggle="dropdown">
                           <i class="fa-solid fa-ellipsis"></i>
-                        </button>
+                        </a>
+                        @if($meeting->user_id == Auth::user()->id)
                           <div class="dropdown-menu">
-                            <a href="" class="dropdown-item">
+                            <a href="{{ route('users.meeting.edit', ['meeting' => $meeting->id]) }}" class="dropdown-item text-success">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit
                             </a>
-                            <button data-bs-toggle="modal" data-bs-target="" class="dropdown-item text-danger">
+                            <button data-bs-toggle="modal" data-bs-target="#delete-{{ $meeting->id }}" class="dropdown-item text-danger">
                                 <i class="fa-regular fa-trash-can"></i> Delete
                             </button>
                           </div>
-                          {{-- @include('') --}}
-
+                          @include('users.reserved.modals.delete')
+                        @else
+                           <div class="dropdown-menu">
+                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cancel_meeting-{{ $meeting->id }}">
+                                <i class="fa-solid fa-xmark"></i> Cancel
+                              </a>
+                           </div>
+                           @include('users.reserved.modals.cancel_meeting')
+                        @endif                       
                       </div>
                     </div>
                     @empty
-                        <p>No reserved</p>
+                        <p>Not reserved Chat Room</p>
                     @endforelse
-                    
+                   
                   <h3 class="fs-3 ms-5 mt-4">Event</h3>
                   @if(empty($participant))
                     <p>No participant</p>
@@ -77,11 +90,14 @@
                           {{-- {{ dd($event->joinEvents )}} --}}
                         </div>
                         <div class="category-item">
-                          <i class="fa-solid fa-trash-can text-danger"></i>
+                          <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cancel_event-{{ $event->id }}">
+                            <i class="fa-solid fa-trash-can text-danger"></i>
+                          </a>
                         </div>
+                        @include('users.reserved.modals.cancel_event')
                       </div>
                       @empty
-                            <p>No reserved</p>
+                            <p>Not reserved Event</p>
                       @endforelse
                   @endif
                   

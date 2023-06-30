@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Participant;
+
 
 class User extends Authenticatable
 {
@@ -63,10 +65,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Meeting::class, 'join_meeting');
     }
-    public function participant(Participant $participant)
+    public function getParticipant(Participant $participant)
     {
         return $participant->where('email', $this->email)->first();
         // User has participated events, return Participant Model
         // If user hasn't participated any events, return NULL
+    }
+    public function participant(): HasOne
+    {
+        return $this->hasOne(Participant::class, 'user_id');
     }
 }
