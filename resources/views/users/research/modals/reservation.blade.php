@@ -13,8 +13,11 @@
 
                 {{-- button --}}
                 <div class="buttons mt-5 mb-3 text-center">
-                    <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
-                    <button class="button btn-orange">Reservation</button>
+                    <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
+                        @csrf
+                        <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="button btn-orange">Reservation</button>
+                    </form>
                 </div> 
             </div>
         </div>
