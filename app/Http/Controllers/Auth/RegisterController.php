@@ -79,6 +79,7 @@ class RegisterController extends Controller
         // Check if new user is a paticipant
         if ($participant = Participant::where('email', $user->email)->first()) {
             $participant->isUser = TRUE;
+            $participant->user_id = $user->id;
             $participant->save();
         }
     }
