@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Participant extends Model
 {
@@ -23,6 +24,11 @@ class Participant extends Model
      public function scopeAllParticipants($query)
      {
          return $query->withTrashed();
+     }
+
+     public function user(): BelongsTo
+     {
+        return $this->belongsTo(User::class, 'user_id');
      }
  }
 
