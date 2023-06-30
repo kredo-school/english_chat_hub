@@ -65,12 +65,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Meeting::class, 'join_meeting');
     }
-    public function getParticipant(Participant $participant)
-    {
-        return $participant->where('email', $this->email)->first();
-        // User has participated events, return Participant Model
-        // If user hasn't participated any events, return NULL
-    }
     public function participant(): HasOne
     {
         return $this->hasOne(Participant::class, 'user_id');
