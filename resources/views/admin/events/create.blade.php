@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-6 event-form ">
                 <h1>New Event</h1>
-                <form action="{{ route('admin.storeEvent') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.events.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group my-4">
                         <label for="theme" class="form-label fs-5 mb-0">Theme</label>
@@ -55,7 +55,7 @@
                     </div>
 
                     <button type="submit" class="my-5 btn px-5 ms-3 button btn-gray float-end">Create</button>
-                    <a href="{{route('admin.showEvents')}}" type="button" class="my-5 btn px-5 button btn-gray float-end">Back</a>
+                    <a href="{{route('admin.events.show')}}" type="button" class="my-5 btn px-5 button btn-gray float-end">Back</a>
 
                 </form>
             </div>
