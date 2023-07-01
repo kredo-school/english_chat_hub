@@ -6,7 +6,7 @@
                 <div class="my-5">
                     <p class="my-5">
                         @if($user->avatar)
-                            <img src="#" alt="{{$user->avatar}}">
+                            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{$user->avatar}}" class="avatar img-thumbnail rounded-circle ">
                         @else
                             <i class="fa-solid fa-circle-user avatar-modal"></i>
                         @endif

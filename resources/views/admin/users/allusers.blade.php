@@ -49,9 +49,9 @@
                                     <td>{{$user->id}}</td>
                                     <td>
                                         @if($user->avatar)
-                                            <img src="#" alt="{{$user->avatar}}">
+                                            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{$user->avatar}}" class="avatar-sm rounded-circle ">
                                         @else
-                                            <i class="fa-solid fa-circle-user avatar-lg"></i>
+                                            <i class="fa-solid fa-circle-user avatar-icon"></i>
                                         @endif
                                     </td>
                                     <td>{{$user->user_name}}</td>
