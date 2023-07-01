@@ -167,7 +167,8 @@ table thead {
   font-weight: normal;
 }
 
-.avatar-lg {
+// Avatar for Icon
+.avatar-icon {
   font-size: 4.5rem;
   color: #444;
 }
@@ -177,6 +178,19 @@ table thead {
   width: 6rem;
   height: 6rem;
   color: #494949;
+}
+
+// Avatar for Image
+// List Style
+.avatar-sm{
+  width: 100px;
+  height: 100px;
+}
+
+// Modal Style
+.avatar{
+  width: 200px;
+  height: 200px;
 }
 
 /* Inbox Table*/
