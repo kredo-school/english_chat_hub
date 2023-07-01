@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/contact-us.js', 'public/js')
+    .js('resources/js/meeting_calendar.js', 'public/js')
     .sass('resources/scss/button.scss', 'public/css')
     .sass('resources/scss/form.scss', 'public/css')
     .sass('resources/scss/style.scss', 'public/css')
@@ -25,5 +26,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/event.scss', 'public/css')
     .sass('resources/scss/privacy_terms.scss', 'public/css')
     .sass('resources/scss/admin-style.scss', 'public/css')
+    .sass('resources/scss/meeting_calendar.scss', 'public/css')
 
     .sourceMaps();
