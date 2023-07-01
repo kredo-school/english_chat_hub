@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/research/delete/{meeting}', [MeetingController::class, 'delete'])->name('meeting.delete');
         Route::post('/research/cancel/{meeting}', [MeetingController::class, 'cancel'])->name('meeting.cancel');
         Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
+        Route::post('/research/join/{meeting}', [MeetingController::class, 'join'])->name('meeting.join');
     });
 
     #LOGINED ADMIN ONLY

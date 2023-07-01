@@ -30,7 +30,7 @@
                       </div>
                       <div class="category-item">
                         <a class="text-muted" data-bs-toggle="modal" data-bs-target="#reservation-{{ $meeting->id }}">
-                          <i class="arrow fa-solid fa-arrow-right-long fa-lg"></i>
+                          <i class="fa-solid fa-circle-plus fa-xl text-white"></i>
                         </a>
                       </div>
                     </div>

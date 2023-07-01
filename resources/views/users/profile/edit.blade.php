@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="{{ mix('css/users-style.css') }}">
+@endsection
+
 @section('content')
   <div class="container w-50 mt-5">
       <div class="form" id="form">
