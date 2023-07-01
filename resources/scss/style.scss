@@ -59,12 +59,13 @@ main > .container-fluid {
 
 footer {
   width: 100%;
-  height: 200px;
+  height: 120px;
   background-color: #FFD700;
 
   > .container-fluid {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100%;
   }
 
@@ -72,11 +73,6 @@ footer {
     padding: 0 4px;
     display: inline;
   }
-}
-
-.footer-items {
-  display: flex;
-  text-align: left;
 }
 
 .footer-brand {
@@ -103,6 +99,7 @@ a {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     text-decoration: none;
     color: #ffffff;
+    margin-left: 2rem;
   }
 
   &.plus-footer-link {
@@ -111,5 +108,15 @@ a {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     text-decoration: none;
     color: #ffffff;
+    margin-left: 2rem;
   }
+}
+
+.sns-icons{
+  align-items: center;
+  color: white;
+  margin: 1rem!important;
+}
+.sns-icon{
+  color:inherit
 }
