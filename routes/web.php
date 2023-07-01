@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\MeetingsController;
 use App\Http\Controllers\Admin\RoomsController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -78,22 +80,26 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/research/delete/{meeting}', [MeetingController::class, 'delete'])->name('meeting.delete');
         Route::post('/research/cancel/{meeting}', [MeetingController::class, 'cancel'])->name('meeting.cancel');
         Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
+        Route::post('/research/join/{meeting}', [MeetingController::class, 'join'])->name('meeting.join');
     });
 
     #LOGINED ADMIN ONLY
     Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::get('/', [AdminController::class, 'showUsers'])->name('showUsers');
-        Route::delete('/users/{user}/deactivate', [AdminController::class, 'deactivate'])->name('users.deactivate');
-        Route::patch('/users/{id}/activate', [AdminController::class, 'activate'])->name('users.activate');
+        Route::group(['prefix'=>'users', 'as'=>'users.'],function(){
+            Route::get('/', [UsersController::class, 'show'])->name('show');
+            Route::delete('/users/{user}/deactivate', [UsersController::class, 'deactivate'])->name('deactivate');
+            Route::patch('/users/{id}/activate', [UsersController::class, 'activate'])->name('activate');
+        });
+        
 
-        Route::group(['prefix' => 'events'], function () {
-            Route::get('/', [AdminController::class, 'showEvents'])->name('showEvents');
-            Route::get('/create', [AdminController::class, 'createEvent'])->name('createEvent');
-            Route::post('store', [AdminController::class, 'storeEvent'])->name('storeEvent');
-            Route::get('/{event}/edit/', [AdminController::class, 'editEvent'])->name('editEvent');
-            Route::patch('/{event}', [AdminController::class, 'updateEvent'])->name('updateEvent');
-            Route::delete('/{event}', [AdminController::class, 'destroyEvent'])->name('destroyEvent');
-            Route::get('/{id}/participants',[AdminController::class,'showParticipants'])->name('showParticipants');
+        Route::group(['prefix' => 'events', 'as' => 'events.'], function () {
+            Route::get('/', [EventsController::class, 'show'])->name('show');
+            Route::get('/create', [EventsController::class, 'create'])->name('create');
+            Route::post('store', [EventsController::class, 'store'])->name('store');
+            Route::get('/{event}/edit/', [EventsController::class, 'edit'])->name('edit');
+            Route::patch('/{event}', [EventsController::class, 'update'])->name('update');
+            Route::delete('/{event}', [EventsController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/participants',[EventsController::class,'showParticipants'])->name('showParticipants');
         });
 
         Route::group(['prefix' => 'chatrooms', 'as' => 'chatrooms.'], function () {
@@ -126,8 +132,8 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::group(['prefix' => 'inbox', 'as' => 'inbox.'],function(){
-            Route::get('/',[AdminController::class,'showInbox'])->name('show');
-            Route::put('/{message}', [AdminController::class, 'updateStatus'])->name('update_status');
+            Route::get('/',[ContactsController::class,'show'])->name('show');
+            Route::put('/{message}', [ContactsController::class, 'updateStatus'])->name('update_status');
         });
     });
 });

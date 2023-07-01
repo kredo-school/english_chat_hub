@@ -1,64 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Event;
-use App\Models\Level;
-use App\Models\Contact;
-use App\Models\Participant;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
-
-class AdminController extends Controller
+class EventsController extends Controller
 {
-
- 
     private $event;
-   
-    const LOCAL_STORAGE_FOLDER = '/public/images/';
 
     public function __construct(Event $event)
     {
         $this->event = $event;
     }
 
-    // Users
-    public function showUsers()
-    {
-        $all_users = User::withTrashed()->latest()->get();
-        
-        if ($all_users->isNotEmpty()) {
-            return view('admin.users.allusers')->with('all_users', $all_users);
-        }
-    }
-    public function deactivate(User $user)
-    {
-        $user->delete();
-        return redirect()->back();
-    }
-
-    public function activate($id)
-    {
-        User::onlyTrashed()->findOrFail($id)->restore();
-        return redirect()->back();
-    }
+    const LOCAL_STORAGE_FOLDER = '/public/images/';
 
     // Events
-    public function showEvents()
+    public function show()
     {
         $all_events = Event::all();
         return view('admin.events.index')->with('all_events',$all_events);
     }
 
-    public function createEvent()
+    public function create()
     {
         return view('admin.events.create');
     }
 
-    public function storeEvent(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'theme' => 'required|max:255',
@@ -79,7 +51,7 @@ class AdminController extends Controller
             $this->event->levels()->attach($level);
         }
 
-        return redirect()->route('admin.showEvents');
+        return redirect()->route('admin.events.show');
     }
 
     public function saveImage($request)
@@ -98,7 +70,7 @@ class AdminController extends Controller
         }
     }
 
-    public function editEvent(Event $event)
+    public function edit(Event $event)
     {
         $eventLevels = $event->levels->pluck('id')->toArray();
 
@@ -108,7 +80,7 @@ class AdminController extends Controller
 
     }
 
-    public function updateEvent($id, Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
             'theme' => 'required|max:255',
@@ -135,10 +107,10 @@ class AdminController extends Controller
             $event->levels()->attach($level);
         }
 
-        return redirect()->route('admin.showEvents');
+        return redirect()->route('admin.events.show');
     }
 
-    public function destroyEvent($id)
+    public function destroy($id)
     {
         Event::destroy($id);
         return redirect()->back();
@@ -153,21 +125,5 @@ class AdminController extends Controller
             ->with('participants',$participants)
             ->with('event',$event);
 
-    }
-    
-
-    // Inbox
-    public function showInbox()
-    {
-        $all_messages = Contact::all();
-
-        return view('admin.inbox.index')->with('all_messages',$all_messages);
-    }
-    public function updateStatus(Request $request, Contact $message)
-    {
-        $message->status_id = $request->input('status');
-        $message->save();
-    
-        return redirect()->back();
     }
 }

@@ -89,4 +89,10 @@ class MeetingController extends Controller
         return redirect()->back();
     }
 
+    public function join(Meeting $meeting){
+        $user = Auth::user();
+        $user->joinMeetings()->attach($meeting->id);
+        return redirect()->route('users.top');
+    }
+
 }

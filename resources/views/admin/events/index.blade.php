@@ -7,7 +7,7 @@
     <div class="col content">
         <div class="row search-status">
             <div class="create-event">
-                <a type="button" href="{{route('admin.createEvent')}}"><i class="fa-solid fa-circle-plus"></i><span class="ms-2">Create New Event</span></a>
+                <a type="button" href="{{route('admin.events.create')}}"><i class="fa-solid fa-circle-plus"></i><span class="ms-2">Create New Event</span></a>
             </div>
 
             <form action="#" class="search-bar-sm">
@@ -64,8 +64,8 @@
                                         <i class="fa-solid fa-ellipsis"></i>
                                     </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('admin.editEvent', $event->id)}}">Edit event info</a>
-                                    <a class="dropdown-item" href="{{ route('admin.showParticipants',$event->id)}}"> Participants List</a>
+                                    <a class="dropdown-item" href="{{ route('admin.events.edit', $event->id)}}">Edit event info</a>
+                                    <a class="dropdown-item" href="{{ route('admin.events.showParticipants',$event->id)}}"> Participants List</a>
                                     <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-event-{{$event->id}}">
                                         Delete
                                      </button>

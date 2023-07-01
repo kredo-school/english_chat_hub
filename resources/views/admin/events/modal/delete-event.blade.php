@@ -12,7 +12,7 @@
                     </p>
 
                     <button type="button" class="my-5 btn button btn-gray" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                    <form action="{{ route('admin.destroyEvent',$event->id) }}" method="post" class="d-inline">
+                    <form action="{{ route('admin.events.destroy',$event->id) }}" method="post" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit"class="my-5 btn button btn-delete">Delete</button>
