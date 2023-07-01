@@ -119,44 +119,50 @@
     </main>
 
     <footer>
-        <div class="container-fluid">
-            <div class="footer-items">
-                <div class="brand-group">
-                    <a class="footer-brand" href="{{ url('/') }}">
-                        English Chat Hub
-                    </a>
-                    <p class="copy-right">COPYRIGHT © English Chat Hub ALL RIGHTS RESERVED.</p>
-                </div>
-                <div class="footer-links">
-                    <ul>
-                        @guest
-                        <li class="me-5">
-                            <a href="{{ url('/') }}#about-us" class="footer-link">About Us</a>
-                        </li>
-                        <li class=" me-5">
-                            <a href="{{ url('/') }}#how-to-use" class="footer-link">How to use</a>
-                        </li>
-                        @endguest
-                        <li class="me-5">
-                            <a href="{{ route('events.index') }}" class="footer-link">Event</a>
-                        </li>
-                        <li class="me-5">
-                            <a href="{{ route('contact-us.create') }}" class="footer-link">Contact Us</a>
-                        </li>
-                        <li class="me-5" >
-                            <a href="{{ url('faq') }}" class="footer-link">FAQ</a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="me-5">
-                            <a href="{{ route('terms') }}" class="plus-footer-link">Terms of Service</a>
-                        </li>
-                        <li class="me-5">
-                            <a href="{{ route('privacy') }}" class="plus-footer-link">Privacy Policy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>                
+        <div class="container-fluid row">
+            <div class="col"></div>
+            <div class="brand-group col-2 mt-3 me-5">
+                <a class="footer-brand" href="{{ url('/') }}">
+                    English Chat Hub
+                </a>
+                <p class="copy-right">COPYRIGHT © English Chat Hub ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-links col-6 mt-3 ms-5">
+                <ul>
+                    @guest
+                    <li class="me-5">
+                        <a href="{{ url('/') }}#about-us" class="footer-link">About Us</a>
+                    </li>
+                    <li class=" me-5">
+                        <a href="{{ url('/') }}#how-to-use" class="footer-link">How to use</a>
+                    </li>
+                    @endguest
+                    <li class="me-5">
+                        <a href="{{ route('events.index') }}" class="footer-link">Event</a>
+                    </li>
+                    <li class="me-5">
+                        <a href="{{ route('contact-us.create') }}" class="footer-link">Contact Us</a>
+                    </li>
+                    <li class="me-5" >
+                        <a href="{{ url('faq') }}" class="footer-link">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="me-5">
+                        <a href="{{ route('terms') }}" class="plus-footer-link">Terms of Service</a>
+                    </li>
+                    <li class="me-5">
+                        <a href="{{ route('privacy') }}" class="plus-footer-link">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+            {{-- SNS icons --}}
+            <div class="fa-2x sns-icons col-2 text-end">
+                <a href="https://twitter.com/" class="sns-icon m-2"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" class="sns-icon m-2"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/" class="sns-icon m-2"><i class="fa-brands fa-instagram"></i></a>    
+            </div>
+            <div class="col"></div>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
