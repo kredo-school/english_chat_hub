@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function show()
     {
-        $all_users = User::withTrashed()->latest()->get();
+        $all_users = User::withTrashed()->oldest()->paginate(10);
         
         if ($all_users->isNotEmpty()) {
             return view('admin.users.allusers')->with('all_users', $all_users);
