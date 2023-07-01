@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('title','All Events')
+@section('hilight_text','Events')
+@section('subtitle','All Events')
 
 @section('content')
 <div class="row">
@@ -49,7 +51,7 @@
                     </thead>
                     <tbody>
                         @foreach($all_events as $event)
-                        <tr class="eventtable-tr">
+                        <tr class="eventtable-tr border border-dark">
                             <td>{{ $event->id }}</td>
                             <td>{!! $event->getEventString() !!}</td>
                             <td>{{ $event->theme }}</td>

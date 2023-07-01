@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('title','All Users')
+@section('hilight_text','Users')
+@section('subtitle','All Users')
 @section('content')
 <div class="row">
     <div class="col content">

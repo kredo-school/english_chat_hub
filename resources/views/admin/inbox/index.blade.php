@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('title','Inbox')
+@section('hilight_text','Inbox')
+@section('subtitle','All Messages')
 
 @section('content')
 <div class="row">
@@ -43,7 +45,7 @@
               </thead>
               <tbody>
                   @foreach($all_messages as $message)
-                  <tr class="eventtable-tr">
+                  <tr class="eventtable-tr border border-dark">
                       <td>{{ $message->id }}</td>
                       <td>{{ $message->name}}</td>
                       <td>{{ $message->title }}</td>
@@ -64,9 +66,21 @@
                                     @endif
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><button class="dropdown-item" type="submit" name="status" value="1">not started</button></li>
-                                    <li><button class="dropdown-item" type="submit" name="status" value="2">in progress</button></li>
-                                    <li><button class="dropdown-item" type="submit" name="status" value="0">done</button></li>
+                                    <li>
+                                        <button class="dropdown-item" type="submit" name="status" value="1">
+                                            <i class="fa-solid fa-circle text-success me-1"></i> not started
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="submit" name="status" value="2">
+                                            <i class="fa-solid fa-circle text-danger me-1"></i> in progress
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="submit" name="status" value="0">
+                                            <i class="fa-solid fa-circle text-secondary me-1"></i> done
+                                        </button>
+                                    </li>
                                 </ul>
                             </form>
                         </div>
