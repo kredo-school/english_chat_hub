@@ -21,7 +21,7 @@ class EventsController extends Controller
     // Events
     public function show()
     {
-        $all_events = Event::all();
+        $all_events = Event::oldest()->paginate(10);
         return view('admin.events.index')->with('all_events',$all_events);
     }
 
