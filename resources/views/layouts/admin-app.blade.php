@@ -35,23 +35,15 @@
     <section class="top-bar">
         <h2 class="title mt-4 ms-5 mb-5">
           {{-- Users should be replaced for each pages--}}
-          <span class="highlight"> Users </span> | <span>Users</span>
-          {{-- <a class="dropdown-item" href="{{ route('logout') }}"
-          onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-           {{ __('Logout') }}
-          </a> --}}
+          <span class="text-primary">@yield('hilight_text')</span> | <span>@yield('subtitle')</span>
 
+            <a href="{{ route('logout') }}" class="logout float-end"  onclick="LogOutOnClick()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
 
-
-
-          <a href="{{ route('logout') }}" class="logout float-end"  onclick="LogOutOnClick()">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
         </h2>
       </section>
     <main class="container">
