@@ -1,9 +1,11 @@
 @extends('layouts.admin-app')
 
 @section('title','All Users')
+@section('hilight_text','Users')
+@section('subtitle','All Users')
 @section('content')
 <div class="row">
-    <div class="col content">
+    <div class="col-12 content">
         <div class="row search-status">
             <form action="#" class="search-bar-sm">
                 <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
@@ -49,9 +51,9 @@
                                     <td>{{$user->id}}</td>
                                     <td>
                                         @if($user->avatar)
-                                            <img src="#" alt="{{$user->avatar}}">
+                                            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{$user->avatar}}" class="avatar-sm rounded-circle ">
                                         @else
-                                            <i class="fa-solid fa-circle-user avatar-lg"></i>
+                                            <i class="fa-solid fa-circle-user avatar-icon"></i>
                                         @endif
                                     </td>
                                     <td>{{$user->user_name}}</td>
@@ -99,9 +101,11 @@
             </div>
         </div>
         <hr>
-        <div class="col footer pt-3 ps-3">
-            {{--[Soon] it will show the pagination below --}}
-            showing 1 to 10 of 50 users
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_users->firstItem() }} to {{ $all_users->lastItem() }} of {{ $all_users->total() }} users</span>
+                <span class="float-end">{{ $all_users->links() }}</span>
+            </div>
         </div>
     </div>
 </div>

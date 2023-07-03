@@ -2,50 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Room;
+use App\Models\Level;
+use App\Models\Meeting;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Meeting;
-use App\Models\Level;
-use App\Models\Category;
-use App\Models\Room;
 
 class MeetingController extends Controller
 {
-    public function create(){
-        $all_levels = Level::all();
-        $all_categories = Category::all();
-        $all_rooms = Room::all();
-        
-        return view('users.research.create_meeting')
-        ->with('all_levels', $all_levels)
-        ->with('all_categories', $all_categories)
-        ->with('all_rooms', $all_rooms);
-    }
+    public function store(Request $request)
+    {
 
-    //store プルリクするとき削除
-    public function store(Request $request){
         $request->validate([
-            'title'        => 'required|max:50',
-            'date'         =>'required|date',
-            'start_at'     => 'required',
-            'room_id'      => 'required',
-            'level_id'     => 'required',
-            'category_id'  => 'required'
+            'title'         => 'required|max:50',
+            'category_id'   => 'required',
+            'level_id'      => 'required',
+            'room_id'       => 'required',
+            'date'          => 'required|after_or_equal:today',
+            'start_at'      => 'required'
         ]);
 
-        $meeting = Meeting::create([
-            'user_id'      => auth()->user()->id,
-            'title'        => $request->title,
-            'date'         => $request->date,
-            'start_at'     => $request->start_at,
-            'room_id'      => $request->room_id,
-            'level_id'     => $request->level_id,
-            'category_id'  => $request->category_id
-       ]);
-       
-       $meeting->joinMeetings()->attach(auth()->user());
-
-        return redirect()->route('users.top');
+        $meeting = new Meeting;
+        $meeting->title = $request->title;
+        $meeting->user_id = Auth::user()->id;
+        $meeting->category_id = $request->category_id;
+        $meeting->room_id = $request->room_id;
+        $meeting->level_id = $request->level_id;
+        $meeting->date = $request->date;
+        $meeting->start_at = $request->start_at;
+        $meeting->save();
+        $meeting->joinMeetings()->attach(Auth::user()->id);
+        return redirect()->back();
     }
 
     public function edit(Meeting $meeting){
@@ -99,4 +88,27 @@ class MeetingController extends Controller
         return redirect()->route('users.top');
     }
 
+    public function result($date)
+    {
+        $all_meetings       = Meeting::all();
+        $all_rooms          = Room::all();
+        $all_levels         = Level::all();
+        $all_categories     = Category::all();
+        $result = date('Y-m-d', strtotime($date));
+        $timeTable = [];
+        $now = Carbon::parse('10:00:00');
+        for ($i = 0; $i < 14; $i++) {
+            $timeTable[$i] = [
+                date('G:00', strtotime($now->copy()->addHours($i))), date('G:00', strtotime($now->copy()->addHours($i + 1)))
+            ];
+        }
+        return view('users.meetings.result')
+        ->with('date', $result)
+            ->with('timeTable', $timeTable)
+            ->with('all_rooms', $all_rooms)
+            ->with('all_meetings', $all_meetings)
+            ->with('all_levels', $all_levels)
+            ->with('all_categories', $all_categories)
+            ->with('user', Auth::user());
+    }
 }

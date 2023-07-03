@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('title','All Events')
+@section('hilight_text','Events')
+@section('subtitle','All Events')
 
 @section('content')
 <div class="row">
@@ -49,7 +51,7 @@
                     </thead>
                     <tbody>
                         @foreach($all_events as $event)
-                        <tr class="eventtable-tr">
+                        <tr class="eventtable-tr border border-dark">
                             <td>{{ $event->id }}</td>
                             <td>{!! $event->getEventString() !!}</td>
                             <td>{{ $event->theme }}</td>
@@ -86,8 +88,11 @@
 
         </div>
         <hr>
-        <div class="col footer pt-3 ps-3">
-            showing 1 to 10 of 50 users
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_events->firstItem() }} to {{ $all_events->lastItem() }} of {{ $all_events->total() }} events</span>
+                <span class="float-end">{{ $all_events->links() }}</span>
+            </div>
         </div>
     </div>
 </div>
