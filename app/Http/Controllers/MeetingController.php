@@ -22,6 +22,7 @@ class MeetingController extends Controller
         ->with('all_rooms', $all_rooms);
     }
 
+    //store プルリクするとき削除
     public function store(Request $request){
         $request->validate([
             'title'        => 'required|max:50',
@@ -32,7 +33,7 @@ class MeetingController extends Controller
             'category_id'  => 'required'
         ]);
 
-        Meeting::create([
+        $meeting = Meeting::create([
             'user_id'      => auth()->user()->id,
             'title'        => $request->title,
             'date'         => $request->date,
@@ -41,6 +42,9 @@ class MeetingController extends Controller
             'level_id'     => $request->level_id,
             'category_id'  => $request->category_id
        ]);
+       
+       $meeting->joinMeetings()->attach(auth()->user());
+
         return redirect()->route('users.top');
     }
 

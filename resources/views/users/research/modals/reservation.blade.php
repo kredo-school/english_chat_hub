@@ -13,10 +13,15 @@
 
                 {{-- button --}}
                 <div class="buttons mt-5 mb-3 text-center">
-                    <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
+                    @if(!$meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
+                        <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
                         @csrf
-                        <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="button btn-orange">Reservation</button>
+                    @else                                    
+                        <form action="{{ route('users.meeting.cancel', $meeting->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="button btn-gray">Cancel Meeting</button>
+                    @endif
                     </form>
                 </div> 
             </div>

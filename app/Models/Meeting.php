@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Meeting extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['user_id', 'title', 'date', 'start_at', 'room_id', 'level_id', 'category_id'];
+    protected $fillable = ['user_id', 'title', 'date', 'start_at', 'room_id', 'level_id', 'category_id', 'id'];
     const STATUS = [
         'stand_by'      => ['id' => 1, 'color' => 'warning'],
         'in_session'    => ['id' => 2, 'color' => 'success'],
