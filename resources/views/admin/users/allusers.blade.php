@@ -5,7 +5,7 @@
 @section('subtitle','All Users')
 @section('content')
 <div class="row">
-    <div class="col content">
+    <div class="col-12 content">
         <div class="row search-status">
             <form action="#" class="search-bar-sm">
                 <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
@@ -101,9 +101,11 @@
             </div>
         </div>
         <hr>
-        <div class="col footer pt-3 ps-3">
-            {{--[Soon] it will show the pagination below --}}
-            showing 1 to 10 of 50 users
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_users->firstItem() }} to {{ $all_users->lastItem() }} of {{ $all_users->total() }} users</span>
+                <span class="float-end">{{ $all_users->links() }}</span>
+            </div>
         </div>
     </div>
 </div>

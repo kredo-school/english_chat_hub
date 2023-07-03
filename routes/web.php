@@ -12,7 +12,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\MeetingController; 
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\WelcomeController; 
 
 
@@ -73,7 +74,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/research/create', [MeetingController::class, 'create'])->name('meeting.create');
         Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
         Route::get('/research/edit/{meeting}', [MeetingController::class, 'edit'])->name('meeting.edit');
         Route::patch('/research/update/{meeting}', [MeetingController::class, 'update'])->name('meeting.update');
@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/research/cancel/{meeting}', [MeetingController::class, 'cancel'])->name('meeting.cancel');
         Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
         Route::post('/research/join/{meeting}', [MeetingController::class, 'join'])->name('meeting.join');
+        Route::get('meetings/search/{date}/result', [MeetingController::class, 'result'])->name('meetings.result');
     });
 
     #LOGINED ADMIN ONLY
@@ -137,4 +138,3 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 });
-

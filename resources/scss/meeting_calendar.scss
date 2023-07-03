@@ -1,0 +1,222 @@
+/* Modal Calendar */
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #666;
+    position: relative;
+
+    #calendar {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+            th {
+                width: 50px;
+                color: #000;
+            }
+
+            th,
+            td {
+                width: 68px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                text-align: center;
+            }
+
+            td {
+                &.disabled {
+                    color: #ccc;
+                }
+
+                &.today {
+                    background-color: #D65E72;
+                    color: #fff;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: var(--dark);
+                }
+
+                &:last-child {
+                    color: blue;
+
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+                    }
+                }
+
+                &:first-child {
+                    color: red;
+
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--li-yellow);
+                }
+            }
+        }
+    }
+
+    #next-prev-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.5rem;
+
+        #header {
+            text-align: center;
+            font-size: 24px;
+            width: 100%;
+            margin: 0;
+        }
+
+        button {
+            cursor: pointer;
+            background: var(--orange);
+            color: #fff;
+            border: 1px solid var(--orange);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1rem;
+            align-items: center;
+            padding: 0 0.25rem 0.5rem;
+
+            &:hover {
+                background-color: var(--li-orange);
+                border-color: var(--li-orange);
+            }
+        }
+    }
+}
+
+/* Meeting Table */
+.date-btn {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background: 0;
+    border: 1px solid #fff;
+    text-shadow: 1px 1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px -1px 0 #fff;
+
+
+    &:hover {
+        background: var(--li-yellow);
+        color: #fff;
+        box-shadow: 0px 0px 5px 2px var(--yellow) inset;
+        text-shadow: none;
+    }
+}
+
+.calendar-btn {
+    background: 0;
+    border: 0;
+
+    &:hover {
+        color: var(--input);
+    }
+}
+
+.timetable {
+    overflow: auto;
+    background-color: white;
+    color: var(--gray);
+    border-radius: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    a#back {
+        text-decoration: none;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        color: var(--dark);
+    }
+
+    h2 {
+        text-align: center;
+        font-family: 'M PLUS Rounded 1c', sans-serif;
+        padding-top: 30px;
+    }
+
+    &-date {
+        a {
+            text-decoration: none;
+        }
+
+        i {
+            color: var(--orange);
+        }
+    }
+
+    .meeting-table {
+        width: 80%;
+
+        table,
+        th,
+        td {
+            border: 1px solid var(--gray);
+            font-size: 20px;
+        }
+
+        tr {
+            height: 50px;
+
+            th {
+                width: 150px;
+                text-align: center;
+                background-color: rgba(255, 215, 0, .5) !important;
+            }
+
+            td {
+                width: 120px;
+                text-align: center;
+                background-color: white;
+                padding: 0 !important;
+            }
+        }
+    }
+}
+
+.tip {
+    width: 80%;
+    height: 60px;
+    background-color: var(--li-yellow);
+    border-radius: 5px;
+    display: flex;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+
+    &-title {
+        padding: 15px 0px;
+        background: var(--yellow);
+        color: #fff;
+        -webkit-clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+        width: 250px;
+        height: 60px;
+        font-size: 24px;
+        text-align: center;
+        width: 30%;
+        border-radius: 5px;
+    }
+
+    &-body {
+        width: 70%;
+        margin: 0px;
+        padding: 15px 0px;
+        text-align: center;
+        font-size: 20px;
+    }
+}

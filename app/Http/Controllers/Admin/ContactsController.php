@@ -11,7 +11,7 @@ class ContactsController extends Controller
     // Inbox
     public function show()
     {
-        $all_messages = Contact::all();
+        $all_messages = Contact::oldest()->paginate(10);
 
         return view('admin.inbox.index')->with('all_messages',$all_messages);
     }

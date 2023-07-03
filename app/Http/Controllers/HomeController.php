@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\User;
+use App\Models\Level;
+use App\Models\Meeting;
+use App\Models\Category;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
-use App\Models\User;
-use App\Models\Meeting;
-use App\Models\Participant;
 
 class HomeController extends Controller
 {
@@ -33,13 +35,27 @@ class HomeController extends Controller
      */
     public function index(){
         $all_categories = $this->category->all();
-        $user = Auth::user();
         $all_meetings = $this->meeting->all();
+        $user = Auth::user();
+
+        $all_rooms = Room::all();
+        $all_levels = Level::all();
+        $timeTable = [];
+        $now = now();
+        for ($i = 0; $i < 15; $i++) {
+            $timeTable[$i] = [
+                date('G:00', strtotime($now->copy()->addHours($i))), date('G:00', strtotime($now->copy()->addHours($i + 1)))
+            ];
+        }
 
         return view('users.top')
-        ->with('all_categories', $all_categories)
         ->with('user', $user)
-        ->with('all_meetings', $all_meetings);
+        ->with('all_categories', $all_categories)
+        ->with('all_meetings', $all_meetings)
+        ->with('all_rooms', $all_rooms)
+        ->with('all_levels', $all_levels)
+        ->with('date', now()->format('Y-m-d'))
+        ->with('timeTable', $timeTable);
     }
 
     public function show(){

@@ -109,9 +109,12 @@
       </div>
   </div>
   <hr>
-  <div class="col footer pt-3 ps-3">
-      showing 1 to 10 of 50 users
-  </div>
+  <div class="row">
+    <div class="col-12">
+        <span> showing {{ $all_messages->firstItem() }} to {{ $all_messages->lastItem() }} of {{ $all_messages->total() }} messages</span>
+        <span class="float-end">{{ $all_messages->links() }}</span>
+    </div>
+</div>
 </div>
 </div>
 @endsection

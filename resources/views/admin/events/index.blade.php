@@ -88,8 +88,11 @@
 
         </div>
         <hr>
-        <div class="col footer pt-3 ps-3">
-            showing 1 to 10 of 50 users
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_events->firstItem() }} to {{ $all_events->lastItem() }} of {{ $all_events->total() }} events</span>
+                <span class="float-end">{{ $all_events->links() }}</span>
+            </div>
         </div>
     </div>
 </div>
