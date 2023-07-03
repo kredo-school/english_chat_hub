@@ -19,7 +19,7 @@
             </div>
             <div class="answer-box">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">No, you can't. When you join a chat room, you're supposed to have your Zoom account.</p>
+                <p class="faq-text">Sorry, but it is not possible. When you join a chat room, please create or login to your Zoom account.</p>
             </div>
         </div>
         <div class="col-md-6">
@@ -29,7 +29,7 @@
             </div>
             <div class="answer-box" style="background-color:#FFF;">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">Yes. We welcome all beginners who want to improve their English skills.</p>
+                <p class="faq-text">After login, you are able to check your schedule <a href="{{route('users.reserved.show.details')}}" class="contact-us-link">here</a>.  In "My Schedule" page, you can also check your reserved Event infomation as well.</p>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="answer-box">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">Yes. If you register, you can get good opportunities to communicate with someone in English online in the chat rooms.</p>
+                <p class="faq-text">Yes, please create your account <a href="{{route('register')}}" class="contact-us-link">here</a>. If you do so, you can get good opportunities to communicate in English with your new mates online in the chat rooms.</p>
             </div>
         </div>
         <div class="col-md-6">
@@ -51,7 +51,7 @@
             </div>
             <div class="answer-box" style="background-color:#FFF;">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">Yes, you can. Beside, in order to join your reserved chat room, you will need your Zoom account.</p>
+                <p class="faq-text">Yes, it is possible. Beside, in order to join your reserved chat room, you will need your Zoom account.</p>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="answer-box">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">Yes. We recommend to use your avatar which is one of Zoom functions instead of turning off your camera.</p>
+                <p class="faq-text">Yes, it is possible. We recommend you to use your avatar which is one of Zoom functions instead of turning off your camera.</p>
             </div>
         </div>
         <div class="col-md-6">
@@ -73,7 +73,7 @@
             </div>
             <div class="answer-box" style="background-color:#FFF;">
                 <img src="image/faq/Answer-icon.png" alt="faq-icon" class="faq-icon">
-                <p class="faq-text">If you have problem, you can report the problem in <a href="{{ route('contact-us.create') }}" class="contact-us-link">Contact Us</a> form. Select “Report” in category section.</p>
+                <p class="faq-text">If you have any concern, you can report the problem in <a href="{{ route('contact-us.create') }}" class="contact-us-link">Contact Us</a> form. Select “Report” in category section.</p>
             </div>
         </div>
     </div>
