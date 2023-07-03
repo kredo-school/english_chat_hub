@@ -1,6 +1,8 @@
 @extends('layouts.admin-app')
 
 @section('title','Create Event')
+@section('hilight_text','Events')
+@section('subtitle','New Events')
 
 @section('content')
 <div class="row">
