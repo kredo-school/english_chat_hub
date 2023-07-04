@@ -34,6 +34,11 @@
                         </a>
                       </div>
                     </div> 
+                    {{-- INCLUEDE MODAL --}}
+                    @include('users.research.modals.reservation')
+                  @empty                
+                    <p>No meeting</p>                 
+                  @endforelse
                   
                     {{-- Pagination --}}
                     <nav aria-label="Page navigation">
@@ -57,16 +62,11 @@
                     </nav>  
             </div>
           </div>
+
           <div class="col-4">
               @include('users.profile.show')
               @include('users.reserved.show')
           </div>
       </div>
-        {{-- INCLUEDE MODAL --}}
-        @include('users.research.modals.reservation')
-        @empty                
-          <p>No meeting</p>                 
-        @endforelse
-         
   </div>
 @endsection
