@@ -24,11 +24,10 @@
 {{-- Cancel Event Modal for Auth::user() --}}
 <div class="modal fade" id="cancel-event-{{$event->id}}">
     <div class="modal-dialog">
-        <div class="modal-content border-2 border-danger">
+    
+        <div class="modal-content border border-2 border-danger">
             <div class="modal-header border-danger">
-                <h2 class="modal-title text-danger pt-0">
-                    Confirmed detail
-                </h2>
+                <h2 class="modal-title text-danger fs-3 fw-bold mx-auto">Confirmed detail</h2>
             </div>
             <div class="modal-body">
                 <p class="h6 text-muted text-center">Cancel the event on {{$event->date}} at {{$event->location}}?</p>

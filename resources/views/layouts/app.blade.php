@@ -37,14 +37,26 @@
             <div class="container-fluid">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item me-2">
-                        <a href="{{ url('/') }}">
-                            <img class="logo mb-1" src="{{ asset('image/logo.png') }}" alt="logo">
-                        </a>
+                        @if(auth()->check())
+                            <a href="{{ route('users.top') }}">
+                                <img class="logo mb-1" src="{{ asset('image/logo.png') }}" alt="logo">
+                            </a>
+                        @else
+                            <a href="{{ url('/') }}">
+                                <img class="logo mb-1" src="{{ asset('image/logo.png') }}" alt="logo">
+                            </a>
+                        @endif
                     </li>
                     <li class="nav-item pt-2">
-                        <a class="navbar-brand fw-bold me-5" href="{{ url('/') }}" >
-                            English Chat Hub
-                        </a>
+                        @if (auth()->check())
+                            <a class="navbar-brand fw-bold me-5" href="{{ route('users.top') }}" >
+                                English Chat Hub
+                            </a>
+                        @else
+                            <a class="navbar-brand fw-bold me-5" href="{{ url('/') }}" >
+                                English Chat Hub
+                            </a>
+                        @endif
                     </li>
                 </ul>
 
@@ -122,9 +134,15 @@
         <div class="container-fluid row">
             <div class="col"></div>
             <div class="brand-group col-2 mt-3 me-5">
-                <a class="footer-brand" href="{{ url('/') }}">
-                    English Chat Hub
-                </a>
+                @if(auth()->check())
+                    <a class="footer-brand" href="{{ route('users.top') }}">
+                        English Chat Hub
+                    </a>
+                @else
+                    <a class="footer-brand" href="{{ url('/') }}">
+                        English Chat Hub
+                    </a>
+                @endif
                 <p class="copy-right">COPYRIGHT © English Chat Hub ALL RIGHTS RESERVED.</p>
             </div>
             <div class="footer-links col-6 mt-3 ms-5">
