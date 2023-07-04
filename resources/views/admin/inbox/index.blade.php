@@ -9,7 +9,7 @@
   <div class="col content">
     <div class="row search-status">
         <form action="#" class="search-bar-sm">
-            <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
+            <input type="search" class="form-control search-text" placeholder="seaech for name or subtitle..." id="search-input">
         </form>
         <div class="status-group-sm">
             <ul>
@@ -31,11 +31,12 @@
     <div class="row">
       <div class="col-12 mt-3">
           @if ($all_messages -> isNotEmpty())
-          <table class="user-table text-center">
+          <table class="table table-striped text-center align-middle">
               <thead>
                   <tr>
                       <th>id</th>
                       <th>Name</th>
+                      <th>Subtitle</th>
                       <th>Title</th>
                       <th>created_at</th>
                       <th>updated_at</th>
@@ -45,9 +46,10 @@
               </thead>
               <tbody>
                   @foreach($all_messages as $message)
-                  <tr class="eventtable-tr border border-dark">
+                  <tr class="usertable-tr">
                       <td>{{ $message->id }}</td>
                       <td>{{ $message->name}}</td>
+                      <td>{{ $message->subtitle->name}}</td>
                       <td>{{ $message->title }}</td>
                       <td>{{ $message->created_at }}</td>
                       <td>{{ $message->updated_at }}</td>
@@ -62,7 +64,7 @@
                                     @elseif ($message->status_id === 2)
                                         <i class="fa-solid fa-circle text-danger"></i>
                                     @elseif ($message->status_id === 0)
-                                        <i class="fa-solid fa-circle text-dark"></i>
+                                        <i class="fa-solid fa-circle text-secondary"></i>
                                     @endif
                                 </button>
                                 <ul class="dropdown-menu">
@@ -117,4 +119,32 @@
 </div>
 </div>
 </div>
+<script>
+    document.getElementById('search-input').addEventListener('input', function () {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search-input");
+        filter = input.value.toUpperCase().replace(/\s/g, "");
+        table = document.getElementsByTagName("table")[0];
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        tdUserName = tr[i].getElementsByTagName("td")[1]; // UserName column
+        tdSubTitles = tr[i].getElementsByTagName("td")[2]; // Subtitles column
+
+        if (tdUserName || tdSubTitles ) {
+            txtValueUserName = tdUserName.textContent || tdUserName.innerText;
+            txtValueSubTitles = tdSubTitles.textContent || tdSubTitles.innerText;
+
+            if (
+                txtValueUserName.toUpperCase().indexOf(filter) > -1 ||
+                txtValueSubTitles.toUpperCase().indexOf(filter) > -1 
+            ) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+});
+</script>
 @endsection
