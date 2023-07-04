@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="form w-50 mx-auto p-5">
-    <a href="javascript:void(0);" onclick="history.back();"><i class="fa-solid fa-xmark fa-pull-right mt-3 me-4 text-secondary"></i></a>
+    <a href="javascript:void(0);" onclick="goBack();"><i class="fa-solid fa-xmark fa-pull-right mt-3 me-4 text-secondary"></i></a>
       <h2 class="display-5">{{ $meeting->category->name }}</h2>
         <p class="h5 mb-3" id="category-title">{{ $meeting->category->description }}</p>
             <div class="line">
@@ -63,4 +63,12 @@
             @endforelse  
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        function goBack() {
+            history.back();
+        }
+    </script>
 @endsection

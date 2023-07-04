@@ -77,13 +77,10 @@ class HomeController extends Controller
         ->with('all_users', $all_users);
     }
 
-    public function showMeeting(Category $category, Meeting $meeting){
+    public function showMeeting(Category $category){
         $all_meetings = $category->meetings;
         $user = Auth::user();
-        // $ismeetingJoined = $meeting->joinMeetings()->where('user_id', Auth::user()->id)->first();
-        // dd($ismeetingJoined);
        
-
         return view('users.research.show', compact('all_meetings', 'category', 'user'));
     }
 }

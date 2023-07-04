@@ -29,8 +29,8 @@
                                 <p class="card-text">{{ $category->description }}</p>
                             </div>
                     </div>
-                @empty
-                    @endforelse
+                        @empty
+                        @endforelse
                 </div>
             </div>
         </div>
