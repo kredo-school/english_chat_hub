@@ -100,9 +100,12 @@
             </div>
         </div>
         <hr>
-        <div class="col footer pt-3 ps-3">
-            showing 1 to 10 of 50 users
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $participants->firstItem() }} to {{ $participants->lastItem() }} of {{ $participants->total() }} participants</span>
+                <span class="float-end">{{ $participants->links() }}</span>
+            </div>
         </div>
-    </div>
+</div>
 </div>
 @endsection

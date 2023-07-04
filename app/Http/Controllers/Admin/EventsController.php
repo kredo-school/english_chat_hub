@@ -119,7 +119,7 @@ class EventsController extends Controller
     public function showParticipants($event_id)
     {
         $event = Event::findOrFail($event_id);
-        $participants = $event->joinEvents()->get();
+        $participants = $event->joinEvents()->paginate(10);
     
         return view('admin.events.participants')
             ->with('participants',$participants)
