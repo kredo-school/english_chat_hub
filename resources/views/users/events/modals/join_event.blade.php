@@ -24,9 +24,9 @@
 {{-- Cancel Event Modal for Auth::user() --}}
 <div class="modal fade" id="cancel-event-{{$event->id}}">
     <div class="modal-dialog">
-        <div class="modal-content border-1">
+        <div class="modal-content border border-2 border-danger">
             <div class="modal-header border-danger">
-                <h2 class="modal-title text-danger">
+                <h2 class="modal-title text-danger fs-3 fw-bold mx-auto">
                     Confirmed detail
                 </h2>
             </div>
