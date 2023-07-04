@@ -14,6 +14,7 @@ class MeetingController extends Controller
 {
     public function store(Request $request)
     {
+
         $request->validate([
             'title'         => 'required|max:50',
             'category_id'   => 'required',

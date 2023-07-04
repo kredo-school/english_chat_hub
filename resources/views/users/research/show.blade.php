@@ -33,17 +33,16 @@
                           <i class="fa-solid fa-circle-plus fa-xl text-white"></i>
                         </a>
                       </div>
-                    </div>
+                    </div> 
                     {{-- INCLUEDE MODAL --}}
                     @include('users.research.modals.reservation')
-                    
-                  @empty
-                        <p>No meeting</p>
+                  @empty                
+                    <p>No meeting</p>                 
                   @endforelse
-
+                  
                     {{-- Pagination --}}
                     <nav aria-label="Page navigation">
-                      <ul class="pagination pagination-sm justify-content-end me-4 my-3">
+                      <ul class="pagination pagination-sm justify-content-end me-5 my-3">
                         <li class="page-item">
                           <a class="page-link text-warning" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
@@ -60,10 +59,10 @@
                           </a>
                         </li>
                       </ul>
-                    </nav>
-              </div>
+                    </nav>  
             </div>
-      
+          </div>
+
           <div class="col-4">
               @include('users.profile.show')
               @include('users.reserved.show')

@@ -32,7 +32,9 @@
                         </a>
                       </div>
                       <div class="category-item">
-                        {{-- +A  show button before 15min of meeting--}}
+                        {{-- <p>{{ var_dump($all_meetings->find(1)->date . $all_meetings->find(1)->start_at <= now()->addMinutes(15)) }}</p>
+                        <p>{{ var_dump($all_meetings->find(1)->date . $all_meetings->find(1)->start_at) }}</p>
+                        <p>{{ var_dump(now()->addMinutes(15)) }}</p> --}}
                         <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button> 
                         @include('users.reserved.modals.join')
                       </div>
@@ -80,7 +82,7 @@
                           <img src="image/begginer.png" alt="">
                         </div> --}}
                         <div class="category-item">
-                          {{ $event->comment }}
+                          {{ $event->theme }}
                         </div>
                         <div class="category-item">
                           {{ $event->location }}
@@ -90,11 +92,11 @@
                           {{-- {{ dd($event->joinEvents )}} --}}
                         </div>
                         <div class="category-item">
-                          <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cancel_event-{{ $event->id }}">
+                          <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cancel-event-{{ $event->id }}">
                             <i class="fa-solid fa-trash-can text-danger"></i>
                           </a>
                         </div>
-                        @include('users.reserved.modals.cancel_event')
+                        @include('users.events.modals.join_event')
                       </div>
                       @empty
                             <p>Not reserved Event</p>
