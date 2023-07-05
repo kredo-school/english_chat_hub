@@ -1,6 +1,7 @@
 @extends('layouts.admin-app')
 
 @section('title', 'All Meetings')
+@section('subtitle', 'All Meetings')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
@@ -128,8 +129,11 @@
             @endif
         </div>
         <hr>
-        <div class="footer pt-3" style="max-height: 90px">
-            {{ $all_meetings->links() }}
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_meetings->firstItem() }} to {{ $all_meetings->lastItem() }} of {{ $all_meetings->total() }} meetings</span>
+                <span class="float-end">{{ $all_meetings->links() }}</span>
+            </div>
         </div>
 
     </div>

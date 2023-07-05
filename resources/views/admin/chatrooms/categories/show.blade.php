@@ -1,6 +1,7 @@
 @extends('layouts.admin-app')
 
 @section('title', 'Show Category')
+@section('subtitle', 'Show Category')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">

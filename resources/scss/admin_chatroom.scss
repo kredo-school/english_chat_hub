@@ -1,7 +1,7 @@
 .avatar-wrap {
     position: relative;
     display: inline;
-    
+
     .avatar {
         width: 3rem;
         height: 3rem;
@@ -9,7 +9,7 @@
         border: 1px solid var(--dark);
         border-radius: 50%;
     }
-    
+
     .level-wrap {
         border-radius: 50%;
         border: 1px solid var(--orange);
@@ -22,7 +22,7 @@
         width: 1.5rem;
         bottom: -0.25rem;
         right: -0.5rem;
-    
+
         .level-icon {
             width: 1rem;
             height: 1rem;
@@ -30,4 +30,6 @@
     }
 }
 
-
+.modal-exclamation {
+    font-size: 8rem;
+}

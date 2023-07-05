@@ -1,6 +1,11 @@
 @extends('layouts.admin-app')
 
 @section('title', 'All Categories')
+@section('subtitle', 'All Categories')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
 
 @section('content')
     <div class="content">
@@ -105,8 +110,11 @@
             </table>
         </div>
         <hr>
-        <div class="footer pt-3" style="max-height: 90px">
-            {{ $all_categories->links() }}
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_categories->firstItem() }} to {{ $all_categories->lastItem() }} of {{ $all_categories->total() }} categories</span>
+                <span class="float-end">{{ $all_categories->links() }}</span>
+            </div>
         </div>
 
     </div>

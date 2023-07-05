@@ -1,6 +1,12 @@
 @extends('layouts.admin-app')
 
 @section('title', 'Edit Meeting')
+@section('hilight_text', 'Chatrooms')
+@section('subtitle', 'Edit Meeting')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
 
 @section('content')
     <div class="content">

@@ -9,7 +9,8 @@
                         <td class="text-start">{{ $meeting->title }}</td>
                         <td>{{ $meeting->user->user_name }}</td>
                         <td>{{ $meeting->date }} {{ date('G:i', strtotime($meeting->start_at)) }}~</td>
-                        <td>{{ request()->is('*/rooms/*') ? $meeting->category()->withTrashed()->first()->name : $meeting->room()->withTrashed()->first()->name }}</td>
+                        <td>{{ request()->is('*/rooms/*')? $meeting->category()->withTrashed()->first()->name: $meeting->room()->withTrashed()->first()->name }}
+                        </td>
                         <td style="width: 100px">
                             @if ($meeting->deleted_at)
                                 <i class="fa-solid fa-eye-slash text-danger"></i>
@@ -33,12 +34,15 @@
                 @endforelse
             </tbody>
         </table>
-        <div>{{ $meetings->links() }}</div>
     </div>
 </div>
 
 <hr>
 
-<div class="footer pt-3" style="max-height: 90px">
-    {{ $meetings->links() }}
+<div class="row">
+    <div class="col-12">
+        <span> showing {{ $meetings->firstItem() }} to {{ $meetings->lastItem() }} of {{ $meetings->total() }}
+            meetings</span>
+        <span class="float-end">{{ $meetings->links() }}</span>
+    </div>
 </div>
