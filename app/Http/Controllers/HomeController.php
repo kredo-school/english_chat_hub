@@ -61,10 +61,12 @@ class HomeController extends Controller
     public function show(){
         $user = Auth::user();
         $participant = Participant::where('email', $user->email)->first();
+        $all_meetings = Meeting::all();
 
         return view('users.reserved.show_details')
         ->with('user', $user)
-        ->with('participant', $participant);
+        ->with('participant', $participant)
+        ->with('all_meetings', $all_meetings);
     }
 
     public function showUser(Meeting $meeting){
@@ -78,7 +80,7 @@ class HomeController extends Controller
     public function showMeeting(Category $category){
         $all_meetings = $category->meetings;
         $user = Auth::user();
-
+       
         return view('users.research.show', compact('all_meetings', 'category', 'user'));
     }
 }

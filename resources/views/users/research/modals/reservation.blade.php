@@ -16,12 +16,13 @@
                         <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="button btn-orange">Reservation</button>
+                        </form>
                     @else                                    
                         <form action="{{ route('users.meeting.cancel', $meeting->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="button btn-gray">Cancel Meeting</button>
+                        </form>
                     @endif
-                    </form>
                 </div> 
             </div>
         </div>
