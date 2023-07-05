@@ -18,7 +18,7 @@
             </div>
             <div class="col-6 participants-right">
                 <form action="#" class="search-bar-lg">
-                    <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
+                    <input type="search" class="form-control search-text" placeholder="seaech for events..." id="search-input">
                 </form>
                 <div class="status-group-lg">
                     <ul>
@@ -108,4 +108,34 @@
         </div>
 </div>
 </div>
+<script>
+    document.getElementById('search-input').addEventListener('input', function () {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search-input");
+        filter = input.value.toUpperCase().replace(/\s/g, "");
+        table = document.getElementsByTagName("table")[0];
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        tdFullName = tr[i].getElementsByTagName("td")[1]; // FullName column
+        tdEmail = tr[i].getElementsByTagName("td")[2]; // Email column
+
+        if (tdFullName || tdEmail) {
+            txtValueFullName = tdFullName.textContent || tdFullName.innerText;
+            txtValueEmail = tdEmail.textContent || tdEmail.innerText;
+
+            txtValueFullName = txtValueFullName.replace(/\s/g, "");
+
+            if (
+                txtValueFullName.toUpperCase().indexOf(filter) > -1 ||
+                txtValueEmail.toUpperCase().indexOf(filter) > -1
+            ) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+});
+</script>
 @endsection

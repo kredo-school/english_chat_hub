@@ -1,6 +1,11 @@
 @extends('layouts.admin-app')
 
 @section('title', 'All Rooms')
+@section('subtitle', 'All Rooms')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin_chatroom.css') }}">
+@endsection
 
 @section('content')
     <div class="content">
@@ -85,5 +90,11 @@
         </div>
 
         <hr>
+        <div class="row">
+            <div class="col-12">
+                <span> showing {{ $all_rooms->firstItem() }} to {{ $all_rooms->lastItem() }} of {{ $all_rooms->total() }} rooms</span>
+                <span class="float-end">{{ $all_rooms->links() }}</span>
+            </div>
+        </div>
     </div>
 @endsection

@@ -9,7 +9,7 @@ h3{
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-p{
+p span{
   text-align: center;
   font-family: 'Raleway', sans-serif;
 }
@@ -109,7 +109,8 @@ p{
 .avatar-md{
   height: 70px;
   width: 70px;
-  object-fit: cover;
+  font-size: 45px;
+  border-radius: 50px;
 }
 
 #avatar-sm{
@@ -243,6 +244,11 @@ p{
   justify-content: space-around;
 }
 
+.icon-sm {
+  color: var(orange);
+  height: 20px;
+  width: 20px;
+}
 
 /* edit-profile */
 .form{

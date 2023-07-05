@@ -17,9 +17,9 @@
                       <div class="category-item">
                         {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
                       </div>
-                      {{-- <div class="category-item">
-                        <img src="image/begginer.png" alt="">
-                      </div> --}}
+                      <div class="category-item">
+                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
+                      </div>
                       <div class="category-item">
                         {{ $meeting->category->name }}
                       </div>
@@ -78,19 +78,25 @@
                         <div class="category-item">
                           {{ $event->date }}
                         </div>
-                        {{-- <div class="category-item">
-                          <img src="image/begginer.png" alt="">
-                        </div> --}}
-                        <div class="category-item">
+                        <div class="text-start">
+                          @if ($event->levels()->count() === 3)
+                            <p class=mb-0>all users available</p>
+                          @else
+                            <span>mainly for &nbsp;</span>
+                            @foreach ($event->levels as $level)
+                                <img src="{{ asset('image/level/' . $level->icon) }}" class="mb-2 icon-sm" alt="{{ $level->name }}">                                      
+                            @endforeach
+                          @endif
+                        </div>
+                      <div class="category-item">
                           {{ $event->theme }}
                         </div>
                         <div class="category-item">
                           {{ $event->location }}
                         </div>
                         <div class="category-item">
-                          {{ $event->joinEvents->count() }}members
-                          {{-- {{ dd($event->joinEvents )}} --}}
-                        </div>
+                            {{ $event->joinEvents->count() }}{{$event->joinEvents->count() == 1 ? 'member':'members'}}
+                        </div> 
                         <div class="category-item">
                           <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cancel-event-{{ $event->id }}">
                             <i class="fa-solid fa-trash-can text-danger"></i>

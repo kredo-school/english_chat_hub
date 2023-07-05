@@ -3,7 +3,7 @@ main{
     margin: 0;
     padding: 0;
     background-color: #FAEBD7;
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 120px);
 }
 
 .event-image-top{
@@ -35,7 +35,7 @@ main{
 }
 
 .card-img-top{
-  max-height: 300px;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -61,7 +61,11 @@ main{
   .event-card-body {
     color: var(--gray) !important;
     font: 2em var(--raleway);
-    min-height: 500px;
+    min-height: 400px;
+  }
+
+  .show-more{
+    color: var(--gray) !important;
   }
   
   .event-card-footer {
@@ -131,4 +135,10 @@ main{
     transform: translate(0, 50%);
     font-family: 'M PLUS Rounded 1c', sans-serif;
     color: var(--gray);
+  }
+
+  // map
+  #map{
+    height: 100%;
+    width: 100%;
   }
