@@ -13,7 +13,7 @@
             </div>
 
             <form action="#" class="search-bar-sm">
-                <input type="search" class="form-control search-icon" placeholder="search &#xf002;">
+                <input type="search" class="form-control search-text" placeholder="seaech for events..." id="search-input">
             </form>
             <div class="status-group-sm">
                 <ul>
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 @if ($all_events -> isNotEmpty())
-                <table class="user-table text-center">
+                <table class="table table-striped text-center align-middle">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                         @foreach($all_events as $event)
-                        <tr class="eventtable-tr border border-dark">
+                        <tr class="eventtable-tr">
                             <td>{{ $event->id }}</td>
                             <td>{!! $event->getEventString() !!}</td>
                             <td>{{ $event->theme }}</td>
@@ -97,4 +97,35 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('search-input').addEventListener('input', function () {
+        var input, filter, table, tr, tdLevel, tdTheme, tdDate, i, txtValueLevel, txtValueTheme, txtValueDate;
+        input = document.getElementById("search-input");
+        filter = input.value.toUpperCase().replace(/\s/g, "");
+        table = document.getElementsByTagName("table")[0];
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            tdLevel = tr[i].getElementsByTagName("td")[1]; // Level column
+            tdTheme = tr[i].getElementsByTagName("td")[2]; // Theme column
+            tdDate = tr[i].getElementsByTagName("td")[3]; // Date column
+
+            if (tdLevel || tdTheme || tdDate) {
+                txtValueLevel = tdLevel.textContent || tdLevel.innerText;
+                txtValueTheme = tdTheme.textContent || tdTheme.innerText;
+                txtValueDate = tdDate.textContent || tdDate.innerText;
+
+                if (
+                    txtValueLevel.toUpperCase().indexOf(filter) > -1 ||
+                    txtValueTheme.toUpperCase().indexOf(filter) > -1 ||
+                    txtValueDate.toUpperCase().indexOf(filter) > -1
+                ) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    });
+</script>
 @endsection
