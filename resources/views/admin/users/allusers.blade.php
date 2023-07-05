@@ -46,50 +46,48 @@
                     </thead>
                     <tbody>
                         @foreach($all_users as $user)
-                            @if ($user->role != 'admin')
-                                <tr class="usertable-tr">
-                                    <td>{{$user->id}}</td>
-                                    <td>
-                                        @if($user->avatar)
-                                            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{$user->avatar}}" class="avatar-sm rounded-circle ">
-                                        @else
-                                            <i class="fa-solid fa-circle-user avatar-icon"></i>
-                                        @endif
-                                    </td>
-                                    <td>{{$user->user_name}}</td>
-                                    <td>{{$user->full_name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->created_at}}</td>
-                                    <td>{{$user->updated_at}}</td>
-                                    <td>
+                            <tr class="usertable-tr">
+                                <td>{{$user->id}}</td>
+                                <td>
+                                    @if($user->avatar)
+                                        <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{$user->avatar}}" class="avatar-sm rounded-circle ">
+                                    @else
+                                        <i class="fa-solid fa-circle-user avatar-icon"></i>
+                                    @endif
+                                </td>
+                                <td>{{$user->user_name}}</td>
+                                <td>{{$user->full_name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->created_at}}</td>
+                                <td>{{$user->updated_at}}</td>
+                                <td>
+                                <div class="dropdown">
+                                    @if ($user->trashed())
+                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
+                                            <i class="fa-solid fa-circle text-danger"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
+                                            <i class="fa-solid fa-circle text-success"></i>
+                                        </button>
+                                    @endif
+                                </div>
+                                </td>
+                                <td>
                                     <div class="dropdown">
-                                        @if ($user->trashed())
-                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
-                                                <i class="fa-solid fa-circle text-danger"></i>
-                                            </button>
-                                        @else
-                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
-                                                <i class="fa-solid fa-circle text-success"></i>
-                                            </button>
-                                        @endif
+                                        <button class="btn" data-bs-toggle="dropdown">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#show-profile-{{$user->id}}">
+                                            show profile
+                                        </button>
                                     </div>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn" data-bs-toggle="dropdown">
-                                                <i class="fa-solid fa-ellipsis"></i>
-                                            </button>
-                                        <div class="dropdown-menu">
-                                            <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#show-profile-{{$user->id}}">
-                                                show profile
-                                            </button>
-                                        </div>
-                                        @include('admin.users.modal.showprofile')
-                                        @include('admin.users.modal.status')
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endif
+                                    @include('admin.users.modal.showprofile')
+                                    @include('admin.users.modal.status')
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
