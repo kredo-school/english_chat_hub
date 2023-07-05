@@ -16,10 +16,9 @@
                       <div class="category-item">
                         {{ $meeting->date }}<br>{{ $meeting->start_at }}
                       </div>
-                      {{-- fix later --}}
-                      {{-- <div class="category-item">
-                        <img src="image/begginer.png" alt="">
-                      </div> --}}
+                      <div class="category-item">
+                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
+                      </div>
                       <div class="category-item">
                         {{ $meeting->title }}
                       </div>

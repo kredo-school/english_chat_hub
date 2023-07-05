@@ -44,6 +44,7 @@
                                         @endif
                                     </div>
                                     {{-- show user's level icon --}}
+                                    <img src="{{ asset('image/level/' . $user->level->icon) }}" class="text-center avatar-level mx-auto" alt="{{ $user->level->name }}">                                      
                                     <h3 class="mx-auto text-center" id="username">{{ $user->user_name }}</h3>
                                     @if($user->comment)
                                         <p class="fs-5 mt-1 mb-0">{{ $user->comment }}</p>
