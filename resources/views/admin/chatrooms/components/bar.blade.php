@@ -1,3 +1,5 @@
+@section('hilight_text','Chatrooms')
+
 <div class="row gx-1 mb-3">
     <div class="col">
         <a href="{{ route('admin.chatrooms.meetings.index') }}"
