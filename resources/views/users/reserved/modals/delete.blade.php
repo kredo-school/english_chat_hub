@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete-{{ $meeting_a->id }}">
+<div class="modal fade" id="delete-{{ $meeting->id }}">
     <div class="modal-dialog">
         <div class="modal-content border border-2 border-danger">
 
