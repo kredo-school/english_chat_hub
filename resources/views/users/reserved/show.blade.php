@@ -2,7 +2,7 @@
    <div class="reserved">
       <h2 class="display-5">RESERVED<br>CHAT ROOM</h2>
           @php $count = 0; @endphp
-          @forelse($user->joinMeetings as $meeting)
+          @forelse($user->joinMeetings()->where('date', '>=', today())->where('start_at', '>=', now())->orderBy('date')->orderBy('start_at')->get() as $meeting)
               @if( $count<5 )
               <div class="reserved-room mx-auto mt-2 mb-1">
                 <div class="reserved-item">

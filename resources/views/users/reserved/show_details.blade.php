@@ -12,7 +12,7 @@
             <div class="category">
                 <h2 class="display-5">My Schedule</h2>
                   <h3 class="fs-3 ms-5">Chat Room</h3>
-                  @forelse($user->joinMeetings as $meeting)
+                  @forelse($user->joinMeetings()->where('date', '>=', today())->where('start_at', '>=', now())->orderBy('date')->orderBy('start_at')->get() as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
                         {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
@@ -32,11 +32,10 @@
                         </a>
                       </div>
                       <div class="category-item">
-                        {{-- <p>{{ var_dump($all_meetings->find(1)->date . $all_meetings->find(1)->start_at <= now()->addMinutes(15)) }}</p>
-                        <p>{{ var_dump($all_meetings->find(1)->date . $all_meetings->find(1)->start_at) }}</p>
-                        <p>{{ var_dump(now()->addMinutes(15)) }}</p> --}}
-                        <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button> 
-                        @include('users.reserved.modals.join')
+                        @if(Carbon\Carbon::parse($meeting->date . '' . $meeting->start_at) <= now()->addMinutes(60))
+                          <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button>
+                          @include('users.reserved.modals.join')
+                        @endif
                       </div>
 
                       
@@ -65,9 +64,10 @@
                         @endif                       
                       </div>
                     </div>
-                    @empty
-                        <p>Not reserved Chat Room</p>
-                    @endforelse
+                  @empty
+                      <p>Not reserved Chat Room</p>
+                  @endforelse
+                  {{-- @endif --}}
                    
                   <h3 class="fs-3 ms-5 mt-4">Event</h3>
                   @if(empty($participant))
