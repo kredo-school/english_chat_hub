@@ -19,7 +19,7 @@
                 <ul>
                     <li>
                         <i class="fs-4 pt-2 fa-solid fa-circle text-secondary icon-status"></i>
-                        <span class="fs-4">available</span>
+                        <span class="fs-4">done</span>
                     </li>
                     <li>
                         <i class="fs-4 pt-2 fa-solid fa-circle text-danger icon-status"></i>
@@ -27,7 +27,7 @@
                     </li>
                     <li>
                         <i class="fs-4 pt-2 fa-solid fa-circle text-success icon-status"></i>
-                        <span class="fs-4 pe-3">done</span>
+                        <span class="fs-4 pe-3">available</span>
                     </li>
                 </ul>
             </div>
@@ -59,7 +59,15 @@
                             <td>{{ $event->location }}</td>
                             <td>{{ $event->created_at }}</td>
                             <td>{{ $event->updated_at }}</td>
-                            <td><i class="fa-solid fa-circle text-success"></i></td>
+                            <td>
+                                @if ($event->date < $today)
+                                    <i class="fa-solid fa-circle text-secondary"></i>
+                                @elseif ($event->joinEvents->count() >= 10)
+                                    <i class="fa-solid fa-circle text-danger"></i>
+                                @else
+                                    <i class="fa-solid fa-circle text-success"></i>
+                                @endif
+                            </td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn" data-bs-toggle="dropdown">

@@ -1,9 +1,9 @@
-@if ($meeting = $room->meetings()->where('date', $date)->first())
+@if ($meeting = $room->meetings()->where('date', $date)->where('start_at', $timeTable[$i][0])->first())
     <!--Join Modal-->
     @include('users.research.modals.reservation')
 @else
     <!--Create Modal-->
-    <div class="modal fade" id="create-meeting-{{ $i }}">
+    <div class="modal fade" id="create-meeting-{{ $i . '-' . $room->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="{{ route('users.meeting.store') }}" method="post">

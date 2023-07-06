@@ -40,11 +40,18 @@
                                             @endif
                                         </td>
                                     @else
-                                        <td>
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#create-meeting-{{ $i }}" class="date-btn"
-                                                title="Create Meeting"></button>
-                                        </td>
+                                        @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]))
+                                            <td>
+                                                <button type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}" class="date-btn"
+                                                    title="Create Meeting">
+                                                </button>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <button disabled="disabled" class="date-btn"></button>
+                                            </td>
+                                        @endif
                                     @endif
                                     @include('users.meetings.modals.calendar')
                                 @endforeach

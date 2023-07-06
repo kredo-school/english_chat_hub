@@ -14,6 +14,10 @@ class MeetingController extends Controller
 {
     public function store(Request $request)
     {
+        $user = Auth::user();
+        if (!Auth::user()->meetingCheck($request->date, $request->start_at)) {
+            return redirect()->back();
+        }
 
         $request->validate([
             'title'         => 'required|max:50',

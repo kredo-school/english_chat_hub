@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Participant::class, 'user_id');
     }
+    public function meetingCheck($date, $start_at)
+    {
+        return $this->joinMeetings()->where('date', $date)->where('start_at', $start_at)->get()->isEmpty();    
+    }
 }
