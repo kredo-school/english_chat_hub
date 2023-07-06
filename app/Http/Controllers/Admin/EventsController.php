@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 class EventsController extends Controller
 {
@@ -22,7 +23,11 @@ class EventsController extends Controller
     public function show()
     {
         $all_events = Event::oldest()->paginate(10);
-        return view('admin.events.index')->with('all_events',$all_events);
+        $today = Carbon::today();
+        
+        return view('admin.events.index')
+            ->with('all_events',$all_events)
+            ->with('today',$today);
     }
 
     public function create()
