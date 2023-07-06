@@ -16,8 +16,9 @@ class Meeting extends Model
         'in_session'    => ['id' => 2, 'color' => 'success'],
         'done'          => ['id' => 3, 'color' => 'secondary']
     ];
-    const UNIT_MEETING_TIME = 45;   // minutes / 1 meeting
-    const MEETING_OPEN_FROM = 15;   //minutes before
+    const UNIT_MEETING_TIME = 45;       // minutes / 1 meeting
+    const MEETING_OPEN_FROM = 15;       //minutes before
+    const MEETING_MAXIMUM_USERS = 10;   // max number of users
 
     // RELATION
     public function user()
@@ -72,5 +73,13 @@ class Meeting extends Model
             $statusColor[$status['id']] = $status['color'];
         }
         return $statusColor;
+    }
+
+    /**
+     * Summary of vacanciesCheck
+     * @return bool
+     */
+    public function vacanciesCheck() {
+        return $this->joinMeetings()->count() < self::MEETING_MAXIMUM_USERS;
     }
 }

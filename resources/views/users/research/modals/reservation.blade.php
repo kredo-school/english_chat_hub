@@ -13,13 +13,15 @@
                 {{-- button --}}
                 <div class="buttons mt-5 mb-3 text-center">
                     @if (!$meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
-                        @if (Auth::user()->meetingCheck($meeting->date, $meeting->start_at))
+                        @if (Auth::user()->meetingCheck($meeting->date, $meeting->start_at) && $meeting->vacanciesCheck())
                             <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="button btn-orange">Reservation</button>
                             </form>
-                        @else
+                        @elseif ($meeting->vacanciesCheck())
                             <p class="text-center text-danger">You already joined another meeting this time.</p>
+                        @else
+                            <p class="text-center text-danger">This meeting has reached its maximum number of users.</p>
                         @endif
                     @else
                         <form action="{{ route('users.meeting.cancel', $meeting->id) }}" method="POST">
