@@ -13,11 +13,9 @@ class EventController extends Controller
     public function index()
     {
         $all_events = Event::all();
-        $today = Carbon::today();
 
         return view('users.events.index')
-            ->with('all_events', $all_events)
-            ->with('today',$today);
+            ->with('all_events', $all_events);
     }
 
     public function show(Event $event)
