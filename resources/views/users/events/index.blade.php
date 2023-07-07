@@ -39,7 +39,7 @@
                                     @foreach ($events as $event)
                                         @php($eventDate = strtotime($event->date))
                                         @php($todayDate = strtotime(date('Y-m-d')))
-                                        @if ($eventDate >= $todayDate)
+                                        @if ($eventDate >= $todayDate && $event->joinEvents->count() < $event->participants_limit)
                                             <div class="col-lg-4 col-md-6 gx-0 p-0 mx-auto event-info mb-5">
                                                 <div class="card event-card mb-2">
                                                     <img src="{{ asset('storage/images/' . $event->image) }}"
