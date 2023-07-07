@@ -6,14 +6,18 @@ use  Illuminate\support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Participant;
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
     public function index()
     {
         $all_events = Event::all();
+        $today = Carbon::today();
+
         return view('users.events.index')
-            ->with('all_events', $all_events);
+            ->with('all_events', $all_events)
+            ->with('today',$today);
     }
 
     public function show(Event $event)
