@@ -57,6 +57,10 @@
                                                             <i class="fa-solid fa-location-dot"></i>
                                                             <span class="ms-1">{{ $event->location }}</span>
                                                         </p>
+                                                        <p class="text-center text-success fs-5 mt-5">
+                                                            Number of available applicants
+                                                            <span class="fw-bold fs-1">{{ $event->participants_limit - $event->joinEvents->count() }}</span> people left
+                                                        </p>
                                                         <p class="text-end">
                                                             <a href="{{ route('events.show', $event->id) }}">>>more</a>
                                                         </p>
