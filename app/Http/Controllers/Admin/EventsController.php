@@ -42,6 +42,7 @@ class EventsController extends Controller
             'comment' => 'required|max:255',
             'location' => 'required|max:255',
             'date' => 'required',
+            'limit' =>'numeric|max:20'
         ]);
 
         $this->event->theme = $request->theme;
@@ -49,6 +50,7 @@ class EventsController extends Controller
         $this->event->location = $request->location;
         $this->event->date = $request->date;
         $this->event->image = $this->saveImage($request);
+        $this->event->participants_limit = $request->limit;
 
         $this->event->save();
 
@@ -92,6 +94,7 @@ class EventsController extends Controller
             'comment' => 'required|max:255',
             'location' => 'required|max:255',
             'date' => 'required',
+            'limit' =>'numeric|max:20'
         ]);
 
         $event = $this->event->findOrFail($id);
@@ -100,6 +103,8 @@ class EventsController extends Controller
         $event->comment = $request->comment;
         $event->location = $request->location;
         $event->date = $request->date;
+        $event->participants_limit = $request->limit;
+
         if($request->image){
             $this->deleteImage($event->image);
             $event->image = $this->saveImage($request);
