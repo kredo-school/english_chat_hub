@@ -33,11 +33,12 @@
                         </a>
                       </div>
                     </div> 
-                    {{-- INCLUEDE MODAL --}}
                     @include('users.research.modals.reservation')
                   @empty                
                     <p>No meeting</p>                 
                   @endforelse
+
+                  {{ $all_meetings->links() }}
                   
                     {{-- Pagination --}}
                     <nav aria-label="Page navigation">
