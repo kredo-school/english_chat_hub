@@ -38,10 +38,17 @@
                         </div>
 
                     </div>
-                    <div class="form-group my-2">
+                    <div class="form-group my-4">
                         <label for="location" class="form-label fs-5 mb-0">Location</label>
                         <input type="text" name="location" id="location" class="form-control">
                         @error('location')
+                            <p class="form-text text-danger mt-0">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="limit" class="form-label fs-5 mb-0">Participant Limit</label>
+                        <input type="number" name="limit" id="limit" class="form-control">
+                        @error('limit')
                             <p class="form-text text-danger mt-0">{{$message}}</p>
                         @enderror
                     </div>

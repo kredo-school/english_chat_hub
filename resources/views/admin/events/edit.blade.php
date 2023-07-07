@@ -40,10 +40,17 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group my-2">
+                    <div class="form-group my-4">
                         <label for="location" class="form-label fs-5 mb-0">Location</label>
                         <input type="text" name="location" id="location" class="form-control" value="{{$event->location}}">
                         @error('location')
+                            <p class="form-text text-danger mt-0">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="limit" class="form-label fs-5 mb-0">Participant Limit</label>
+                        <input type="number" name="limit" id="limit" class="form-control" value="{{$event->participants_limit}}">
+                        @error('limit')
                             <p class="form-text text-danger mt-0">{{$message}}</p>
                         @enderror
                     </div>
@@ -60,7 +67,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="my-5 btn px-5 ms-3 button btn-gray float-end">Create</button>
+                    <button type="submit" class="my-5 btn px-5 ms-3 button btn-gray float-end">Update</button>
                     <a href="{{route('admin.events.show')}}" type="button" class="my-5 btn px-5 button btn-gray float-end">Back</a>
 
                 </form>

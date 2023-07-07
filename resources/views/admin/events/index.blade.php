@@ -62,7 +62,7 @@
                             <td>
                                 @if ($event->date < $today)
                                     <i class="fa-solid fa-circle text-secondary"></i>
-                                @elseif ($event->joinEvents->count() >= 10)
+                                @elseif ($event->joinEvents->count() == $event->participants_limit)
                                     <i class="fa-solid fa-circle text-danger"></i>
                                 @else
                                     <i class="fa-solid fa-circle text-success"></i>
