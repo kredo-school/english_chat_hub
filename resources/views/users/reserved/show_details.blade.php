@@ -10,7 +10,10 @@
       <div class="row">
           <div class="col-9">
             <div class="category">
-                <h2 class="display-5">My Schedule</h2>
+                <div class="pt-3 ps-4">
+                  <a href="javascript:void(0);" onclick="goBack();" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
+                </div>
+                <h2 class="display-5 pt-0">My Schedule</h2>
                   <h3 class="fs-3 ms-5">Chat Room</h3>
                   @forelse($user->joinMeetings()->where(function ($query) {
                     $query->where('date', '>', today()->toDateString())
@@ -123,4 +126,12 @@
           </div>
       </div>
   </div>
+@endsection
+
+@section('script')
+    <script>
+        function goBack() {
+            history.back();
+        }
+    </script>
 @endsection
