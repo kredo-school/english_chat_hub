@@ -44,11 +44,11 @@ class Meeting extends Model
     }
 
     // Update Status_id
-    public function updateStatus()
+    static function updateStatus()
     {
         // Get Compare time
         $currentTime = now();
-        $checkMeetings = $this->where('status_id', '!=', self::STATUS['done']['id'])->get();
+        $checkMeetings = Meeting::where('status_id', '!=', self::STATUS['done']['id'])->get();
 
         // Change Status_id
         if ($checkMeetings->count() != 0) {
@@ -66,7 +66,7 @@ class Meeting extends Model
             }
         }
     }
-    public function statusColor()
+    static function statusColor()
     {
         $statusColor = [];
         foreach (self::STATUS as $status) {
@@ -81,5 +81,10 @@ class Meeting extends Model
      */
     public function vacanciesCheck() {
         return $this->joinMeetings()->count() < self::MEETING_MAXIMUM_USERS;
+    }
+
+    public function meetingOpen() {
+        $this->updateStatus();
+        return $this->status_id === self::STATUS['in_session']['id'];
     }
 }

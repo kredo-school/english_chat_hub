@@ -21,15 +21,14 @@ class CategoriesController extends Controller
     public function show($id)
     {
         // update Meetings Status
-        $meeting = new Meeting;
-        $meeting->updateStatus();
+        Meeting::updateStatus();
         
         $category = Category::withTrashed()->findOrFail($id);
         $meetings = $category->meetings()->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.categories.show')
             ->with('category', $category)
             ->with('meetings', $meetings)
-            ->with('statusColor', $meeting->statusColor());
+            ->with('statusColor', Meeting::statusColor());
     }
     public function add()
     {

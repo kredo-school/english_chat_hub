@@ -13,10 +13,7 @@
                 <h5 class="modal-text mx-auto mb-3">Level: {{ $meeting->level->name }}</h5>
             </div>
 
-            @php
-                $meetingTime = Carbon\Carbon::parse($meeting->date . ' ' . $meeting->start_at);
-            @endphp
-            @if ($meetingTime->copy()->subMinutes(App\Models\Meeting::MEETING_OPEN_FROM) <= now() && $meetingTime->copy()->addMinutes(App\Models\Meeting::UNIT_MEETING_TIME) >= now())
+            @if ($meeting->meetingOpen())
                 <div class="buttons mt-5 mb-3 text-center">
                     <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
                     <button type="" class="button btn-orange">Join</button>
