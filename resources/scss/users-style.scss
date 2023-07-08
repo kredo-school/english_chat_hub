@@ -134,6 +134,12 @@ p span{
   align-items: center;
 }
 
+.icon-md{
+  color: var(orange);
+  height: 30px;
+  width: 30px;
+}
+
 .username{
   display:inline-flex;
   vertical-align: middle;
@@ -228,7 +234,7 @@ p span{
   padding: 0px;
 }
 
-.category-myroom{
+.meeting-table{
   display:flex;
   flex-wrap: wrap;
   background-color: var(--yellow);
@@ -240,10 +246,38 @@ p span{
   justify-content: space-around;
 }
 
+table{
+  color: var(--gray)!important;
+  border:0px none!important;
+  font-family: 'Raleway', sans-serif;
+}
+
+.event-table{
+  display:flex;
+  flex-wrap: wrap;
+  background-color: #FFA500;
+  width: 90%;
+  align-items: center;
+  border-radius: 5px;
+  color: var(--gray);
+  margin: 0px;
+  justify-content: space-around;
+}
+
+#a{
+  color: var(--gray);
+
+}
+
+.event-dropdown a{
+  color: var(--gray);
+
+}
+
 .icon-sm {
   color: var(orange);
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 }
 
 /* edit-profile */

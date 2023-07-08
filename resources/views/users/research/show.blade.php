@@ -17,7 +17,7 @@
                         {{ $meeting->date }}<br>{{ \Carbon\Carbon::parse($meeting->start_at)->format('H:i') }}〜
                       </div>
                       <div class="category-item">
-                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
+                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 level-img-md" alt="{{ $meeting->level->name }}">                                      
                       </div>
                       <div class="category-item">
                         {{ $meeting->title }}
