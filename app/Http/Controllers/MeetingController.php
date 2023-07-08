@@ -56,20 +56,14 @@ class MeetingController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'title'         => 'required|max:50',
-            'room_id'       => 'required',
             'category_id'   => 'required',
             'level_id'      => 'required',
-            'date'          => 'required|date',
-            'start_at'      => 'required|integer|max:24'
         ]);
 
         $meeting = Meeting::withTrashed()->findOrFail($id);
         $meeting->title         = $request->title;
-        $meeting->room_id       = $request->room_id;
         $meeting->category_id   = $request->category_id;
         $meeting->level_id      = $request->level_id;
-        $meeting->date          = $request->date;
-        $meeting->start_at      = date('H:i:s', strtotime($request->start_at . ':00:00'));
         $meeting->save();
 
         return redirect()->route('users.reserved.show.details');
