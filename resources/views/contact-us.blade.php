@@ -23,7 +23,7 @@
                         <div class="col-9 mx-auto">
                             <!-- username -->
                             <div class="mb-3">
-                                <label for="name" class="form-label">User Name</label>
+                                <label for="name" class="form-label">Name</label>
                                 @if ($user)
                                     <input type="text" name="name" id="name" class="form-control" value="{{ $user->user_name }}" readonly>
                                 @else
