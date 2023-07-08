@@ -25,7 +25,7 @@
             </p>
             @php($chunked_events = $all_events->chunk(3))
             @if ($chunked_events->isNotEmpty())
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         @foreach ($chunked_events as $index => $events)
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
@@ -34,7 +34,7 @@
                     </div>
                     <div class="carousel-inner">
                         @foreach ($chunked_events as $index => $events)
-                            <div class="carousel-item{{ $index === 0 ? ' active' : '' }}">
+                            <div class="carousel-item{{ $index === 0 ? ' active' : '' }}" data-bs-interval="5000">
                                 <div class="row mt-5 mb-5">
                                     @foreach ($events as $event)
                                         @php($eventDate = strtotime($event->date))
@@ -58,7 +58,7 @@
                                                             <span class="ms-1">{{ $event->location }}</span>
                                                         </p>
                                                         <p class="text-center text-success fs-5 mt-5">
-                                                            Number of available applicants
+                                                            Number of available applicants <br>
                                                             <span class="fw-bold fs-1">{{ $event->participants_limit - $event->joinEvents->count() }}</span> people left
                                                         </p>
                                                         <p class="text-end">
