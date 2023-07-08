@@ -194,32 +194,28 @@ p span{
     text-align: center;
   }
 
-  // .pagination ol{
-  //   display: flex;
-  //   justify-content: right;
-  //   align-items: center;
-  //   text-align: center;
-  //   list-style: none;
-  //   padding-right: 50px;
-  // }
+  // pagination
+  .page-item{
+    width: 30px;
+    height: 30px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
 
-  // .pagination li a{
-  //   display: block;
-  //   padding:10px;
-  //   text-decoration: none;
-  //   line-height: 1;
-  //   color: var(--gray);
-  // }
+  .page-item a{
+    color: var(--gray);
+  }
 
-  // .pagination a{
-  //   width: 36px;
-  //   height: 36px;
-  // }
+  .active{
+    background-color: var(--li-gray);
+  }
 
-  // .arrow{
-  //   background-color: var(--li-gray);
-  //   border-radius: 5px;
-  // }
+  .hover:not(.active){
+    background-color: #ddd;
+  }
 
 /* myschdule */
 #btn-join{

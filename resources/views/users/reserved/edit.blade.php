@@ -23,17 +23,18 @@
                                 <!-- Meeting Title -->
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Meeting Title</label>
-                                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $meeting->title) }}">
+                                    <input type="text" name="title" id="title" class="form-control"
+                                        value="{{ old('title', $meeting->title) }}">
 
                                     @error('title')
-                                      <div class="text-danger small" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </div>
-                                    @enderror                   
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Date -->
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="date" class="form-label">Date</label>
                                     <input type="date" name="date" id="date" class="form-control" value="{{ old('date', $meeting->date) }}">
 
@@ -42,11 +43,11 @@
                                           <strong>{{ $message }}</strong>
                                       </div>
                                     @enderror  
-                                </div>
+                                </div> --}}
 
-                                <div class="row mb-3">
-                                  <!-- Start Time -->
-                                  <div class="col-3">
+                                {{-- <div class="row mb-3"> --}}
+                                <!-- Start Time -->
+                                {{-- <div class="col-3">
                                       <label for="start-at" class="form-label">Start At</label>
                                       <div class="input-group">
                                         <input type="text" name="start_at" id="start-at" class="form-control" value="{{ old('start_at', date('G',strtotime($meeting->start_at))) }}"><span class="input-group-text"> : 00</span>
@@ -63,23 +64,25 @@
                                   <div class="col-5">
                                     <label for="room_id" class="form-label">Room</label>
                                         <select name="room_id" class="form-control">
-                                          @foreach($all_rooms as $room)
+                                          @foreach ($all_rooms as $room)
                                               <option value="{{ $room->id }}" {{ old('room_id', $meeting->room_id) == $room->id ? 'selected' : '' }}> {{ $room->name }}
                                               </option>
                                           @endforeach
                                         </select>
                                   </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- Level -->
                                 <div class="mb-3 row">
                                     <div class="col">
                                         <label for="level_id" class="form-label">Level</label>
                                         <select name="level_id" class="form-control">
-                                          @foreach($all_levels as $level)                               
-                                            <option value="{{ $level->id }}" {{ old('level_id', $meeting->level_id) == $level->id ? 'selected' : '' }}> {{ $level->name }}
-                                            </option>
-                                          @endforeach
+                                            @foreach ($all_levels as $level)
+                                                <option value="{{ $level->id }}"
+                                                    {{ old('level_id', $meeting->level_id) == $level->id ? 'selected' : '' }}>
+                                                    {{ $level->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -87,19 +90,29 @@
                                     <div class="col">
                                         <label for="category_id" class="form-label">Category</label>
                                         <select name="category_id" class="form-control">
-                                            @foreach($all_categories as $category)                     
-                                              <option value="{{ $category->id }}" {{ old('category_id', $meeting->category_id) == $category->id ? 'selected' : '' }}> {{ $category->name }}
-                                              </option>
+                                            @foreach ($all_categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    {{ old('category_id', $meeting->category_id) == $category->id ? 'selected' : '' }}>
+                                                    {{ $category->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-3 fw-bold">Date</div>
+                                    <div class="col-3">
+                                        {{ $meeting->date . date(' G:i', strtotime($meeting->start_at)) }}
+                                    </div>
+                                </div>
+                                <p class="text-danger text-center">If you want to change the time or date, please delete this meeting and create new one.</p>
+
                                 <!-- button -->
                                 <div class="buttons mt-5">
                                     <a href="{{ route('users.reserved.show.details') }}" class="button btn-gray">Cancel</a>
                                     <button class="button btn-orange">SAVE</button>
-                                </div> 
+                                </div>
                             </div>
 
                         </form>

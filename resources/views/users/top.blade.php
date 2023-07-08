@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-9">
                 <div class="category">
                     <h2 class="display-5">CATEGORY</h2>
                     <p class="h5" id="category-title">Click the icon you're interested in!</p>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             @include('users.profile.show')
             @include('users.reserved.show')
         </div>
