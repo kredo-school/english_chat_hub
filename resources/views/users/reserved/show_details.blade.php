@@ -24,7 +24,7 @@
                   })->orderBy('date')->orderBy('start_at')->get() as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
-                        {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
+                        {{ $meeting->date }}<br>{{ \Carbon\Carbon::parse($meeting->start_at)->format('H:i') }}〜
                       </div>
                       <div class="category-item">
                         <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
@@ -74,7 +74,7 @@
                       </div>
                     </div>
                   @empty
-                      <p>Not reserved Chat Room</p>
+                      <p class="text-center">No reserved Chat Room</p>
                   @endforelse
                   {{-- @endif --}}
                    
@@ -114,7 +114,7 @@
                         @include('users.events.modals.join_event')
                       </div>
                       @empty
-                            <p>Not reserved Event</p>
+                            <p class="text-center">No reserved Event</p>
                       @endforelse
                   @endif
                   

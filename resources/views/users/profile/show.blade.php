@@ -1,13 +1,6 @@
 @if(isset($user))
     <div class="profile">
-        <h2 class="display-5">PROFILE</h2>
-        {{-- <div class="avatar mx-auto">
-            @if($user->avatar)
-              <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="avatar-md">
-            @else
-            <i class="fa-solid fa-user text-secondary avatar-md text-center"></i>
-            @endif
-        </div> --}}
+        <h2 class="display-7">PROFILE</h2>
 
         <div class="d-flex align-items-center justify-content-center">
             @if($user->avatar)

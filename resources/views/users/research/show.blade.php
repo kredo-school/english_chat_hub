@@ -10,6 +10,7 @@
       <div class="row">
           <div class="col-9">
             <div class="category">
+
                 <div class="pt-3 ps-4">
                   <a href="javascript:void(0);" onclick="goBack();" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
                 </div>
@@ -45,32 +46,13 @@
                         </div>
                       </div> 
                       @include('users.research.modals.reservation')
+                      
                     @empty                
-                      <p>No meeting</p>                 
+                      <p class="text-center">No meeting</p>                 
                     @endforelse
-
-                    {{ $all_meetings->links() }}
-                  
-                    {{-- Pagination --}}
-                    <nav aria-label="Page navigation">
-                      <ul class="pagination pagination-sm justify-content-end me-5 my-3">
-                        <li class="page-item">
-                          <a class="page-link text-warning" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                        </li>
-                        <li class="page-item"><a class="page-link text-muted" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link text-muted" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link text-muted" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link text-warning" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>  
+                    {{-- pagination --}}
+                    {{ $all_meetings->links('users.pagination') }}
+                    
             </div>
           </div>
 
