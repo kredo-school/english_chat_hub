@@ -66,6 +66,7 @@
         document.getElementById('logout-form').submit();
     }
   </script>
+  @yield('scripts')
 </body>
 
 </html>
