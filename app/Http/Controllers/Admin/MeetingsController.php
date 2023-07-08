@@ -14,11 +14,11 @@ class MeetingsController extends Controller
     public function index(Meeting $meeting)
     {
         // update Meetings Status
-        $meeting->updateStatus();
+        Meeting::updateStatus();
         $all_meetings = $meeting->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.meetings.index')
             ->with('all_meetings', $all_meetings)
-            ->with('statusColor', $meeting->statusColor());
+            ->with('statusColor', Meeting::statusColor());
     }
     public function edit($id)
     {

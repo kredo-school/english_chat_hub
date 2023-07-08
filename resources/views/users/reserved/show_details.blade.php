@@ -8,7 +8,7 @@
 @section('content')
   <div class="container">
       <div class="row">
-          <div class="col-8">
+          <div class="col-9">
             <div class="category">
                 <h2 class="display-5">My Schedule</h2>
                   <h3 class="fs-3 ms-5">Chat Room</h3>
@@ -18,27 +18,27 @@
                             $query->where('date', '=', today()->toDateString())
                                   ->where('start_at', '>=', now()->format('H:i'));
                         });
-                  })->orderBy('date')->orderBy('start_at')->get() as $meeting_a)
+                  })->orderBy('date')->orderBy('start_at')->get() as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
-                        {{ $meeting_a->date }}<br>{{ $meeting_a->start_at }}〜
+                        {{ $meeting->date }}<br>{{ $meeting->start_at }}〜
                       </div>
                       <div class="category-item">
                         <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
                       </div>
                       <div class="category-item">
-                        {{ $meeting_a->category->name }}
+                        {{ $meeting->category->name }}
                       </div>
                       <div class="category-item">
-                        {{ $meeting_a->title }}
+                        {{ $meeting->title }}
                       </div>
                       <div class="category-item">
-                        <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting_a->id]) }}" class="text-muted">
+                        <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting->id]) }}" class="text-muted">
                         <i class="fa-solid fa-users"></i>
                         </a>
                       </div>
                       <div class="category-item">
-                        @if(Carbon\Carbon::parse($meeting_a->date . '' . $meeting_a->start_at) <= now()->addMinutes(60))
+                        @if(Carbon\Carbon::parse($meeting->date . '' . $meeting->start_at) <= now()->addMinutes(60))
                           <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button>
                           @include('users.reserved.modals.join')
                         @endif
@@ -118,7 +118,7 @@
             </div>
           </div>
       
-          <div class="col-4">
+          <div class="col-3">
               @include('users.profile.show')
           </div>
       </div>

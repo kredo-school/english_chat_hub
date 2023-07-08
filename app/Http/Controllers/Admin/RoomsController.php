@@ -18,14 +18,14 @@ class RoomsController extends Controller
     public function show($id, Meeting $meeting)
     {
         // update Meetings Status
-        $meeting->updateStatus();
+        Meeting::updateStatus();
 
         $room = Room::withTrashed()->findOrFail($id);
         $meetings = $room->meetings()->withTrashed()->latest()->paginate(10);
         return view('admin.chatrooms.rooms.show')
             ->with('room', $room)
             ->with('meetings', $meetings)
-            ->with('statusColor', $meeting->statusColor());
+            ->with('statusColor', Meeting::statusColor());
     }
     public function delete(Room $room)
     {

@@ -58,7 +58,7 @@ class HomeController extends Controller
         ->with('timeTable', $timeTable);
     }
 
-    public function show(Meeting $meeting){
+    public function show(){
         $user = Auth::user();
         $participant = Participant::where('email', $user->email)->first();
         $all_meetings = Meeting::all();
@@ -66,8 +66,7 @@ class HomeController extends Controller
         return view('users.reserved.show_details')
         ->with('user', $user)
         ->with('participant', $participant)
-        ->with('all_meetings', $all_meetings)
-        ->with('meeting', $meeting);
+        ->with('all_meetings', $all_meetings);
     }
 
     public function showUser(Meeting $meeting){
@@ -85,7 +84,7 @@ class HomeController extends Controller
                     $query->where('date', '=', today()->toDateString())
                         ->where('start_at', '>=', now()->format('H:i'));
                 });
-        })->orderBy('date')->orderBy('start_at')->get();
+        })->orderBy('date')->orderBy('start_at')->paginate(10);
         
         $user = Auth::user();
        
