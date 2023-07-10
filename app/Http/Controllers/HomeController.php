@@ -95,7 +95,10 @@ class HomeController extends Controller
         })->orderBy('date')->orderBy('start_at')->paginate(10);
         
         $user = Auth::user();
+        $all_categories = Category::all();
+        $all_levels = Level::all();
+        $all_rooms = Room::all();
        
-        return view('users.research.show', compact('all_meetings', 'category', 'user'));
+        return view('users.research.show', compact('all_meetings', 'category', 'user', 'all_categories', 'all_levels', 'all_rooms'));
     }
 }

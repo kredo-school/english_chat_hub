@@ -19,15 +19,26 @@ class MeetingController extends Controller
             return redirect()->back();
         }
 
-        $request->validate([
-            'title'         => 'required|max:50',
-            'category_id'   => 'required',
-            'level_id'      => 'required',
-            'room_id'       => 'required',
-            'date'          => 'required|after_or_equal:today',
-            'start_at'      => 'required'
-        ]);
-
+        if($request->start_num){
+            $request->validate([
+                'title'         => 'required|max:50',
+                'category_id'   => 'required',
+                'level_id'      => 'required',
+                'room_id'       => 'required',
+                'date'          => 'required|after_or_equal:today',
+                'start_num'      => 'required'
+            ]);
+        } else{
+            $request->validate([
+                'title'         => 'required|max:50',
+                'category_id'   => 'required',
+                'level_id'      => 'required',
+                'room_id'       => 'required',
+                'date'          => 'required|after_or_equal:today',
+                'start_at'      => 'required'
+            ]);
+        }
+        
         $meeting = new Meeting;
         $meeting->title = $request->title;
         $meeting->user_id = Auth::user()->id;
@@ -35,7 +46,11 @@ class MeetingController extends Controller
         $meeting->room_id = $request->room_id;
         $meeting->level_id = $request->level_id;
         $meeting->date = $request->date;
-        $meeting->start_at = $request->start_at;
+        if($request->start_num){
+            $meeting->start_at = date('H:i:s', strtotime($request->start_num . ':00:00'));
+        } else{
+            $meeting->start_at = $request->start_at;
+        }
         $meeting->save();
         $meeting->joinMeetings()->attach(Auth::user()->id);
         return redirect()->back();

@@ -116,7 +116,6 @@ p span{
 #avatar-sm{
   height: 32px;
   width: 32px;
-  // object-fit: cover;
 }
 
 .profile-user{
@@ -149,7 +148,6 @@ p span{
 /* RESERVED CHAT ROOM */
 .reserved{
   background-color: var(--yellow);
-  /* height:500px; */
   border-radius: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

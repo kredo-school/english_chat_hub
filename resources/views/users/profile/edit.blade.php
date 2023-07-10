@@ -63,8 +63,11 @@
               @error('email')
                 <p class="text-danger small">{{ $message }}</p>
               @enderror
-
-              <button class="btn btn-orange mt-2" id="edit-btn">EDIT</button>
+              
+                <div class="buttons mt-5 mb-3 text-end">
+                    <button class="button btn-gray">Cancel</button>
+                    <button type="submit" class="button btn-orange">Edit</button>
+                </div>
 
             </form>
       </div>
