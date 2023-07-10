@@ -166,6 +166,10 @@ p span{
   color: var(--gray);
 }
 
+.reserved p{
+  color: var(--gray);
+}
+
 .reserved-room{
   display:flex;
   flex-wrap: wrap;

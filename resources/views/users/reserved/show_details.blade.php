@@ -19,30 +19,6 @@
                                   ->where('start_at', '>=', now()->format('H:i'));
                           });
                     })->orderBy('date')->orderBy('start_at')->get() as $meeting)
-                    {{-- <div class="category-myroom mx-auto mb-2">
-                      <div class="category-item">
-                        {{ $meeting->date }}<br>{{ \Carbon\Carbon::parse($meeting->start_at)->format('H:i') }}〜
-                      </div>
-                      <div class="category-item">
-                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
-                      </div>
-                      <div class="category-item">
-                        {{ $meeting->category->name }}
-                      </div>
-                      <div class="category-item">
-                        {{ $meeting->title }}
-                      </div>
-                      <div class="category-item">
-                        <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting->id]) }}" class="text-muted">
-                        <i class="fa-solid fa-users"></i>
-                        </a>
-                      </div>
-                      <div class="category-item">
-                        @if(Carbon\Carbon::parse($meeting->date . '' . $meeting->start_at) <= now()->addMinutes(60))
-                          <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal" data-bs-target="#join-{{ $meeting->id }}">JOIN</button>
-                          @include('users.reserved.modals.join')
-                        @endif
-                      </div> --}}
                     <div class="mx-auto mb-2 py-2 meeting-table">
                       <table class="table table-borderless row mb-0">
                         <tr>

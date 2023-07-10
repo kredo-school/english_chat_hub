@@ -10,7 +10,7 @@ class WelcomeController extends Controller
 {
     public function index(){  
         $all_reviews       = Contact::where('subtitle_id', 5)->latest()->paginate(15);
-        
+        $urls = [];
         foreach($all_reviews AS $review)
         {
             $image      = User::where('email', $review->email)->first()->level->icon;
