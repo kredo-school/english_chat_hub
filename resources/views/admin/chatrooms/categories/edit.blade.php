@@ -33,16 +33,15 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <div class="mx-auto form-control d-flex align-items-center justify-content-center rounded-0 mb-4" id="category-img"
-                                style="width: 6rem;height: 6rem;background-color: {{ $category->color }}">
-                                <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}"
-                                    style="width: 4rem;height: 4rem;">
+                            <div class="mx-auto form-control d-flex align-items-center justify-content-center rounded-0 mb-4"
+                                id="category-img" style="background-color: {{ $category->color }}">
+                                <img src="{{ asset('image/category/' . $category->icon) }}" alt="{{ $category->icon }}">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-4">
                                 <input type="color" name="color" id="color" class="form-control"
-                                    value="{{ old('color', $category->color) }}" style="height: 38px;width:100%;">
+                                    value="{{ old('color', $category->color) }}">
                                 {{-- Error --}}
                                 @error('color')
                                     <div class="text-danger small">{{ $message }}</div>
@@ -77,4 +76,16 @@
             </form>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('input[type="color"]').change(function() {
+                var color = $(this).val();
+                $('#category-img').css('background-color', color);
+            });
+        });
+    </script>
 @endsection
