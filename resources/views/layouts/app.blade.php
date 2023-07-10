@@ -75,6 +75,11 @@
                                 <a href="{{ url('/') }}#how-to-use" class="link-item">How to use</a>
                             </li>
                         @endguest
+                        @auth
+                            <li class="nav-item me-5">
+                                <a href="{{ route('users.top') }}" class="link-item">Home</a>
+                            </li>
+                        @endauth
                             <li class="nav-item me-5">
                                 <a href="{{ route('events.index') }}" class="link-item">Event</a>
                             </li>
