@@ -19,6 +19,26 @@
                         <a type="button" data-bs-toggle="modal" data-bs-target="#create-meeting" class="text-secondary" title="Create Meeting">
                             <i class="fa-solid fa-circle-plus fs-5"></i>
                             <span class="ms-2 fs-6">Create New Meeting</span>
+              
+                  @forelse($all_meetings as $meeting)
+                    <div class="category-myroom mx-auto mb-2">
+                      <div class="category-item">
+                        {{ $meeting->date }}<br>{{ \Carbon\Carbon::parse($meeting->start_at)->format('H:i') }}〜
+                      </div>
+                      <div class="category-item">
+                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 level-img-md" alt="{{ $meeting->level->name }}">                                      
+                      </div>
+                      <div class="category-item">
+                        {{ $meeting->title }}
+                      </div>
+                      <div class="category-item">
+                        <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting->id]) }}" class="text-muted">
+                          <i class="fa-solid fa-users"></i>
+                        </a>
+                      </div>
+                      <div class="category-item">
+                        <a class="text-muted" data-bs-toggle="modal" data-bs-target="#reservation-{{ $meeting->id }}">
+                          <i class="fa-solid fa-circle-plus fa-xl text-white"></i>
                         </a>
                     </div>
                     @include('users.research.modals.create_meeting')

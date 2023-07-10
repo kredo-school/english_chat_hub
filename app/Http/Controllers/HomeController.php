@@ -8,6 +8,7 @@ use App\Models\Level;
 use App\Models\Meeting;
 use App\Models\Category;
 use App\Models\Participant;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,6 +76,13 @@ class HomeController extends Controller
         return view('users.reserved.join_users')
         ->with('meeting', $meeting)
         ->with('all_users', $all_users);
+    }
+
+    public function showOtherEventJoinMember(Event $event){
+        $all_users = $event->joinEvents;
+        return view('users.reserved.join_event_users')
+        ->with('all_users', $all_users)
+        ->with('event', $event);
     }
 
     public function showMeeting(Category $category){

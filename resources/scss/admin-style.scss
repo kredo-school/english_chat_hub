@@ -111,7 +111,7 @@ header {
   display: inline;
 }
 
-.seacrh-text{
+.seacrh-text {
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -177,13 +177,13 @@ table thead {
 
 // Avatar for Image
 // List Style
-.avatar-sm{
+.avatar-sm {
   width: 100px;
   height: 100px;
 }
 
 // Modal Style
-.avatar{
+.avatar {
   width: 200px;
   height: 200px;
 }
@@ -267,6 +267,16 @@ table thead {
 
   label {
     font-family: 'M PLUS Rounded 1c', sans-serif;
+  }
+
+  #category-img {
+    width: 6rem;
+    height: 6rem;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 }
 

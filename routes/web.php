@@ -52,6 +52,7 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
     Route::get('/', [EventController::class, 'index'])->name('index');
+    Route::get('/map', [EventController::class, 'map'])->name('map');
     Route::get('/{event}/show', [EventController::class, 'show'])->name('show');
     Route::get('/{event_id}/join', [EventController::class, 'joinForm'])->name('joinForm');
     Route::post('/{event_id}/store', [EventController::class, 'storeGuest'])->name('storeGuest');
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [HomeController::class, 'index'])->name('top');
         Route::get('/reserved/show', [HomeController::class, 'show'])->name('reserved.show.details');
         Route::get('/reserved/show/{meeting}', [HomeController::class, 'showUser'])->name('reserved.show.users');
+        Route::get('/reserved/show/event/{event}/', [HomeController::class, 'showOtherEventJoinMember'])->name('reserved.showOtherEventJoinMember');
         Route::get('/research/show/{category}', [HomeController::class, 'showMeeting'])->name('research.show');
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

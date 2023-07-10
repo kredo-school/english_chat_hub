@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 
 class WelcomeController extends Controller
 {
     public function index(){  
-        $all_reviewers       = Contact::where('subtitle_id', 5)->latest()->paginate(3);
-        $users               = [];
-
-        foreach($all_reviewers AS $reviewer){
-            $users[]=User::where('email', $reviewer->email)->first();
+        $all_reviews       = Contact::where('subtitle_id', 5)->latest()->paginate(15);
+        
+        foreach($all_reviews AS $review)
+        {
+            $image      = User::where('email', $review->email)->first()->level->icon;
+            $url        = asset('image/level/'.$image);
+            $urls[]     = $url;
         }
-
+  
         return view('welcome')
-        ->with('all_reviewers', $all_reviewers)
-        ->with('users', $users);
+        ->with('all_reviews', $all_reviews)
+        ->with('urls', $urls);
     }
 }
