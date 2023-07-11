@@ -64,8 +64,8 @@ main{
     min-height: 400px;
   }
 
-  a{
-    color: var(--gray)!important;
+  #event-a{
+    color: var(--gray);
   }
 
   .event-card-footer {
@@ -78,9 +78,6 @@ main{
 //   end of event page
 
 // carousel
-.chevron{
-  filter: invert(0) sepia(135%) saturate(100000%) hue-rotate(-51deg) brightness(100%) contrast(100%);
-}
 .chevron-left{
   left: -50px!important;
   width: auto!important;

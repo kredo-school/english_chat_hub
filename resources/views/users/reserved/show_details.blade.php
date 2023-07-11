@@ -23,9 +23,11 @@
                                   ->where('start_at', '>=', now()->format('H:i'));
                           });
                     })->orderBy('date')->orderBy('start_at')->get() as $meeting)
+
                     
                   {{-- The following comments will be left temporarily --}}
                     {{-- <div class="mx-auto mb-2 py-2 meeting-table">
+
                       <table class="table table-borderless row mb-0">
                         <tr>
                           <span class="col-2 p-0">

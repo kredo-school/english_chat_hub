@@ -20,10 +20,17 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="form-group my-2">
+                        <div class="form-group my-2 col-6">
                             <label for="date" class="form-label  fs-5 mb-0">Date</label>
                             <input type="date" name="date" id="date" class="form-control">
                             @error('date')
+                                <p class="form-text text-danger mt-0">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group my-2 col-6">
+                            <label for="date" class="form-label  fs-5 mb-0">Time</label>
+                            <input type="time" name="time" id="time" class="form-control">
+                            @error('time')
                                 <p class="form-text text-danger mt-0">{{$message}}</p>
                             @enderror
                         </div>
