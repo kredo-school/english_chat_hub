@@ -116,6 +116,10 @@ a {
   align-items: center;
   color: white;
   margin: 1rem!important;
+  &:hover {
+    color: #FFA500;
+    text-decoration: none;
+  }
 }
 .sns-icon{
   color:inherit

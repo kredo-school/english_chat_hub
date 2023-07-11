@@ -62,7 +62,7 @@
                                                             <span class="fw-bold fs-1">{{ $event->participants_limit - $event->joinEvents->count() }}</span> people left
                                                         </p>
                                                         <p class="text-end">
-                                                            <a href="{{ route('events.show', $event->id) }}">>>more</a>
+                                                            <a href="{{ route('events.show', $event->id) }}" id="event-a">>>more</a>
                                                         </p>
                                                     </div>
                                                     <div class="event-card-footer">
