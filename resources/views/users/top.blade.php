@@ -26,7 +26,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title text-center" id="category-title">{{ $category->name }}</h5>
-                                <p class="card-text">{{ $category->description }}</p>
+                                <p class="card-text text-center">{{ $category->description }}</p>
                             </div>
                     </div>
                         @empty
