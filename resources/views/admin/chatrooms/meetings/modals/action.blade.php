@@ -52,3 +52,34 @@
         </div>
     </div>
 </div>
+
+<!-- ForceDelete -->
+<div class="modal fade" id="forceDelete-{{ $meeting->id }}">
+    <div class="modal-dialog border-danger">
+        <div class="modal-content border border-2 border-danger">
+            <div class="modal-body p-3 text-center">
+                <h1 class="modal-title my-5 text-danger">Force Delete meeting?</h1>
+                <div class="my-5">
+                    <p><i class="fa-solid fa-triangle-exclamation text-danger modal-exclamation"></i></p>
+                    <p class="my-5">
+                        Are you sure you want to force delete <br>
+                        <span class="text-danger fs-3 fw-bold"> "{{ $meeting->title }}"</span>?
+                    </p>
+                    <p class="text-danger">
+                        You never restore it again.
+                    </p>
+                </div>
+                <div class="modal-footer border-0">
+                    <form action="{{ route('admin.chatrooms.meetings.forceDelete', $meeting->id) }}" method="post"
+                        class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-outline-danger btn-sm"
+                            data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

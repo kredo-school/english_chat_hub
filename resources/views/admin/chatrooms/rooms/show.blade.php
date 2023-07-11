@@ -32,8 +32,8 @@
         </div>
 
         <!-- Table Head -->
-        <div class="w-100 mb-0 pb-0" style="border-bottom: 2px solid var(--dark);">
-            <div class="container mb-3 d-flex align-items-center">
+        <div class="w-100 mb-0 pb-0 chatroom-table-head">
+            <div class="container my-3 py-3 px-4 d-flex align-items-center border shadow-sm">
                 <span class="fs-1"><strong class="fs-2">"{{ $room->name }}"</strong> detail</span>
                 <span class="ms-3 fs-4">
                     @if ($room->deleted_at)
@@ -42,19 +42,39 @@
                         <i class="fa-solid fa-circle text-success"></i>
                     @endif
                 </span>
+                <div class="d-inline-block ms-auto">
+                    @if ($room->zoomAccount)
+                        <div class="dropdown">
+                            <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Authenticated
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a data-bs-toggle="modal" data-bs-target="#delete-zoomAcount-{{ $room->id }}" class="dropdown-item">Delete Zoom Account</a></li>
+                            </ul>
+                            @include('admin.chatrooms.rooms.modals.zoom')
+                        </div>
+                    @elseif (!$room->deleted_at)
+                        <a href="{{ route('zoomOauthLink', $room->id) }}" class="btn btn-info">
+                            <i class="fa-solid fa-plus"></i> Add Account
+                        </a>
+                    @endif
+                </div>
             </div>
-            <div class="d-flex container mb-3" style="gap: 1rem;font-size;">
-                <div class="py-2 col-3 text-white ps-2" style="background-color: var(--gray);">Account Name</div>
-                <div class="py-2 col ps-2" style="background-color: var(--li-gray);">zoom_a</div>
-            </div>
-            <div class="d-flex container mb-3" style="gap: 1rem;">
-                <div class="py-2 col-3 text-white ps-2" style="background-color: var(--gray);">Email</div>
-                <div class="py-2 col ps-2" style="background-color: var(--li-gray);">sample@sample.com</div>
-            </div>
-            <div class="d-flex container mb-3" style="gap: 1rem;">
-                <div class="py-2 col-3 text-white ps-2" style="background-color: var(--gray);">Password</div>
-                <div class="py-2 col ps-2" style="background-color: var(--li-gray);">465f464R#</div>
-            </div>
+            @if ($room->zoomAccount)
+                <div class="d-flex container mb-3 zoom-acount-info" style="gap: 1rem;">
+                    <div class="py-2 col-3 text-white ps-2" style="background-color: var(--gray);">Account Name</div>
+                    <div class="py-2 col ps-2" style="background-color: var(--li-gray);">{{ $room->zoomAccount->name }}
+                    </div>
+                </div>
+                <div class="d-flex container mb-3" style="gap: 1rem;">
+                    <div class="py-2 col-3 text-white ps-2" style="background-color: var(--gray);">Email</div>
+                    <div class="py-2 col ps-2" style="background-color: var(--li-gray);">{{ $room->zoomAccount->email }}
+                    </div>
+                </div>
+            @endif
+
+
             <div class="d-flex justify-content-between container">
                 <div class="py-1 d-inline px-2 h4">
                     {{ $room->meetings->count() }} {{ $room->meetings->count() === 1 ? 'Meeting' : 'Meetings' }}

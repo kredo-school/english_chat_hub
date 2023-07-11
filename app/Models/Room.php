@@ -15,4 +15,7 @@ class Room extends Model
     {
         return $this->hasMany(Meeting::class);
     }
+    public function zoomAccount() {
+        return $this->hasOne(Zoom_account::class);
+    }
 }

@@ -14,8 +14,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\WelcomeController; 
-
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ZoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::patch('/{id}/update', [MeetingsController::class, 'update'])->name('update');
                 Route::patch('/{id}/restore', [MeetingsController::class, 'restore'])->name('restore');
                 Route::delete('/{meeting}/delete', [MeetingsController::class, 'delete'])->name('delete');
+                Route::delete('/{id}/forcedelete', [MeetingsController::class, 'forceDelete'])->name('forceDelete');
             });
             #ROOM
             Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
@@ -120,6 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/{id}/show', [RoomsController::class, 'show'])->name('show');
                 Route::patch('/{id}/restore', [RoomsController::class, 'restore'])->name('restore');
                 Route::delete('/{room}/delete', [RoomsController::class, 'delete'])->name('delete');
+                Route::delete('/{room}/deleteZoomAccount', [RoomsController::class, 'deleteZoomAccount'])->name('deleteZoomAccount');
             });
             #CATEGORIES
             Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
@@ -139,4 +141,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/{message}', [ContactsController::class, 'updateStatus'])->name('update_status');
         });
     });
+
+    // ZOOM API
+    Route::get('/zoomOauthLink/{room}', [ZoomController::class, 'zoomOauthLink'])->name('zoomOauthLink');
+    Route::get('/zoomoauth/check/{room}/', [ZoomController::class, 'zoomOauth']);
 });

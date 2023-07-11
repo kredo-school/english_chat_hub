@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class MeetingController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, ZoomController $z)
+    // public function store(Request $request)
     {
         $user = Auth::user();
         if (!Auth::user()->meetingCheck($request->date, $request->start_at)) {
@@ -40,12 +41,12 @@ class MeetingController extends Controller
         }
         
         $meeting = new Meeting;
-        $meeting->title = $request->title;
-        $meeting->user_id = Auth::user()->id;
-        $meeting->category_id = $request->category_id;
-        $meeting->room_id = $request->room_id;
-        $meeting->level_id = $request->level_id;
-        $meeting->date = $request->date;
+        $meeting->title         = $request->title;
+        $meeting->user_id       = Auth::user()->id;
+        $meeting->category_id   = $request->category_id;
+        $meeting->room_id       = $request->room_id;
+        $meeting->level_id      = $request->level_id;
+        $meeting->date          = $request->date;
         if($request->start_num){
             $meeting->start_at = date('H:i:s', strtotime($request->start_num . ':00:00'));
         } else{
@@ -53,6 +54,12 @@ class MeetingController extends Controller
         }
         $meeting->save();
         $meeting->joinMeetings()->attach(Auth::user()->id);
+
+        // Create Zoom Meeting
+        if ($meeting->room->zoomAccount) {
+            $z->createZoomMeeting($meeting);
+        }
+
         return redirect()->back();
     }
 
@@ -84,8 +91,17 @@ class MeetingController extends Controller
         return redirect()->route('users.reserved.show.details');
     }
 
-    public function delete(Meeting $meeting){
-        $meeting->forceDelete();
+    // public function delete(Meeting $meeting){
+
+    public function delete(Meeting $meeting, ZoomController $z){
+        // Delete Zoom Meeting
+        if ($meeting->zoomMeeting) {
+            $z->deleteZoomMeeting($meeting);
+            $meeting->zoomMeeting()->delete();
+        }
+
+        $meeting->delete();
+        
         return redirect()->back();
     }
 
