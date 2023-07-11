@@ -53,7 +53,7 @@ class EventsController extends Controller
         $this->event->theme = $request->theme;
         $this->event->comment = $request->comment;
         $this->event->location = $request->location;
-        $this->event->date = $date.' '.$time.':00';
+        $this->event->date = $date.' '.$time;
         $this->event->image = $this->saveImage($request);
         $this->event->participants_limit = $request->limit;
 
