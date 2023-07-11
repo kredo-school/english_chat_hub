@@ -29,8 +29,7 @@
                 <div class="my-4 row">
                     <div class="col-6">
                         <label for="color" class="form-label">Color</label>
-                        <input type="color" name="color" id="color" class="form-control" value="{{ old('color') }}"
-                            style="height: 38px;width:100%;">
+                        <input type="color" name="color" id="color" class="form-control" value="{{ old('color') }}">
                         {{-- Error --}}
                         @error('color')
                             <div class="text-danger small">{{ $message }}</div>

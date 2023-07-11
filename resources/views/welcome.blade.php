@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="start-button">
-        <button class="button btn-orange">Getting Started</button>
+        <a href="{{ route('login') }}" class="button btn-orange">Getting Started</a>
     </div>
 </div> 
 @endsection
@@ -102,45 +102,7 @@
         </div>
 
         <!-- Testimonial -->
-        <div class="testimonial mb-5">
-            <div class="section-header">
-                <h3 class="mx-auto">Testimonial</h3>
-            </div>
-            @foreach ($all_reviewers as $reviewer)    
-            <div class="reviews swiper-container">
-                <div class="row justify-content-center mb-5 mt-2 swiper-wrapper">
-                    <div class="col-md-1 slider-item">
-                        @if($reviewer->avatar)
-                        <img src="{{ asset('storage/avatars/'.$users[$loop->index]->avatar) }}" alt="" class="avatar-md" >
-                        @else
-                        <i class="fa-solid fa-user avatar-icon"></i>
-                        @endif
-                    </div>
-                    <div class="col-md-3 slider-item" style="flex-direction: column;"> 
-                        <div class="profile-user mt-2">
-                            <div class="user-level">
-                                <img src="{{ asset('image/level/'.$users[$loop->index]->level->icon)}}" alt="" width="20px" height="25px" class="">
-                            </div>
-                            <h3 class="username fs-3">{{ $reviewer->name }}</h3>
-                        </div>
-                        <div class="rating-level mt-3">
-                            @for ($i = 0; $i < 5; $i++) 
-                                @if ($i < $reviewer->rating)
-                                <i class="starPicker fa-solid fa-star on"></i>                                          
-                                @else
-                                <i class="starPicker fa-solid fa-star off"></i>    
-                                @endif                                  
-                            @endfor
-                        </div> 
-                    </div>
-                    <div class="col-md-8 review slider-item">
-                        <p class="review-content">{{ $reviewer->content }}</p>
-                    </div>
-                </div>
-            </div>
-            <hr class="slider-item" style="height: 2px;background-color: white;border: 0;opacity: 1 !important;">
-            @endforeach
-        </div>
+        <div id="root" data-list="{{ json_encode($all_reviews) }}" data-url="{{ json_encode($urls) }}"></div>
 
         <!-- Last message -->
         <div class="last-message mb-5">
@@ -149,8 +111,11 @@
                 <br>Register or Login first!
                 </p>
                 <img src="image/welcome/go-hand.png" alt="go-hand" class="go-hand mb-2">
-                <button class="btn button btn-orange start">Getting Started</button>
+                <a href="{{ route('login') }}" class="btn button btn-orange start">Getting Started</a>
             </div>  
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ mix('js/index.js') }}"></script>
 @endsection

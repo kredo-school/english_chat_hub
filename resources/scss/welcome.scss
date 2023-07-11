@@ -89,7 +89,8 @@
 .start-button {
   position: absolute;
   bottom: 95px;
-  left: 40%;
+  left: 50%;
+  transform: translateX(-50%)
 }
 
 button.start {
@@ -254,6 +255,17 @@ img.star {
   align-items: flex-end;
 }
 
+.review {
+  height: 120px;
+  display: grid;
+  align-items: center;
+  -ms-overflow-style: none;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 p.review-content {
   color: #6F6F6F;
@@ -283,3 +295,34 @@ i.fa-star {
     font-size: 1.5rem !important;
   }
 }
+
+
+/* Add these styles to your CSS file or style section */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+a.page-link {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #FFD700;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.page-link:hover {
+  background-color: #FFD700;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+
+

@@ -8,6 +8,7 @@ use App\Models\Level;
 use App\Models\Meeting;
 use App\Models\Category;
 use App\Models\Participant;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,6 +78,13 @@ class HomeController extends Controller
         ->with('all_users', $all_users);
     }
 
+    public function showOtherEventJoinMember(Event $event){
+        $all_users = $event->joinEvents;
+        return view('users.reserved.join_event_users')
+        ->with('all_users', $all_users)
+        ->with('event', $event);
+    }
+
     public function showMeeting(Category $category){
         $all_meetings = $category->meetings()->where(function ($query) {
             $query->where('date', '>', today()->toDateString())
@@ -87,7 +95,10 @@ class HomeController extends Controller
         })->orderBy('date')->orderBy('start_at')->paginate(10);
         
         $user = Auth::user();
+        $all_categories = Category::all();
+        $all_levels = Level::all();
+        $all_rooms = Room::all();
        
-        return view('users.research.show', compact('all_meetings', 'category', 'user'));
+        return view('users.research.show', compact('all_meetings', 'category', 'user', 'all_categories', 'all_levels', 'all_rooms'));
     }
 }

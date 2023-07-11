@@ -10,14 +10,23 @@
       <div class="row">
           <div class="col-9">
             <div class="category">
-                <h2 class="display-5 mb-3">{{ $category->name }}</h2>
+
+                <div class="pt-3 ps-4">
+                  <a href="javascript:void(0);" onclick="goBack();" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
+                </div>
+                <h2 class="display-5 mb-3 pt-0">{{ $category->name }}</h2>
+                    <div class="ms-5 mb-2">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#create-meeting" class="text-secondary" title="Create Meeting">
+                            <i class="fa-solid fa-circle-plus fs-5"></i>
+                            <span class="ms-2 fs-6">Create New Meeting</span>
+              
                   @forelse($all_meetings as $meeting)
                     <div class="category-myroom mx-auto mb-2">
                       <div class="category-item">
                         {{ $meeting->date }}<br>{{ \Carbon\Carbon::parse($meeting->start_at)->format('H:i') }}〜
                       </div>
                       <div class="category-item">
-                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
+                        <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 level-img-md" alt="{{ $meeting->level->name }}">                                      
                       </div>
                       <div class="category-item">
                         {{ $meeting->title }}
@@ -31,15 +40,39 @@
                         <a class="text-muted" data-bs-toggle="modal" data-bs-target="#reservation-{{ $meeting->id }}">
                           <i class="fa-solid fa-circle-plus fa-xl text-white"></i>
                         </a>
-                      </div>
-                    </div> 
-                    @include('users.research.modals.reservation')
-                  @empty                
-                    <p class="text-center">No meeting</p>                 
-                  @endforelse
-                  {{-- pagination --}}
-                  {{ $all_meetings->links('users.pagination') }}
-                  
+                    </div>
+                    @include('users.research.modals.create_meeting')
+
+                    @forelse($all_meetings as $meeting)
+                      <div class="category-myroom mx-auto mb-2">
+                        <div class="category-item">
+                          {{ $meeting->date }}<br>{{ $meeting->start_at }}
+                        </div>
+                        <div class="category-item">
+                          <img src="{{ asset('image/level/' . $meeting->level->icon) }}" class="mb-2 icon-sm" alt="{{ $meeting->level->name }}">                                      
+                        </div>
+                        <div class="category-item">
+                          {{ $meeting->title }}
+                        </div>
+                        <div class="category-item">
+                          <a href="{{ route('users.reserved.show.users', ['meeting' => $meeting->id]) }}" class="text-muted">
+                            <i class="fa-solid fa-users"></i>
+                          </a>
+                        </div>
+                        <div class="category-item">
+                          <a class="text-muted" data-bs-toggle="modal" data-bs-target="#reservation-{{ $meeting->id }}">
+                            <i class="fa-solid fa-circle-plus fa-xl text-white"></i>
+                          </a>
+                        </div>
+                      </div> 
+                      @include('users.research.modals.reservation')
+                      
+                    @empty                
+                      <p class="text-center">No meeting</p>                 
+                    @endforelse
+                    {{-- pagination --}}
+                    {{ $all_meetings->links('users.pagination') }}
+                    
             </div>
           </div>
 
@@ -49,4 +82,12 @@
           </div>
       </div>
   </div>
+@endsection
+
+@section('script')
+    <script>
+        function goBack() {
+            history.back();
+        }
+    </script>
 @endsection

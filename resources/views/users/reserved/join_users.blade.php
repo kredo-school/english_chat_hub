@@ -7,11 +7,11 @@
 @section('content')
 <div class="container">
     <div class="form w-50 mx-auto p-5">
-    <a href="javascript:void(0);" onclick="goBack();"><i class="fa-solid fa-xmark fa-pull-right mt-3 me-4 text-secondary"></i></a>
+    <a href="javascript:void(0);" onclick="goBack();"><i class="fa-solid fa-xmark fa-pull-right mt-3 me-4 text-secondary fa-lg"></i></a>
       <h2 class="display-5">{{ $meeting->category->name }}</h2>
         <p class="h5 mb-3" id="category-title">{{ $meeting->category->description }}</p>
             <div class="line">
-                <p class="join-members mb-0 px-4"><b>{{ $meeting->joinMeetings->count() }}</b> Members</p>
+                <p class="join-members mb-0 px-4"><b>{{ $meeting->joinMeetings->count() }}{{$meeting->joinMeetings->count() == 1 ? 'member':'members'}}</b></p>
             </div>
             <hr class="m-0 text-secondary">
 
@@ -44,12 +44,14 @@
                                         @endif
                                     </div>
                                     {{-- show user's level icon --}}
-                                    <img src="{{ asset('image/level/' . $user->level->icon) }}" class="text-center avatar-level mx-auto" alt="{{ $user->level->name }}">                                      
-                                    <h3 class="mx-auto text-center" id="username">{{ $user->user_name }}</h3>
+                                    <div class="text-center">
+                                        <img src="{{ asset('image/level/' . $user->level->icon) }}" class="avatar-level mx-auto" alt="{{ $user->level->name }}">
+                                        <span class="h3 mx-auto" id="username">{{ $user->user_name }}</span>                                      
+                                    </div>
                                     @if($user->comment)
-                                        <p class="fs-5 mt-1 mb-0">{{ $user->comment }}</p>
+                                        <p class="fs-5 mt-1 mb-0 text-center">{{ $user->comment }}</p>
                                     @else
-                                        <p class="fs-6 mt-1 mb-0">---No comment---</p>
+                                        <p class="fs-6 mt-1 mb-0 text-center">---No comment---</p>
                                     @endif
                                     {{--using empty() --}}
                                     {{-- <p class="fs-5 mt-1 mb-0">{{ empty($user->comment) ? '---No comment---' : $user->comment }}</p> --}}

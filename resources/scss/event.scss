@@ -58,16 +58,16 @@ main{
     width: 25px;
   }
 
-  .event-card-body {
+  .event-card-body{
     color: var(--gray) !important;
     font: 2em var(--raleway);
     min-height: 400px;
   }
 
-  .show-more{
-    color: var(--gray) !important;
+  a{
+    color: var(--gray)!important;
   }
-  
+
   .event-card-footer {
     width: 100%;
     background-color: rgba(255, 215, 0, 0.5);
