@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use DateTime;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
 
@@ -42,13 +43,17 @@ class EventsController extends Controller
             'comment' => 'required|max:255',
             'location' => 'required|max:255',
             'date' => 'required',
+            'time' => 'required',
             'limit' =>'numeric|max:20'
         ]);
+
+        $date = $request->input('date');
+        $time = $request->input('time');
 
         $this->event->theme = $request->theme;
         $this->event->comment = $request->comment;
         $this->event->location = $request->location;
-        $this->event->date = $request->date;
+        $this->event->date = $date.' '.$time.':00';
         $this->event->image = $this->saveImage($request);
         $this->event->participants_limit = $request->limit;
 
@@ -80,8 +85,16 @@ class EventsController extends Controller
     public function edit(Event $event)
     {
         $eventLevels = $event->levels->pluck('id')->toArray();
+        $dateAndTime = $event->date;
+        $datetime = new DateTime($dateAndTime);
+        $date = $datetime->format('Y-m-d');
+        $time = $datetime->format('H:i:s');
+        $data = [
+            'date' => $date,
+            'time' => $time
+        ];
 
-        return view('admin.events.edit')
+        return view('admin.events.edit', $data)
             ->with('event',$event)
             ->with('eventLevels',$eventLevels);
 
@@ -94,15 +107,19 @@ class EventsController extends Controller
             'comment' => 'required|max:255',
             'location' => 'required|max:255',
             'date' => 'required',
+            'time' => 'required',
             'limit' =>'numeric|max:20'
         ]);
 
         $event = $this->event->findOrFail($id);
 
+        $date = $request->input('date');
+        $time = $request->input('time');
+
         $event->theme = $request->theme;
         $event->comment = $request->comment;
         $event->location = $request->location;
-        $event->date = $request->date;
+        $event->date = $date.' '.$time.':00';
         $event->participants_limit = $request->limit;
 
         if($request->image){
