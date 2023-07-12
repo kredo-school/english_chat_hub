@@ -15,4 +15,17 @@ class Room extends Model
     {
         return $this->hasMany(Meeting::class);
     }
+    public function zoomAccount() {
+        return $this->hasOne(Zoom_account::class);
+    }
+
+    public function zoomOauthLink()
+    {
+        $zoomOuthLink = 'https://zoom.us/oauth/authorize?' . http_build_query([
+            'response_type' => 'code',
+            'redirect_uri'  => env('APP_URL') . '/zoomoauth/check/' . $this->id . '/',
+            'client_id'     => env('ZOOM_CLIENT_ID'),
+        ]);
+        return $zoomOuthLink;
+    }
 }

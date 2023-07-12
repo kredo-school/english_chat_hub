@@ -40,7 +40,7 @@
         </div>
         <table class="table text-center align-middle">
             <tbody>
-                @for ($i = 0, $time = now()->hour; $time < 24; $i++, $time++)
+                @for ($i = 0, $time = now()->hour; $time < 24 && $i < 14; $i++, $time++)
                     <tr>
                         <th>{{ $timeTable[$i][0] . '~' . $timeTable[$i][1] }}</th>
                         @foreach ($all_rooms as $room)
