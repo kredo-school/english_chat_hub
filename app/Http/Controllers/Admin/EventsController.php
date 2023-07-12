@@ -119,7 +119,7 @@ class EventsController extends Controller
         $event->theme = $request->theme;
         $event->comment = $request->comment;
         $event->location = $request->location;
-        $event->date = $date.' '.$time.':00';
+        $event->date = $date.' '.$time;
         $event->participants_limit = $request->limit;
 
         if($request->image){
