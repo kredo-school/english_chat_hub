@@ -45,7 +45,7 @@ class RoomsController extends Controller
 
     public function deleteZoomAccount($id, ZoomController $z) {
         $room = Room::withTrashed()->findOrFail($id);
-        if ($zoomAccount = $room->zoomAccount) {
+        if ($room->zoomAccount) {
             foreach ($room->meetings as $meeting) {
                 if ($meeting->zoomMeeting) {
                     $z->deleteZoomMeeting($meeting);
@@ -53,7 +53,7 @@ class RoomsController extends Controller
                 }
             }
             $room->meetings()->delete();
-            $zoomAccount->delete();
+            $room->zoomAccount()->forceDelete();
             $room->delete();
         }
         return redirect()->route('admin.chatrooms.rooms.index');

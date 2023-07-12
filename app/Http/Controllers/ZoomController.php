@@ -120,6 +120,7 @@ class ZoomController extends Controller
         $url                = 'https://api.zoom.us/v2/users/' . $zoom_user->id . '/meetings';
         $startAt            = date('Y-m-d\TH:m:s', strtotime($meeting->date . $meeting->start_at));
         $meeting_password   = substr(base_convert(bin2hex(openssl_random_pseudo_bytes(9)), 16, 36), 0, 9);
+        $topic              = 'user_' . $meeting->user->id .'-'. $meeting->user->user_name . '_' . $meeting->id;
 
         // Request
         $client = new Client([
@@ -130,7 +131,7 @@ class ZoomController extends Controller
         ]);
         $res = $client->request('POST', $url, [
             RequestOptions::JSON => [
-                'topic'         => $meeting->user->user_name .'_ID:'. $meeting->id,
+                'topic'         => $topic,
                 'type'          => 2,
                 'timezone'      => 'Asia/Tokyo',
                 'start_time'    => $startAt,
