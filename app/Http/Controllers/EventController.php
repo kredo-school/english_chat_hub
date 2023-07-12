@@ -12,10 +12,14 @@ class EventController extends Controller
 {
     public function index()
     {
-        $all_events = Event::all();
+        $filtered_events = Event::all()->filter(function ($event) {
+                $eventDate = strtotime($event->date);
+                $todayDate = strtotime(date('Y-m-d'));
+                return $eventDate >= $todayDate && $event->joinEvents->count() < $event->participants_limit;
+            })->sortBy('date')->chunk(3);
 
         return view('users.events.index')
-            ->with('all_events', $all_events);
+            ->with('filtered_events', $filtered_events);
     }
 
     public function show(Event $event)

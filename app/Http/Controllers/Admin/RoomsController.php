@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ZoomController;
 
 class RoomsController extends Controller
 {
@@ -29,6 +30,9 @@ class RoomsController extends Controller
     }
     public function delete(Room $room)
     {
+        foreach ($room->meetings as $meeting) {
+            $meeting->zoomMeeting()->delete();
+        }
         $room->meetings()->delete();
         $room->delete();
         return redirect()->route('admin.chatrooms.rooms.index');
@@ -36,6 +40,22 @@ class RoomsController extends Controller
     public function restore($id)
     {
         Room::withTrashed()->findOrFail($id)->restore();
+        return redirect()->route('admin.chatrooms.rooms.index');
+    }
+
+    public function deleteZoomAccount($id, ZoomController $z) {
+        $room = Room::withTrashed()->findOrFail($id);
+        if ($room->zoomAccount) {
+            foreach ($room->meetings as $meeting) {
+                if ($meeting->zoomMeeting) {
+                    $z->deleteZoomMeeting($meeting);
+                    $meeting->zoomMeeting()->delete();
+                }
+            }
+            $room->meetings()->delete();
+            $room->zoomAccount()->forceDelete();
+            $room->delete();
+        }
         return redirect()->route('admin.chatrooms.rooms.index');
     }
 }

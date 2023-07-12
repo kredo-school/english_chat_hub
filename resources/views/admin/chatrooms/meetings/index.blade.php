@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="content">
-        
+
         <!-- Chatroom Bar -->
         @include('admin.chatrooms.components.bar')
 
@@ -74,12 +74,13 @@
                                 <td>{{ $meeting->room()->withTrashed()->first()->name }}</td>
                                 <td>{{ $meeting->category()->withTrashed()->first()->name }}</td>
                                 <td>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#detail-{{ $meeting->id }}"
+                                    <button type="button" data-bs-toggle="modal"
+                                        data-bs-target="#detail-{{ $meeting->id }}"
                                         class="btn btn-sm btn-outline-info">Detail</button>
                                 </td>
                                 <td>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#member-{{ $meeting->id }}"
-                                        class="btn btn-sm">
+                                    <button type="button" data-bs-toggle="modal"
+                                        data-bs-target="#member-{{ $meeting->id }}" class="btn btn-sm">
                                         <i class="fa-solid fa-users"></i> {{ $meeting->joinMeetings->count() }}
                                     </button>
                                 </td>
@@ -101,11 +102,19 @@
                                                 href="{{ route('admin.chatrooms.meetings.edit', $meeting->id) }}">Edit</a>
                                         </li>
                                         <li>
-                                            @if (!$meeting->room()->withTrashed()->first()->deleted_at && !$meeting->category()->withTrashed()->first()->deleted_at && $meeting->deleted_at)
+                                            @if (
+                                                !$meeting->room()->withTrashed()->first()->deleted_at &&
+                                                    !$meeting->category()->withTrashed()->first()->deleted_at &&
+                                                    $meeting->deleted_at)
                                                 <button type="button" data-bs-toggle="modal"
                                                     data-bs-target="#restore-{{ $meeting->id }}"
                                                     class="dropdown-item text-success">
                                                     Activate
+                                                </button>
+                                                <button type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#forceDelete-{{ $meeting->id }}"
+                                                    class="dropdown-item text-danger">
+                                                    Force Delete
                                                 </button>
                                             @endif
                                             @if (!$meeting->deleted_at)
@@ -131,10 +140,10 @@
         <hr>
         <div class="row">
             <div class="col-12">
-                <span> showing {{ $all_meetings->firstItem() }} to {{ $all_meetings->lastItem() }} of {{ $all_meetings->total() }} meetings</span>
+                <span> showing {{ $all_meetings->firstItem() }} to {{ $all_meetings->lastItem() }} of
+                    {{ $all_meetings->total() }} meetings</span>
                 <span class="float-end">{{ $all_meetings->links() }}</span>
             </div>
         </div>
-
     </div>
-    @endsection
+@endsection
