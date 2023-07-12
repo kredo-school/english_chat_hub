@@ -23,23 +23,23 @@
                 You might feel shy at the beginning, <br>
                 but others are feeling the same! Click an event and check the details below. <br>
             </p>
-            @php($chunked_events = $all_events->chunk(3))
-            @if ($chunked_events->isNotEmpty())
+            @if ($filtered_events->isNotEmpty())
                 <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        @foreach ($chunked_events as $index => $events)
+                        @foreach ($filtered_events as $index => $events)
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
                                 {{ $index === 0 ? 'class=active' : '' }}></button>
                         @endforeach
                     </div>
                     <div class="carousel-inner">
-                        @foreach ($chunked_events as $index => $events)
+                        @foreach ($filtered_events as $index => $events)
                             <div class="carousel-item{{ $index === 0 ? ' active' : '' }}" data-bs-interval="5000">
                                 <div class="row mt-5 mb-5">
                                     @foreach ($events as $event)
                                         @php($eventDate = strtotime($event->date))
                                         @php($todayDate = strtotime(date('Y-m-d')))
                                         @if ($eventDate >= $todayDate && $event->joinEvents->count() < $event->participants_limit)
+                                        @php($carbonDateTime = \Carbon\Carbon::parse($event->date))
                                             <div class="col-lg-4 col-md-6 gx-0 p-0 mx-auto event-info mb-5">
                                                 <div class="card event-card mb-2">
                                                     <img src="{{ asset('storage/images/' . $event->image) }}"
@@ -51,7 +51,11 @@
                                                         </p>
                                                         <p>
                                                             <i class="fa-solid fa-calendar-days"></i>
-                                                            <span class="ms-1">{{ $event->date }}</span>
+                                                            <span class="ms-1">{{ $carbonDateTime->toDateString() }}</span>
+                                                        </p>
+                                                        <p>
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <span class="ms-1">{{ $carbonDateTime->format('H:i') }}</span>
                                                         </p>
                                                         <p>
                                                             <i class="fa-solid fa-location-dot"></i>
