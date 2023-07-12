@@ -141,8 +141,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/{message}', [ContactsController::class, 'updateStatus'])->name('update_status');
         });
     });
-
     // ZOOM API
-    Route::get('/zoomOauthLink/{room}', [ZoomController::class, 'zoomOauthLink'])->name('zoomOauthLink');
     Route::get('/zoomoauth/check/{room}/', [ZoomController::class, 'zoomOauth']);
 });

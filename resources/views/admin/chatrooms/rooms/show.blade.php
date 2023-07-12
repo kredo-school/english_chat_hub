@@ -55,7 +55,7 @@
                             @include('admin.chatrooms.rooms.modals.zoom')
                         </div>
                     @elseif (!$room->deleted_at && !$room->zoomAccount)
-                        <a href="{{ route('zoomOauthLink', $room->id) }}" class="btn btn-info">
+                        <a href="{{ $room->zoomOauthLink() }}" class="btn btn-info">
                             <i class="fa-solid fa-plus"></i> Add Account
                         </a>
                     @endif

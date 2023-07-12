@@ -15,16 +15,6 @@ use SebastianBergmann\Type\MixedType;
 
 class ZoomController extends Controller
 {
-    public function zoomOauthLink(Room $room)
-    {
-        $zoomOuthLink = 'https://zoom.us/oauth/authorize?' . http_build_query([
-            'response_type' => 'code',
-            'redirect_uri'  => env('APP_URL') . '/zoomoauth/check/' . $room->id . '/',
-            'client_id'     => env('ZOOM_CLIENT_ID'),
-        ]);
-        return redirect()->away($zoomOuthLink);
-    }
-
     public function zoomOauth(Request $request, Room $room)
     {
         if ($room->zoomAccount == null) {
