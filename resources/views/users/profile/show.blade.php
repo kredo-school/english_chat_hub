@@ -12,7 +12,7 @@
 
         <div class="profile-user mt-2">
           <div class="avatar-level">
-            <img src="{{ asset('image/level/' . $user->level->icon) }}" class="icon-md mx-auto" alt="{{ $user->level->name }}">
+            <img src="{{ asset('image/level/' . $user->level->icon) }}" class="icon-sm mx-auto" alt="{{ $user->level->name }}">
           </div>
           <h3 class="username fs-3">{{ $user->user_name }}</h3>
         </div>
