@@ -8,10 +8,6 @@ use GuzzleHttp\Client;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redirect;
-use SebastianBergmann\Type\MixedType;
 
 class ZoomController extends Controller
 {
@@ -108,7 +104,7 @@ class ZoomController extends Controller
         // for Request
         $zoom_user          = $this->me($room->zoomAccount->access_token);
         $url                = 'https://api.zoom.us/v2/users/' . $zoom_user->id . '/meetings';
-        $startAt            = date('Y-m-d\TH:m:s', strtotime($meeting->date . $meeting->start_at));
+        $startAt            = date('Y-m-d\TH:i:s', strtotime($meeting->date . $meeting->start_at));
         $meeting_password   = substr(base_convert(bin2hex(openssl_random_pseudo_bytes(9)), 16, 36), 0, 9);
         $topic              = 'user_' . $meeting->user->id .'-'. $meeting->user->user_name . '_' . $meeting->id;
 
@@ -130,7 +126,8 @@ class ZoomController extends Controller
         ]);
 
         $result = json_decode($res->getBody()->getContents());
-
+        // dd($result);
+        
         // Store into zoom_meetings table
         $meeting->zoomMeeting()->create([
             'zoom_meeting_id' => $result->id,
