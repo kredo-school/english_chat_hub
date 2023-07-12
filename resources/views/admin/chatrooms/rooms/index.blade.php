@@ -55,7 +55,7 @@
                                 @if ($room->zoomAccount)
                                     {{ $room->zoomAccount->name }}
                                 @else
-                                    Sample Account {{ $loop->index }}
+                                    No account yet.
                                 @endif
                             </td>
                             <td>{{ $room->Meetings()->withTrashed()->count() }}</td>
