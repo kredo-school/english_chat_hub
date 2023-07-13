@@ -89,7 +89,11 @@
         <p class="tip-body">Click on the full you want to join and you'll get a join page!</p>
     </div>
     <div class="tip mx-auto mt-1 mb-3">
-        <h3 class="tip-title">Join Chat Room</h3>
-        <p class="tip-body">Click on the full you want to join and you'll get a join page!</p>
+        <h3 class="tip-title">Create Chat Room</h3>
+        <p class="tip-body">Click on the null time where you want to create and you'll get a create form!</p>
+    </div>
+    <div class="col-8 mx-auto">
+        <p class="">* You can join only one meeting at the same time.</p>
+        <p class="">* If you want to cancel meeting, you can do it in your schedule page.</p>
     </div>
 </div>
