@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/research/show/{category}', [HomeController::class, 'showMeeting'])->name('research.show');
         Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::delete('/profile/delete/{id}', [ProfileController::class, 'destroyProfile'])->name('profile.destroy');
         Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('/research/store', [MeetingController::class, 'store'])->name('meeting.store');
         Route::get('/research/edit/{meeting}', [MeetingController::class, 'edit'])->name('meeting.edit');

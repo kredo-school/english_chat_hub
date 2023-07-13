@@ -42,6 +42,10 @@ a {
     text-decoration: none;
     color: #6F6F6F;
   }
+
+  &.logout{
+    color: #6F6F6F;
+  }
 }
 
 body {
@@ -120,7 +124,13 @@ a {
     color: #FFA500;
     text-decoration: none;
   }
+  &:visited :active {
+    color: #FFA500;
+    text-decoration: none;
+
+  }
 }
+
 .sns-icon{
-  color:inherit
+  color:inherit;
 }

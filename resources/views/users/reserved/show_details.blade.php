@@ -123,7 +123,7 @@
                     @include('users.events.modals.join_event')
                   </div>
                   @empty
-                        <p class="text-center">Not reserved Event</p>
+                    <p class="text-center">Not reserved Event</p>
                   @endforelse
               @endif
             </div>
