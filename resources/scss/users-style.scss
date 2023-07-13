@@ -133,12 +133,6 @@ p span{
   align-items: center;
 }
 
-.icon-md{
-  color: var(orange);
-  height: 30px;
-  width: 30px;
-}
-
 .username{
   display:inline-flex;
   vertical-align: middle;
@@ -177,6 +171,7 @@ p span{
   align-items: center;
   border-radius: 5px;
   color: var(--gray);
+  font-family: 'Raleway', sans-serif;
 }
 
 .reserved-item{
@@ -194,12 +189,37 @@ p span{
     border-radius: 5px;
     color: var(--gray);
     margin: 0px;
-    justify-content: space-around;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
   }
 
   .category-item{
     width: auto;
     text-align: center;
+  }
+
+  .meeting_date{
+    width: 95px;
+  }
+
+  .meeting_name{
+    width: 120px;
+  }
+
+  .meeting_title{
+    width: 500px;
+  }
+
+  .mymeeting_title{
+    width: 300px;
+  }
+  
+  .meeting_users{
+    width: 55px;
+  }
+
+  .meeting_button{
+    width: 60px;
   }
 
   // pagination
@@ -236,17 +256,19 @@ p span{
   padding: 0px;
 }
 
-.meeting-table{
-  display:flex;
-  flex-wrap: wrap;
-  background-color: var(--yellow);
-  width: 90%;
-  align-items: center;
-  border-radius: 5px;
-  color: var(--gray);
-  margin: 0px;
-  justify-content: space-around;
-}
+// The following comments will be left temporarily
+// .meeting-table{
+//   display:flex;
+//   flex-wrap: wrap;
+//   background-color: var(--yellow);
+//   width: 90%;
+//   align-items: center;
+//   border-radius: 5px;
+//   color: var(--gray);
+//   margin: 0px;
+//   justify-content: space-around;
+//   text-align: center;
+// }
 
 table{
   color: var(--gray)!important;
@@ -318,12 +340,6 @@ table{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.level-img-md{
-  width: 40px;
-  height: 46px;
-  margin: 0px 10px;
 }
 
 .line{

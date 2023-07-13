@@ -8,13 +8,14 @@ use App\Models\Subtitle;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUsMail;
 
 
 class ContactController extends Controller
 {
     private $contact;
     private $subtitle;
-
     private $user;
 
     public function __construct(Contact $contact, Subtitle $subtitle, User $user){
@@ -52,6 +53,9 @@ class ContactController extends Controller
         $this->contact->title       = $request->title;
         $this->contact->subtitle_id = $request->subtitle_id;
         $this->contact->save();
+
+        $contactMail = new ContactUsMail($this->contact);
+        Mail::to($this->contact->email)->send($contactMail);
 
         $request->session()->flash('success', true);
 

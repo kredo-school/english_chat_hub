@@ -42,6 +42,9 @@ class Meeting extends Model
     {
         return $this->belongsToMany(User::class, 'join_meeting');
     }
+    public function zoomMeeting() {
+        return $this->hasOne(Zoom_meeting::class);
+    }
 
     // Update Status_id
     static function updateStatus()

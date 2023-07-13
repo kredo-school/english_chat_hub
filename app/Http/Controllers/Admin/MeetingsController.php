@@ -8,6 +8,7 @@ use App\Models\Meeting;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ZoomController;
 
 class MeetingsController extends Controller
 {
@@ -15,7 +16,7 @@ class MeetingsController extends Controller
     {
         // update Meetings Status
         Meeting::updateStatus();
-        $all_meetings = $meeting->withTrashed()->latest()->paginate(10);
+        $all_meetings = $meeting->withTrashed()->paginate(10);
         return view('admin.chatrooms.meetings.index')
             ->with('all_meetings', $all_meetings)
             ->with('statusColor', Meeting::statusColor());
@@ -32,7 +33,7 @@ class MeetingsController extends Controller
             ->with('all_rooms', $all_rooms)
             ->with('all_levels', $all_levels);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, ZoomController $z)
     {
         $request->validate([
             'title'         => 'required|min:5|max:20',
@@ -51,6 +52,11 @@ class MeetingsController extends Controller
         $meeting->start_at      = date('H:i:s', strtotime($request->start_at . ':00:00'));
         $meeting->status_id     = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
+
+        if ($meeting->zoomMeeting) {
+            $z->editZoomMeeting($meeting);
+        }
+
         return redirect()->route('admin.chatrooms.meetings.index');
     }
     public function delete(Meeting $meeting)
@@ -64,6 +70,17 @@ class MeetingsController extends Controller
         $meeting->status_id = Meeting::STATUS['stand_by']['id'];
         $meeting->save();
         $meeting->restore();
+        return redirect()->route('admin.chatrooms.meetings.index');
+    }
+
+    public function forceDelete($id, ZoomController $z) {
+        $meeting = Meeting::withTrashed()->findOrFail($id);
+
+        if ($meeting->zoomMeeting) {
+            $z->deleteZoomMeeting($meeting);
+        }
+
+        $meeting->forceDelete();
         return redirect()->route('admin.chatrooms.meetings.index');
     }
 }

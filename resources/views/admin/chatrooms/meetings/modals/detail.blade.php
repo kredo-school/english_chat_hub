@@ -38,11 +38,35 @@
                         <div class="col-4 fw-bold">Start At</div>
                         <div class="col">{{ date('G:i', strtotime($meeting->start_at)) }}~</div>
                     </div>
+                    @if ($meeting->zoomMeeting)
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-4 fw-bold">Meeting ID</div>
+                            <div class="col">{{ $meeting->zoomMeeting->zoom_meeting_id }}</div>
+                        </div>
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-4 fw-bold">Start URL</div>
+                            <div class="col">
+                                <a href="{{ $meeting->zoomMeeting->zoom_start_url }}" target="_blank">Start URL</a>
+                            </div>
+                        </div>
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-4 fw-bold">Join URL</div>
+                            <div class="col">
+                                <a href="{{ $meeting->zoomMeeting->zoom_join_url }}" target="_blank">
+                                    Join URL
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-4 fw-bold">Password</div>
+                            <div class="col">{{ $meeting->zoomMeeting->zoom_password }}</div>
+                        </div>
+                    @endif
                 </div>
             </div>
 
             <button type="button" data-bs-dismiss="modal" class="btn-close position-absolute top-0 end-0"></button>
-            
+
         </div>
     </div>
 </div>

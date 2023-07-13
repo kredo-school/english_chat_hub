@@ -51,7 +51,13 @@
                                     {{ $room->name }}
                                 </a>
                             </td>
-                            <td>zoom_account_sample</td>
+                            <td>
+                                @if ($room->zoomAccount)
+                                    {{ $room->zoomAccount->name }}
+                                @else
+                                    No account yet.
+                                @endif
+                            </td>
                             <td>{{ $room->Meetings()->withTrashed()->count() }}</td>
                             <td>
                                 @if ($room->deleted_at)

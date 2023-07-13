@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Level;
 use App\Models\Meeting;
 use App\Models\Category;
 use App\Models\Participant;
-use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +43,11 @@ class HomeController extends Controller
         $all_rooms = Room::all();
         $all_levels = Level::all();
         $timeTable = [];
-        $now = now();
+        if (now()->hour < 10) {
+            $now = Carbon::parse('10:00:00');
+        } else {
+            $now = now();
+        }
         for ($i = 0; $i < 15; $i++) {
             $timeTable[$i] = [
                 date('G:00', strtotime($now->copy()->addHours($i))), date('G:00', strtotime($now->copy()->addHours($i + 1)))
