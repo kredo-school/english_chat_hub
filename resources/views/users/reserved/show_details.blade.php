@@ -181,7 +181,7 @@
                     @include('users.events.modals.join_event')
                   </div>
                   @empty
-                        <p class="text-center">No reserved Event</p>
+                    <p class="text-center">No reserved Event</p>
                   @endforelse
               @endif
             </div>

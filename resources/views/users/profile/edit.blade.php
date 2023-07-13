@@ -63,13 +63,25 @@
               @error('email')
                 <p class="text-danger small">{{ $message }}</p>
               @enderror
-              
-                <div class="buttons mt-5 mb-3 text-end">
-                    <button class="button btn-gray">Cancel</button>
-                    <button type="submit" class="button btn-orange">Edit</button>
-                </div>
 
+              <div class="mt-3">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#delete-profile-{{ $user->id }}">Delete my account</a>
+              </div>
+
+              <div class="buttons">
+                <button class="button btn-gray text-end">Cancel</button>
+                <button type="submit" class="button btn-orange text-end">Edit</button>
+              </div>
             </form>
+            @include('users.profile.modal.delete')
       </div>
   </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#delete-profile-result').modal('show');
+        });
+    </script>
 @endsection
