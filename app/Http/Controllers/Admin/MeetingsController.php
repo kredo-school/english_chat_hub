@@ -16,7 +16,7 @@ class MeetingsController extends Controller
     {
         // update Meetings Status
         Meeting::updateStatus();
-        $all_meetings = $meeting->withTrashed()->latest()->paginate(10);
+        $all_meetings = $meeting->withTrashed()->paginate(10);
         return view('admin.chatrooms.meetings.index')
             ->with('all_meetings', $all_meetings)
             ->with('statusColor', Meeting::statusColor());

@@ -16,7 +16,12 @@
             @if ($meeting->meetingOpen())
                 <div class="buttons mt-5 mb-3 text-center">
                     <button class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
-                    <button type="" class="button btn-orange">Join</button>
+                    @if ($meeting->zoomMeeting)
+                        <a href="{{ $meeting->zoomMeeting->zoom_join_url }}" class="button btn-orange"
+                            target="_blank">Join</a>
+                    @else
+                        <button type="" class="button btn-orange">Join</button>
+                    @endif
                 </div>
             @endif
 
