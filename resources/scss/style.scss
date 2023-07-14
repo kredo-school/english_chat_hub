@@ -42,6 +42,10 @@ a {
     text-decoration: none;
     color: #6F6F6F;
   }
+
+  &.logout{
+    color: #6F6F6F;
+  }
 }
 
 body {
@@ -75,7 +79,7 @@ footer {
   }
 }
 
-.footer-brand {
+a.footer-brand {
   font-size: 24px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   text-decoration: none;
@@ -116,11 +120,12 @@ a {
   align-items: center;
   color: white;
   margin: 1rem!important;
-  &:hover {
+  i:hover {
     color: #FFA500;
     text-decoration: none;
   }
 }
+
 .sns-icon{
-  color:inherit
+  color:inherit;
 }

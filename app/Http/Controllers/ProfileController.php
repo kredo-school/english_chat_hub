@@ -13,6 +13,7 @@ class ProfileController extends Controller
 {
     const LOCAL_STORAGE_FOLDER = 'public/avatars/';
     private $user;
+    private $level;
 
     public function __construct(User $user, Level $level){
         $this->user = $user;
@@ -80,7 +81,10 @@ class ProfileController extends Controller
         return $file_name;
     }
 
-
-
+    public function destroyProfile(Request $request){
+        Auth::user()->delete();
+        $request->session()->flash('success', true);
+        return redirect()->route('/');
+    }
 
 }

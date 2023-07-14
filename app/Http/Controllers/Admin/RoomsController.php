@@ -12,7 +12,7 @@ class RoomsController extends Controller
 {
     public function index()
     {
-        $all_rooms = Room::withTrashed()->latest()->paginate(10);
+        $all_rooms = Room::withTrashed()->paginate(10);
         return view('admin.chatrooms.rooms.index')
             ->with('all_rooms', $all_rooms);
     }

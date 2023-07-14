@@ -115,7 +115,33 @@
             </div>  
         </div>
     </div>
+
+{{-- Success Modal --}}
+@if (session('success'))
+<div class="modal fade success-modal" id="delete-profile-result" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="delete-profile-result-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-box">
+                    <div class="modal-text">
+                        <h3 class="h5 success-title mb-3">Thank you for using the App untill today<i class="fa-regular fa-face-smile-wink"></i></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
+
 @section('script')
     <script src="{{ mix('js/index.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#delete-profile-result').modal('show');
+        });
+    </script>
+
 @endsection
