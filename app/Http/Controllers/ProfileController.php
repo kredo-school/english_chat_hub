@@ -92,10 +92,8 @@ class ProfileController extends Controller
         }  
         Auth::user()->participant()->forceDelete();
         $reviews = Contact::where('subtitle_id', 5)->where('email', Auth::user()->email)->get();
-        if($reviews){
-            foreach($reviews as $review){
-                $review->delete();
-            }
+        foreach($reviews as $review){
+            $review->delete();
         }
         Auth::user()->self_delete = true;
         Auth::user()->save();
