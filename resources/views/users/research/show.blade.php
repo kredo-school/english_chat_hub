@@ -12,7 +12,7 @@
             <div class="category">
 
                 <div class="pt-3 ps-4">
-                  <a href="javascript:void(0);" onclick="goBack();" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
+                  <a href="{{ route('users.top') }}" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
                 </div>
                 <h2 class="display-5 mb-3 pt-0">{{ $category->name }}</h2>
                 {{-- create meeting button --}}
@@ -20,7 +20,8 @@
                       <a type="button" data-bs-toggle="modal" data-bs-target="#create-meeting" class="text-secondary" title="Create Meeting">
                           <i class="fa-solid fa-circle-plus fs-5"></i>
                           <span class="ms-2 fs-6">Create New Meeting</span></a>
-                  </div>        
+                  </div>  
+                  @include('users.research.modals.create_meeting')        
     
                   @forelse($all_meetings as $meeting)
                   <div class="category-room mx-auto mb-2">
@@ -44,7 +45,6 @@
                         </a>
                       </span>
                         @include('users.research.modals.reservation')
-                        @include('users.research.modals.create_meeting')
                   </div>
                                      
                   @empty                
