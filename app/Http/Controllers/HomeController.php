@@ -35,7 +35,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(){
+    public function index()
+    {
         $all_categories = $this->category->all();
         $all_meetings = $this->meeting->all();
         $user = Auth::user();
@@ -55,42 +56,46 @@ class HomeController extends Controller
         }
 
         return view('users.top')
-        ->with('user', $user)
-        ->with('all_categories', $all_categories)
-        ->with('all_meetings', $all_meetings)
-        ->with('all_rooms', $all_rooms)
-        ->with('all_levels', $all_levels)
-        ->with('date', now()->format('Y-m-d'))
-        ->with('timeTable', $timeTable);
+            ->with('user', $user)
+            ->with('all_categories', $all_categories)
+            ->with('all_meetings', $all_meetings)
+            ->with('all_rooms', $all_rooms)
+            ->with('all_levels', $all_levels)
+            ->with('date', now()->format('Y-m-d'))
+            ->with('timeTable', $timeTable);
     }
 
-    public function show(){
+    public function show()
+    {
         $user = Auth::user();
         $participant = Participant::where('email', $user->email)->first();
         $all_meetings = Meeting::all();
 
         return view('users.reserved.show_details')
-        ->with('user', $user)
-        ->with('participant', $participant)
-        ->with('all_meetings', $all_meetings);
+            ->with('user', $user)
+            ->with('participant', $participant)
+            ->with('all_meetings', $all_meetings);
     }
 
-    public function showUser(Meeting $meeting){
+    public function showUser(Meeting $meeting)
+    {
         $all_users = $meeting->joinMeetings;
 
         return view('users.reserved.join_users')
-        ->with('meeting', $meeting)
-        ->with('all_users', $all_users);
+            ->with('meeting', $meeting)
+            ->with('all_users', $all_users);
     }
 
-    public function showOtherEventJoinMember(Event $event){
+    public function showOtherEventJoinMember(Event $event)
+    {
         $all_users = $event->joinEvents;
         return view('users.reserved.join_event_users')
-        ->with('all_users', $all_users)
-        ->with('event', $event);
+            ->with('all_users', $all_users)
+            ->with('event', $event);
     }
 
-    public function showMeeting(Category $category){
+    public function showMeeting(Category $category)
+    {
         $all_meetings = $category->meetings()->where(function ($query) {
             $query->where('date', '>', today()->toDateString())
                 ->orWhere(function ($query) {
@@ -98,12 +103,55 @@ class HomeController extends Controller
                         ->where('start_at', '>=', now()->format('H:i'));
                 });
         })->orderBy('date')->orderBy('start_at')->paginate(10);
-        
+
         $user = Auth::user();
         $all_categories = Category::all();
         $all_levels = Level::all();
         $all_rooms = Room::all();
-       
-        return view('users.research.show', compact('all_meetings', 'category', 'user', 'all_categories', 'all_levels', 'all_rooms'));
+
+        $today = now();
+        for ($i = 0; $i < 7; $i++) {
+            $dateList[] = $today->copy()->addDays($i)->format('Y-m-d');
+        }
+        foreach ($dateList as $date) {
+            for ($i = 10; $i < 24; $i++) {
+                if ($date == $today->format('Y-m-d')) {
+                    $i = ($i < intval($today->format('H')) ? intval($today->format('H')) : $i);
+                }
+                $timeList[$date][] = [$i . ':00', $i + 1 . ':00'];
+            }
+        }
+        $rangedMeetings = Meeting::where('date', '>=', $today->format('Y-m-d'))->where('date', '<=', $today->copy()->addDays(7)->format('Y-m-d'))->get();
+        foreach ($rangedMeetings as $m) {
+            $filledRooms[$m->date][date('H:i', strtotime($m->start_at))][] = $m->room_id;
+        }
+        foreach ($dateList as $d) {
+            foreach ($timeList[$d] as $t) {
+                foreach ($all_rooms as $r) {
+                    if (
+                        array_key_exists($d, $filledRooms,)
+                        && array_key_exists($t[0], $filledRooms[$d],)
+                        && in_array($r->id, $filledRooms[$d][$t[0]])
+                    ) {
+                        continue;
+                    } else {
+                        $availableRooms[$d][$t[0]][] = $r->id;
+                    }
+                }
+            }
+        }
+
+        return view(
+            'users.research.show',
+            compact(
+                'all_meetings',
+                'all_categories',
+                'all_levels',
+                'all_rooms',
+                'user',
+                'category',
+                'availableRooms',
+            )
+        );
     }
 }
