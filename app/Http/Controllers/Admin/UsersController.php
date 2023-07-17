@@ -24,7 +24,15 @@ class UsersController extends Controller
 
     public function activate($id)
     {
-        User::onlyTrashed()->findOrFail($id)->restore();
+        $user = User::onlyTrashed()->findOrFail($id);
+
+        if ($user->self_delete == 1) {
+            $user->self_delete = 0;
+            $user->save();
+        }
+
+        $user->restore();
+
         return redirect()->back();
     }
 }
