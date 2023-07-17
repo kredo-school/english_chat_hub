@@ -122,11 +122,14 @@
 }
 
 .calendar-btn {
-    background: 0;
+    font-weight: bold;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
     border: 0;
-
+    box-shadow: 0px 2px 2px 0px var(--dark);
     &:hover {
-        color: var(--input);
+        box-shadow: none;
     }
 }
 

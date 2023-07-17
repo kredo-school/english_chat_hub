@@ -66,3 +66,10 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+        const availableRooms = {!! json_encode($availableRooms) !!};
+    </script>
+    <script src="{{ mix('js/create_meeting.js') }}"></script>
+@endsection
