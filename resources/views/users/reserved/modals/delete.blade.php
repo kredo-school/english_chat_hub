@@ -9,10 +9,10 @@
               <div class="modal-body">
                 <p class="h6 text-muted text-center">Delete the meeting on <span class="text-danger fs-6 fw-bold">{{$meeting->title}}</span> ?</p>
                     <div class="buttons d-flex justify-content-center mt-4">
+                        <button class="button btn-gray me-1" data-bs-dismiss="modal">Cancel</button>
                         <form action="{{ route('users.meeting.delete', $meeting->id ) }}" method="post">
                         @csrf
-                        @method('DELETE')
-                          <button class="button btn-gray me-1" data-bs-dismiss="modal">Cancel</button>
+                        @method('DELETE')                        
                           <button type="submit" class="button btn-orange ms-1">Delete</button>
                         </form>
                     </div> 
