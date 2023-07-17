@@ -1,4 +1,4 @@
-@if($user->trashed())
+@if($user->trashed() || $user->self_delete == 1)
 
 {{-- Activate --}}
 <div class="modal fade" id="activate-user-{{ $user->id }}">
