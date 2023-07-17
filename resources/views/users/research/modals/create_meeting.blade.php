@@ -18,32 +18,38 @@
 
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
-                            <select name="category_id" id="category" class="form-select">
+                            <select name="category_id" id="category" class="form-select" required>
                                 @foreach ($all_categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label for="date" class="form-label">Date</label>
-                                <input type="date" name="date" id="date" class="form-control" required>
+                                <select name="date" id="date" class="form-select" required>
+                                    <option value="" disabled selected>Select Date</option>
+                                    @foreach ($availableRooms as $date => $value)
+                                        <option value="{{ $date }}">{{ $date }}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
 
                             <div class="col-6">
                                 <label for="start_at" class="form-label">Start At</label>
-                                <div class="input-group">
-                                    <input type="text" name="start_num" id="start_at" class="form-control" required><span class="input-group-text"> : 00</span>
-                                </div>
+                                <select name="start_at" id="start_at" class="form-select" disabled required>
+                                    <option value="" disabled selected>Select Time</option>
+                                </select>
                             </div>
                         </div>
 
-                        
+
                         <div class="row mb-5">
                             <div class="col-6">
                                 <label for="level" class="form-label">Level</label>
-                                <select name="level_id" id="level" class="form-select">
+                                <select name="level_id" id="level" class="form-select" required>
                                     @foreach ($all_levels as $level)
                                         <option value="{{ $level->id }}">{{ $level->name }}</option>
                                     @endforeach
@@ -51,15 +57,13 @@
                             </div>
                             <div class="col-6">
                                 <label for="room" class="form-label">Room</label>
-                                <select name="room_id" id="level" class="form-select">
-                                    @foreach ($all_rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
-                                    @endforeach
+                                <select name="room_id" id="room" class="form-select" disabled required>
+                                    <option value="" disabled selected>Select Room</option>
                                 </select>
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                 </div>

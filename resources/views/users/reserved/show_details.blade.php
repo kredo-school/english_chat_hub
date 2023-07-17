@@ -142,7 +142,7 @@
                    
                   <h3 class="fs-3 ms-5 mt-4">Event</h3>
                   @if(empty($participant))
-                    <p>No participant</p>
+                    <p class="text-center">No participant</p>
                   @else
                   @forelse($participant->joinEvents as $event)
                   <div class="mx-auto mb-2 py-2 event-table">

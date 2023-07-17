@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Level;
+use App\Models\Contact;
+use App\Models\Meeting;
+use App\Models\Profile;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
-use App\Models\Profile;
-use App\Models\Level;
 
 class ProfileController extends Controller
 {
@@ -82,6 +85,18 @@ class ProfileController extends Controller
     }
 
     public function destroyProfile(Request $request){
+        Auth::user()->meetings()->forceDelete();
+        Auth::user()->joinMeetings()->detach();
+        if(Auth::user()->avatar){
+            $this->deleteAvatar(Auth::user()->avatar);
+        }  
+        Auth::user()->participant()->forceDelete();
+        $reviews = Contact::where('subtitle_id', 5)->where('email', Auth::user()->email)->get();
+        foreach($reviews as $review){
+            $review->delete();
+        }
+        Auth::user()->self_delete = true;
+        Auth::user()->save();
         Auth::user()->delete();
         $request->session()->flash('success', true);
         return redirect()->route('/');
