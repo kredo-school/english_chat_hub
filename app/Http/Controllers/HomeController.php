@@ -122,6 +122,7 @@ class HomeController extends Controller
             }
         }
         $rangedMeetings = Meeting::where('date', '>=', $today->format('Y-m-d'))->where('date', '<=', $today->copy()->addDays(7)->format('Y-m-d'))->get();
+        $filledRooms = [];
         foreach ($rangedMeetings as $m) {
             $filledRooms[$m->date][date('H:i', strtotime($m->start_at))][] = $m->room_id;
         }
