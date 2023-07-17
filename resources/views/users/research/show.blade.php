@@ -12,8 +12,7 @@
                 <div class="category">
 
                     <div class="pt-3 ps-4">
-                        <a href="javascript:void(0);" onclick="goBack();" class="text-secondary"><i
-                                class="fa-solid fa-angles-left fa-lg"></i> back</a>
+                      <a href="{{ route('users.top') }}" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
                     </div>
                     <h2 class="display-5 mb-3 pt-0">{{ $category->name }}</h2>
                     {{-- create meeting button --}}
@@ -57,7 +56,6 @@
                     @endforelse
                     {{-- pagination --}}
                     {{ $all_meetings->links('users.pagination') }}
-
                 </div>
             </div>
 
@@ -67,16 +65,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        function goBack() {
-            history.back();
-        }
-    </script>
-    <script>
-        const availableRooms = {!! json_encode($availableRooms) !!};
-    </script>
-    <script src="{{ mix('js/create_meeting.js') }}"></script>
 @endsection

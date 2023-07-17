@@ -2,6 +2,7 @@
     <h2 class="display-5">TIME TABLE</h2>
 
     <div class="meeting-table mx-auto">
+        <a href="" class="question fs-5"><i class="fa-solid fa-circle-question fa-lg mb-4"></i> How to use</a>
         <div class="timetable-date fs-5">
             <a href="{{ route('users.meetings.result',date('Y-m-d',strtotime(now()->copy()->subDay()))) }}"
                 class="">
@@ -86,7 +87,7 @@
     </div>
     <div class="tip mx-auto mt-3">
         <h3 class="tip-title">Join Chat Room</h3>
-        <p class="tip-body">Click on the full you want to join and you'll get a join page!</p>
+        <p class="tip-body">Click on the "category" you want to join and you'll get a join page!</p>
     </div>
     <div class="tip mx-auto mt-1 mb-3">
         <h3 class="tip-title">Create Chat Room</h3>
