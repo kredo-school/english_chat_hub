@@ -193,35 +193,6 @@ p span{
     font-family: 'Raleway', sans-serif;
   }
 
-  .category-item{
-    width: auto;
-    text-align: center;
-  }
-
-  .meeting_date{
-    width: 95px;
-  }
-
-  .meeting_name{
-    width: 120px;
-  }
-
-  .meeting_title{
-    width: 500px;
-  }
-
-  .mymeeting_title{
-    width: 300px;
-  }
-  
-  .meeting_users{
-    width: 55px;
-  }
-
-  .meeting_button{
-    width: 60px;
-  }
-
   // pagination
   .page-item{
     width: 30px;
@@ -246,6 +217,25 @@ p span{
   }
 
 /* myschdule */
+table{
+  color: var(--gray)!important;
+  border:0px none!important;
+  font-family: 'Raleway', sans-serif;
+}
+
+.meeting-table{
+  display:flex;
+  flex-wrap: wrap;
+  background-color: var(--yellow);
+  width: 90%;
+  align-items: center;
+  border-radius: 5px;
+  color: var(--gray);
+  margin: 0px;
+  justify-content: space-around;
+  text-align: center;
+}
+
 #btn-join{
   width: 60px;
   height: 30px;
@@ -254,26 +244,6 @@ p span{
   font-size: 16px;
   text-decoration: none;
   padding: 0px;
-}
-
-// The following comments will be left temporarily
-// .meeting-table{
-//   display:flex;
-//   flex-wrap: wrap;
-//   background-color: var(--yellow);
-//   width: 90%;
-//   align-items: center;
-//   border-radius: 5px;
-//   color: var(--gray);
-//   margin: 0px;
-//   justify-content: space-around;
-//   text-align: center;
-// }
-
-table{
-  color: var(--gray)!important;
-  border:0px none!important;
-  font-family: 'Raleway', sans-serif;
 }
 
 .event-table{
@@ -290,12 +260,10 @@ table{
 
 #a{
   color: var(--gray);
-
 }
 
 .event-dropdown a{
   color: var(--gray);
-
 }
 
 .icon-sm {

@@ -32,6 +32,8 @@ main{
     background-color: #fff;
     align-items: center;
     justify-content: center;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .card-img-top{
@@ -125,6 +127,8 @@ main{
     font-family: var(--raleway);
     color: var(--gray);
     display: inline-block;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
 
   // event_join_form

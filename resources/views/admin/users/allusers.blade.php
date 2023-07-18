@@ -62,14 +62,18 @@
                                 <td>{{$user->updated_at}}</td>
                                 <td>
                                 <div class="dropdown">
-                                    @if ($user->trashed())
+                                    @if ($user->trashed() && $user->self_delete == 0)
                                         <button class="btn" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
                                             <i class="fa-solid fa-circle text-danger"></i>
                                         </button>
-                                    @else
-                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
-                                            <i class="fa-solid fa-circle text-success"></i>
+                                    @elseif($user->trashed() && $user->self_delete == 1)
+                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#activate-user-{{ $user->id }}">
+                                            <i class="fa-solid fa-circle text-secondary"></i>
                                         </button>
+                                    @else
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#deactivate-user-{{ $user->id }}">
+                                        <i class="fa-solid fa-circle text-success"></i>
+                                    </button>
                                     @endif
                                 </div>
                                 </td>
