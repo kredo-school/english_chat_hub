@@ -28,6 +28,7 @@ const mix = require('laravel-mix');
     .sass('resources/scss/privacy_terms.scss', 'public/css')
     .sass('resources/scss/admin-style.scss', 'public/css')
     .sass('resources/scss/meeting_calendar.scss', 'public/css')
+    .sass('resources/scss/follow.scss', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
 
 

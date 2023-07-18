@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800&family=Raleway:wght@400;600;700;800&display=swap');
+
+:root {
+  /* ---COLORS--- */
+
+  --li-yellow:#FAEBD7;
+  --yellow:#FFD700;
+  --li-orange:#FFA500;
+  --orange:#FF7917;
+  --li-gray:#DCDCDC;
+  --gray:#6F6F6F;
+  --dark:#494949;
+  --active:#0d6efd;
+  --input:#73B0E8;
+
+  /* 
+      color: var(--bs-primary); <=> primary color
+  */
+
+  /* ---FONTS--- */
+
+  --roundM:'M PLUS Rounded 1c', sans-serif;
+  --raleway:'Raleway', sans-serif;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-user{
+    display: inline-flex;
+    display: flex;
+}
+
+.user-detail{
+    display: flex;
+}
+
+.avatar-level{
+    margin-left: 3rem;
+}
+
+.icon-lg {
+    font-size: 7rem;
+}
+
+
+.avatar-md{
+    width: 120px;
+    height: 120px;
+    border-radius: 50px;
+    color: var(--dark);
+}
+
+h3.username{
+    display:inline-flex;
+    vertical-align: middle;
+    margin-bottom: 0px;
+    font-family: var(--roundM);
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: var(--dark);
+}
+
+.avatar-level{
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    background-color: white;
+    display:inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+ }
+
+.edit-button{
+    display: inline-flex;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.count-users{
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+a.following{
+    margin-right: 1rem;
+}
+
+.comment{
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+
+.didFollow{
+    font-family: var(--roundM);
+    color: var(--dark);
+    font-size: 2rem;
+}
+
+.follow{
+    font-family: var(--roundM);
+    color: var(--dark);
+    font-size: 2rem;
+}
+
+a.follower{
+    font-family: var(--roundM);
+    color: var(--dark);
+    text-decoration: none;
+}
+
+a.follower:hover{
+    font-family: var(--roundM);
+    color: var(--orange);
+    text-decoration: none;
+}
+
+a.following{
+    font-family: var(--roundM);
+    color: var(--dark);
+    text-decoration: none;
+}
+
+a.following:hover{
+    font-family: var(--roundM);
+    color: var(--orange);
+    text-decoration: none;
+}
+
+p.comment{
+    font-family: var(--roundM);
+    color: var(--dark);
+}
+
+  
+.main {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.wrapper{
+    width: 600px;
+    background-color: #ffffff;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.title{
+    margin-top: 2rem;
+}
+
+.users{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+.icon-sm {
+    font-size: 30px;
+    margin-top: 7px;
+    height: 30px;
+    width: 30px;
+}
+
+a.username{
+    font-size: 30px;
+}
+
+button.btn-sm-unfollow{
+    font-size: 27px;
+    text-decoration: none;
+    color: var(--gray);
+}
+
+button.btn-sm-unfollow:hover{
+    color: var(--orange);
+}
+
+button.btn-sm-follow{
+    font-size: 27px;
+    text-decoration: none;
+    color: var(--orange);
+}
+
+button.btn-sm-follow:hover{
+    color: var(--gray);
+}
