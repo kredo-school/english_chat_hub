@@ -38,6 +38,8 @@
   .modal-text {
     width: 60%;
     text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
 
   h3.success-title {
