@@ -1,44 +1,18 @@
-<div class="timetable mx-auto" id="time-table">
+<div class="timetable mx-auto position-relative" id="time-table">
     <h2 class="display-5">TIME TABLE</h2>
 
     <div class="meeting-table mx-auto">
         <a href="" class="question fs-5"><i class="fa-solid fa-circle-question fa-lg mb-4"></i> How to use</a>
         <div class="timetable-date fs-5">
-            <a href="{{ route('users.meetings.result',date('Y-m-d',strtotime(now()->copy()->subDay()))) }}"
-                class="">
-                <i class="fa-solid fa-chevron-left"></i>
-            </a>
             <button class="calendar-btn fs-5 ms-0 mb-2" data-bs-toggle='modal' data-bs-target='#calendar-modal'
                 type="button">
-                {{ date('Y-m-d', strtotime(now())) }}
+                <i class="fa-solid fa-calendar text-dark"></i> {{ date('Y-m-d', strtotime(now())) }}
             </button>
-            <a href="{{ route('users.meetings.result',date('Y-m-d',strtotime(now()->copy()->addDay()))) }}"
-                class="">
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
         </div>
-        <!-- Calendar modal -->
-        <div class="modal fade" id="calendar-modal">
-            <div class="modal-dialog">
-                <div class="modal-content position-relative">
-                    <div class="modal-body">
-                        <div class="wrapper">
 
-                            <!-- mounth -->
-                            <div id="next-prev-button">
-                                <button id="prev" onclick="prev()">‹</button>
-                                <h1 id="header"></h1>
-                                <button id="next" onclick="next()">›</button>
-                            </div>
-                            <!-- Calendar -->
-                            <div id="calendar"></div>
-                        </div>
-                    </div>
-                    <button type="button" class="bg-white btn-close position-absolute top-0 end-0"
-                        data-bs-dismiss="modal"></button>
-                </div>
-            </div>
-        </div>
+        <!-- Calendar modal -->
+        @include('users.meetings.modals.calendar')
+
         <table class="table text-center align-middle">
             <tbody>
                 @for ($i = 0, $time = now()->hour; $time < 24 && $i < 14; $i++, $time++)
@@ -78,7 +52,7 @@
                                     </td>
                                 @endif
                             @endif
-                            @include('users.meetings.modals.calendar')
+                            @include('users.meetings.modals.calendar-action')
                         @endforeach
                     </tr>
                 @endfor

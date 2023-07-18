@@ -15,6 +15,7 @@ const monthName = [
 ];
 const today = new Date();
 var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
+const topUrl = '/users#time-table';
 
 window.onload = function () {
     showProcess(today, calendar);
@@ -62,11 +63,11 @@ function createProcess(year, month) {
             } else {
                 count++;
                 var dateValue = `${year}-${month + 1}-${count}`;
-                var url = `users/meetings/search/${dateValue}/result`;
+                var url = `/users/meetings/search/${dateValue}/result`;
                 if (year == today.getFullYear()
                     && month == (today.getMonth())
                     && count == today.getDate()) {
-                    calendar += `<td class='today'><a href='${url}'>${count}</a></td>`;
+                    calendar += `<td class='today'><a href='${topUrl}'>${count}</a></td>`;
                 } else {
                     if (year < today.getFullYear()) {
                         calendar += `<td>${count}</td>`;
