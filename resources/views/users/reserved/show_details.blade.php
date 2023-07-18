@@ -6,24 +6,24 @@
 @endsection
 
 @section('content')
-
     <div class="container">
         <div class="row">
             <div class="col-9">
                 <div class="category">
                     <div class="pt-3 ps-4">
-                        <a href="{{ route('users.top') }}" class="text-secondary"><i class="fa-solid fa-angles-left fa-lg"></i> back</a>
+                        <a href="{{ route('users.top') }}" class="text-secondary"><i
+                                class="fa-solid fa-angles-left fa-lg"></i> back</a>
                     </div>
 
                     <h2 class="display-5 pt-0">My Schedule</h2>
                     <h3 class="fs-3 ms-5">Chat Room</h3>
                     @forelse($user->joinMeetings()->where(function ($query) {
-                                        $query->where('date', '>', today()->toDateString())
-                                              ->orWhere(function ($query) {
-                                                $query->where('date', '=', today()->toDateString())
-                                                      ->where('start_at', '>=', now()->format('H:i'));
-                                              });
-                                        })->orderBy('date')->orderBy('start_at')->get() as $meeting)
+                                            $query->where('date', '>', today()->toDateString())
+                                                  ->orWhere(function ($query) {
+                                                    $query->where('date', '=', today()->toDateString())
+                                                          ->where('start_at', '>=', now()->format('H:i'));
+                                                  });
+                                            })->orderBy('date')->orderBy('start_at')->get() as $meeting)
                         {{-- Meeting Table --}}
                         <div class="mx-auto mb-2 py-2 meeting-table">
                             <table class="table table-borderless row mb-0 align-middle">
