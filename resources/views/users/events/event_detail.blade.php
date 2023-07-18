@@ -23,10 +23,15 @@
                         <br>
                         (This event last about 90min or more)
                     </p>
+                    @php($carbonDateTime = \Carbon\Carbon::parse($event->date))
                     <div class="event-info ms-5 ">
                         <p class="text-start">
                             <i class="fa-solid fa-calendar-days"></i>
-                            <span>Begins: <label>&nbsp;<span><strong>{{ $event->date }}</strong></span></label></span>
+                            <span>Begins: <label>&nbsp;<span><strong>{{ $carbonDateTime->toDateString() }}</strong></span></label></span>
+                        </p>
+                        <p class="text-start">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Begins: <label>&nbsp;<span><strong>{{ $carbonDateTime->format('H:i') }}</strong></span></label></span>
                         </p>
                         <p class="text-start">
                             <i class="fa-solid fa-location-dot"></i>

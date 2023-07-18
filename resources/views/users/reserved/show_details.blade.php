@@ -39,7 +39,7 @@
                                         {{ $meeting->category->name }}
                                     </td>
                                     <td class="col-5">
-                                        {{ mb_substr($meeting->title, 0, 15) }}{{ mb_strlen($meeting->title) > 15 ? '...' : '' }}
+                                        {{ mb_substr($meeting->title, 0, 40) }}{{ mb_strlen($meeting->title) > 40 ? '...' : '' }}
                                     </td>
                                     <td class="col-1 text-center">
                                         @if ($meeting->joinMeetings->count() >= 2)
