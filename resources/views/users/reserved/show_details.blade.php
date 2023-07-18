@@ -122,7 +122,7 @@
                                             </a>
                                             <div class="dropdown-menu event-dropdown text-start">
                                                 <a class="dropdown-item text-start text-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-event-{{ $event->id }}">
+                                                    data-bs-target="#cancel_event-{{ $event->id }}">
                                                     <i class="fa-solid fa-circle-xmark"></i> Not Joining
                                                 </a>
                                                 <a class="dropdown-item text-start"

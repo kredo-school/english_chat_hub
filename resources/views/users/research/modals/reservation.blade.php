@@ -24,10 +24,7 @@
                             <p class="text-center text-danger">This meeting has reached its maximum number of users.</p>
                         @endif
                     @else
-                        <form action="{{ route('users.meeting.cancel', $meeting->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="button btn-gray">Cancel Meeting</button>
-                        </form>
+                        <p class="text-center text-danger">You already reserved this meeting.</p>
                     @endif
                 </div>
             </div>

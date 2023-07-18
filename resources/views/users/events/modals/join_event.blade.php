@@ -36,7 +36,7 @@
                 <form action="{{route('events.destroyAuthParticipant', $event->id)}}" method="post" class="mt-0">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="button btn-gray">Cancel Event</button>  
+                    <button type="submit" class="button btn-gray">Cancel Event</button>
                 </form>
             </div>
         </div>
