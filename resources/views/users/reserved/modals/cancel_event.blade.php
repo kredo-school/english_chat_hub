@@ -1,4 +1,4 @@
-<div class="modal fade" id="cancel_event-{{ $event->id }}">
+<div class="modal fade" id="cancel-event-{{ $event->id }}">
     <div class="modal-dialog">
         <div class="modal-content border border-2 border-danger">
 
@@ -8,7 +8,7 @@
                     <p><i class="fa-solid fa-triangle-exclamation" style="color:red; font-size:8rem;"></i></p>
                     <p class="my-3">
                         Are you sure you want to delete <br>
-                        <span class="text-danger fs-6 fw-bold">{{ $event->comment }}</span>?<br>
+                        <span class="text-danger fs-6 fw-bold">{{ $event->theme }}</span>?<br>
                         You can't undo this action.
                     </p>
 

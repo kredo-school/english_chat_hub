@@ -11,9 +11,9 @@
                 <p class="h6 text-muted text-center">Join the event on {{$event->date}} at {{$event->location}}?</p>
             </div>
             <div class="modal-footer border-0">
+                <button type="button" class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
                 <form action="{{route('events.storeAuth', $event)}}" method="post" class="mt-0">
                     @csrf
-                    <button type="button" class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="button btn-orange">Join</button>  
                 </form>
             </div>
