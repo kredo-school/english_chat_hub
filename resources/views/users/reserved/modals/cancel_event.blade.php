@@ -14,10 +14,10 @@
 
                     <div class="buttons d-flex justify-content-center">
                         <button class="button btn-gray me-1" data-bs-dismiss="modal">No Cancel</button>
-                      <form action="{{ route('users.event.cancel', $event->id) }}" method="POST">
+                        <form action="{{ route('users.event.cancel', $event->id)}}" method="POST">
                         @csrf
-                        <button type="submit" class="button btn-orange ms-1">Cancel</button>
-                      </form>
+                            <button type="submit" class="button btn-orange ms-1">Cancel</button>
+                        </form>
                     </div> 
                 </div>
             </div>
