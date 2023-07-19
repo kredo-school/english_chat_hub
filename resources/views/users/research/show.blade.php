@@ -69,6 +69,7 @@
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
         const availableRooms = {!! json_encode($availableRooms) !!};
