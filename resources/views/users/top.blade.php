@@ -41,8 +41,14 @@
     </div>
     
     @include('users.meetings.calendar')
+    @include('users.modals.error_meeting')
 @endsection
 
 @section('script')
     <script src="{{ asset('js/meeting_calendar.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#create-meeting-error').modal('show');
+        });
+    </script>
 @endsection

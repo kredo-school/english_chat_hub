@@ -41,6 +41,10 @@ p span{
   margin-right: 16px;
 }
 
+.card:hover{
+  box-shadow: 0px 0px 5px 5px var(--li-gray);
+}
+
 .card-top{
   display: flex;
   justify-content: center;
@@ -62,7 +66,6 @@ p span{
   border-radius: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
-  padding-top: 30px;
   padding-bottom: 20px;
 }
 
@@ -73,6 +76,11 @@ p span{
   padding-left: 30%;
   text-decoration: none;
   font-size: 32px;
+}
+
+.profile h2:hover{
+  color: #FFA500;
+  text-decoration: none;
 }
 
 .profile h3{
@@ -298,15 +306,9 @@ table{
 }
 
 .edit-avatar{
-  width: 100px;
-  height: 100px;
-  border-radius: 30px;
-  background-color: white;
   display: flex;
   align-items:center;
   justify-content: center;
-  border: 2px solid var(--li-gray);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #edit-row{
