@@ -25,53 +25,14 @@
                     @endif
                 </div>
                 
-                <button data-bs-toggle="modal" data-bs-target="#other-member{{ $user->id }}" class="border-0 bg-white">
-                    <div class="category-item h5 my-0 ms-3 text-secondary">{{ $user->user_name }}</div>
-                </button>
-
-                {{-- Modal --}}
-                <div class="modal fade" id="other-member{{ $user->id }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content border border-2 border-warning">
-
-                            <div class="modal-body">
-                                <div class="modal-title text-center fs-2 my-3 fw-bold">OTHER MEMBER</div>
-                                    <div class="avatar mx-auto">
-                                        @if($user->avatar)
-                                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="avatar-md">
-                                        @else
-                                        <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
-                                        @endif
-                                    </div>
-                                    {{-- show user's level icon --}}
-                                    <div class="text-center">
-                                        <img src="{{ asset('image/level/' . $user->level->icon) }}" class="avatar-level mx-auto" alt="{{ $user->level->name }}">
-                                        <span class="h3 mx-auto" id="username">{{ $user->user_name }}</span>                                      
-                                    </div>
-                                    @if($user->comment)
-                                        <p class="fs-5 mt-1 mb-0 text-center">{{ $user->comment }}</p>
-                                    @else
-                                        <p class="fs-6 mt-1 mb-0 text-center">---No comment---</p>
-                                    @endif
-                                    {{--using empty() --}}
-                                    {{-- <p class="fs-5 mt-1 mb-0">{{ empty($user->comment) ? '---No comment---' : $user->comment }}</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a href="{{ route('users.follow.follower', $user->id)}}" class="category-item h5 my-0 ms-3 text-secondary text-decoration-none">{{ $user->user_name }}</a>
              </div>
              <hr class="m-0">
             @empty
                 <p class="mt-2">No users reserved.</p>
             @endforelse  
+            
     </div>
 </div>
 @endsection
 
-@section('script')
-    <script>
-        function goBack() {
-            history.back();
-        }
-    </script>
-@endsection
