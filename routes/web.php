@@ -115,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
             #MEETING
             Route::group(['prefix' => 'meetings', 'as' => 'meetings.'], function () {
                 Route::get('/', [MeetingsController::class, 'index'])->name('index');
+                Route::get('/{condition}/result', [MeetingsController::class, 'result'])->name('result');
                 Route::get('/{id}/edit', [MeetingsController::class, 'edit'])->name('edit');
                 Route::patch('/{id}/update', [MeetingsController::class, 'update'])->name('update');
                 Route::patch('/{id}/restore', [MeetingsController::class, 'restore'])->name('restore');
