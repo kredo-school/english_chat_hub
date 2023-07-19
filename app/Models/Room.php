@@ -13,7 +13,7 @@ class Room extends Model
     // RELATION
     public function meetings()
     {
-        return $this->hasMany(Meeting::class);
+        return $this->hasMany(Meeting::class)->orderBy('date', 'desc')->orderBy('start_at', 'desc');
     }
     public function zoomAccount() {
         return $this->hasOne(Zoom_account::class);

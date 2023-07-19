@@ -13,40 +13,19 @@
         <!-- Chatroom Bar -->
         @include('admin.chatrooms.components.bar')
 
-        <!-- Sort Buttons -->
+        <!-- Sort Bar -->
         <div class="d-flex justify-content-between sort-buttons">
-            <!-- Status Sort -->
-            <div class="text-decoration-none text-secondary fs-4">
-                <div class="dropdown d-inline">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Sort by
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ route('admin.chatrooms.meetings.result', 'stand_by') }}"
-                                class="text-secondary text-decoration-none dropdown-item">stand by</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.chatrooms.meetings.result', 'in_session') }}"
-                                class="text-secondary text-decoration-none dropdown-item">in session</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.chatrooms.meetings.result', 'done') }}"
-                                class="text-secondary text-decoration-none dropdown-item">done</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.chatrooms.meetings.result', 'negate') }}"
-                                class="text-danger text-decoration-none dropdown-item">negate</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <a href="{{ route('admin.chatrooms.meetings.index') }}" class="d-inline text-decoration-none text-secondary fs-4">
+                <i class="fa-solid fa-angle-left"></i> Back
+            </a>
 
             <!-- hide toggler -->
-            <div class="form-check form-switch d-flex align-items-center gap-2 fs-4 float-end">
-                <input class="float-none form-check-input" type="checkbox" role="switch" id="hide-switch">
-                <label class="form-check-label" for="hide-switch">Hide negated</label>
-            </div>
+            @if (!request()->is('admin/chatrooms/meetings/negate/result'))
+                <div class="form-check form-switch d-flex align-items-center gap-2 fs-4 float-end">
+                    <input class="float-none form-check-input" type="checkbox" role="switch" id="hide-switch">
+                    <label class="form-check-label" for="hide-switch">Hide negated</label>
+                </div>
+            @endif
         </div>
 
         <!-- Status Bar -->
@@ -103,8 +82,7 @@
                     </thead>
                     <tbody>
                         @foreach ($all_meetings as $meeting)
-                            <tr
-                                class="meeting-tr {{ $meeting->deleted_at ? 'deleted': ''}}">
+                            <tr class="meeting-tr {{ $meeting->deleted_at ? 'deleted' : '' }}">
                                 <td>{{ $meeting->id }}</td>
                                 <td class="text-start text-capitalize">
                                     @if ($meeting->deleted_at)

@@ -12,12 +12,26 @@ use App\Http\Controllers\ZoomController;
 
 class MeetingsController extends Controller
 {
-    public function index(Meeting $meeting)
+    public function index()
     {
         // update Meetings Status
         Meeting::updateStatus();
-        $all_meetings = $meeting->withTrashed()->paginate(10);
+        $all_meetings = Meeting::withTrashed()->orderBy('date','desc')->orderBy('start_at', 'desc')->paginate(10);
         return view('admin.chatrooms.meetings.index')
+            ->with('all_meetings', $all_meetings)
+            ->with('statusColor', Meeting::statusColor());
+    }
+    public function result($condition)
+    {
+        // update Meetings Status
+        Meeting::updateStatus();
+        if ($condition == 'negate') {
+            $all_meetings = Meeting::onlyTrashed()->orderBy('date', 'desc')->orderBy('start_at', 'desc')->paginate(10);
+        } else {
+            $status_id = Meeting::STATUS[$condition]['id'];
+            $all_meetings = Meeting::withTrashed()->where('status_id', $status_id)->orderBy('date', 'desc')->orderBy('start_at', 'desc')->paginate(10);
+        }
+        return view('admin.chatrooms.meetings.result')
             ->with('all_meetings', $all_meetings)
             ->with('statusColor', Meeting::statusColor());
     }
@@ -73,7 +87,8 @@ class MeetingsController extends Controller
         return redirect()->route('admin.chatrooms.meetings.index');
     }
 
-    public function forceDelete($id, ZoomController $z) {
+    public function forceDelete($id, ZoomController $z)
+    {
         $meeting = Meeting::withTrashed()->findOrFail($id);
 
         if ($meeting->zoomMeeting) {
