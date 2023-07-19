@@ -35,6 +35,11 @@ a {
     font-family: 'M PLUS Rounded 1c', sans-serif;
   }
 
+  &.navbar-brand:hover {
+    color: #6F6F6F;
+    text-decoration: none;
+  }
+
   &.link-item {
     font-size: 16px;
     font-weight: bolder;
@@ -43,8 +48,18 @@ a {
     color: #6F6F6F;
   }
 
+  &.link-item:hover {
+    color: black;
+    text-decoration: none;
+  }
+
   &.logout{
     color: #6F6F6F;
+  }
+
+  &.logout:hover{
+    color: black;
+    text-decoration: none;
   }
 }
 
@@ -88,6 +103,11 @@ a.footer-brand {
   text-align: start;
 }
 
+a.footer-brand:hover{
+  color: #FFA500;
+  text-decoration: none;
+}
+
 .copy-right {
   color: #ffffff;
   font-size: 8px;
@@ -106,6 +126,11 @@ a {
     margin-left: 2rem;
   }
 
+  &.footer-link:hover{
+    color: #FFA500;
+    text-decoration: none;
+  }
+
   &.plus-footer-link {
     font-size: 16px;
     font-weight: 100;
@@ -113,6 +138,11 @@ a {
     text-decoration: none;
     color: #ffffff;
     margin-left: 2rem;
+  }
+
+  &.plus-footer-link:hover{
+    color: #FFA500;
+    text-decoration: none;
   }
 }
 

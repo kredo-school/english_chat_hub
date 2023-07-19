@@ -25,5 +25,5 @@
               <p class=text-center>No reserved Chat Room</p>
           @endforelse
 
-          <a href="{{ route('users.reserved.show.details') }}"><p class="text-end pe-4 pt-1 pb-3 fs-5">My Schedule</p></a>
+          <a href="{{ route('users.reserved.show.details') }}"><p class="link text-end pe-4 pt-1 pb-3 h5">My Schedule</p></a>
    </div>
