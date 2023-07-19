@@ -179,6 +179,16 @@ p span{
   text-align: center;
 }
 
+.link {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: var(--gray);
+}
+
+.link:hover{
+  color: white;
+  text-decoration: none;
+}
+
 /* Reserch page */
   .category-room{
     display:flex;

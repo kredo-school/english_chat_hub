@@ -9,14 +9,18 @@ use App\Models\Meeting;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MeetingController extends Controller
 {
     public function store(Request $request, ZoomController $z)
-    // public function store(Request $request)
     {
         $user = Auth::user();
         if (!Auth::user()->meetingCheck($request->date, $request->start_at)) {
+            return redirect()->back();
+        }
+
+        if($user->joinMeetings()->where('date', $request->date)->where('start_at', $request->start_at)->count() > 0){
             return redirect()->back();
         }
 
@@ -30,7 +34,7 @@ class MeetingController extends Controller
                 'start_num'      => 'required'
             ]);
         } else{
-            $request->validate([
+            $validator = Validator::make($request->all(),[
                 'title'         => 'required|max:50',
                 'category_id'   => 'required',
                 'level_id'      => 'required',
@@ -38,6 +42,11 @@ class MeetingController extends Controller
                 'date'          => 'required|after_or_equal:today',
                 'start_at'      => 'required'
             ]);
+
+            if($validator->fails()){
+                $request->session()->flash('error', true);
+                return redirect()->back();
+            }
         }
         
         $meeting = new Meeting;
@@ -52,6 +61,17 @@ class MeetingController extends Controller
         } else{
             $meeting->start_at = $request->start_at;
         }
+
+        $meetingConflicts = $user->joinMeetings()
+            ->where('date', $request->date)
+            ->whereTime('start_at', '=', $meeting->start_at)
+            ->get();
+           
+        if($meetingConflicts->isNotEmpty()){
+            $request->session()->flash('error', true);
+            return redirect()->back()->withErrors(['error' => 'You are already scheduled to participate in this time. Please choose a different schedule.'], 'create-meeting'); 
+        }
+
         $meeting->save();
         $meeting->joinMeetings()->attach(Auth::user()->id);
 

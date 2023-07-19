@@ -19,8 +19,12 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select name="category_id" id="category" class="form-select" required>
-                                @foreach ($all_categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($all_categories as $category_a)
+                                    @if($category_a->id == $category->id)
+                                        <option value="{{ $category_a->id }}" selected>{{ $category_a->name }}</option>
+                                    @else    
+                                        <option value="{{ $category_a->id }}">{{ $category_a->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -78,3 +82,30 @@
         </div>
     </div>
 </div>
+
+{{-- Error Modal --}}
+@if (session('error'))
+<div class="modal fade" id="create-meeting-error" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border border-2 border-danger">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-box">
+                    <div class="modal-text">
+                        <h3 class="h5 mb-3 text-danger fw-bold">Error</h3>
+                        <p class="h6 fw-bold">The title is too long. <br>Please limit it to 50 characters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#create-meeting-error').modal('show');
+        });
+    </script>
+@endsection

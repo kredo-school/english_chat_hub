@@ -39,7 +39,7 @@
                                         {{ $meeting->category->name }}
                                     </td>
                                     <td class="col-5">
-                                        {{ mb_substr($meeting->title, 0, 15) }}{{ mb_strlen($meeting->title) > 15 ? '...' : '' }}
+                                        {{ mb_substr($meeting->title, 0, 40) }}{{ mb_strlen($meeting->title) > 40 ? '...' : '' }}
                                     </td>
                                     <td class="col-1 text-center">
                                         @if ($meeting->joinMeetings->count() >= 2)
@@ -122,7 +122,7 @@
                                             </a>
                                             <div class="dropdown-menu event-dropdown text-start">
                                                 <a class="dropdown-item text-start text-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-event-{{ $event->id }}">
+                                                    data-bs-target="#cancel_event-{{ $event->id }}">
                                                     <i class="fa-solid fa-circle-xmark"></i> Not Joining
                                                 </a>
                                                 <a class="dropdown-item text-start"

@@ -36,7 +36,7 @@
                 <form action="{{route('events.destroyAuthParticipant', $event->id)}}" method="post" class="mt-0">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="button btn-gray">Cancel Event</button>  
+                    <button type="submit" class="button btn-gray">Cancel Event</button>
                 </form>
             </div>
         </div>
@@ -53,8 +53,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-box">
                     <div class="modal-text">
-                        <h3 class="h5 success-title mb-3">Looking forward to see you on<br>{{$event->date}}!</h3>
-                        <p class="success-message">Your reservation has been confirmed. <br>Check your email for details<i class="fa-regular fa-face-smile-wink"></i></p>
+                        {{-- <h3 class="success-title mb-3">Happy to see you on<br>{{$event->date}}!</h3> --}}
+                        <h3 class="success-title mb-3">Happy to see you on<br>{{ $carbonDateTime->toDateString() }}!</h3>
+                        <p class="success-message">Your reservation has been confirmed. <br>Check your email<br>for details<i class="fa-regular fa-face-smile-wink"></i></p>
                     </div>
                 </div>
             </div>
