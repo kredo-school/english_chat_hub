@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return $this->joinMeetings()->where('date', $date)->where('start_at', $start_at)->get()->isEmpty();    
     }
+    public function followers()
+     {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+     }
+
+    #To get all the users that the user is following
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    }
 }

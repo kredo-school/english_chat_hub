@@ -11,9 +11,16 @@
             <h2 class="display-5">TIME TABLE</h2>
 
             <div class="meeting-table mx-auto">
-                <div class="timetable-date fs-5 mb-2">
-                    {{ $date }}
+                <div class="timetable-date fs-5">
+                    <button class="calendar-btn fs-5 ms-0 mb-2" data-bs-toggle='modal' data-bs-target='#calendar-modal'
+                        type="button">
+                        <i class="fa-solid fa-calendar text-dark"></i> {{ $date }}
+                    </button>
                 </div>
+
+                <!-- Calendar modal -->
+                @include('users.meetings.modals.calendar')
+
                 <table class="table text-center align-middle">
                     <tbody>
                         @for ($i = 0; $i < 14; $i++)
@@ -43,8 +50,8 @@
                                         @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]))
                                             <td>
                                                 <button type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}" class="date-btn"
-                                                    title="Create Meeting">
+                                                    data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}"
+                                                    class="date-btn" title="Create Meeting">
                                                 </button>
                                             </td>
                                         @else
@@ -53,7 +60,7 @@
                                             </td>
                                         @endif
                                     @endif
-                                    @include('users.meetings.modals.calendar')
+                                    @include('users.meetings.modals.calendar-action')
                                 @endforeach
                             </tr>
                         @endfor
@@ -65,4 +72,8 @@
                     class="fa-solid fa-angles-left"></i> back</a>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ mix('js/meeting_calendar.js') }}"></script>
 @endsection

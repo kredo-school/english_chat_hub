@@ -16,6 +16,7 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ZoomController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
         Route::post('/research/join/{meeting}', [MeetingController::class, 'join'])->name('meeting.join');
         Route::get('meetings/search/{date}/result', [MeetingController::class, 'result'])->name('meetings.result');
+        Route::get('/follow/{user}/follower', [FollowController::class, 'follower'])->name('follow.follower');
+        Route::get('/follow/{user}/following', [FollowController::class, 'following'])->name('follow.following');
+        Route::delete('/follow/delete/{user}/unfollow', [FollowController::class, 'unfollow'])->name('follow.unfollow');
+        Route::post('/follow/{user}/follow', [FollowController::class, 'follow'])->name('follow.follow');
     });
 
     #LOGINED ADMIN ONLY
@@ -110,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
             #MEETING
             Route::group(['prefix' => 'meetings', 'as' => 'meetings.'], function () {
                 Route::get('/', [MeetingsController::class, 'index'])->name('index');
+                Route::get('/{condition}/result', [MeetingsController::class, 'result'])->name('result');
                 Route::get('/{id}/edit', [MeetingsController::class, 'edit'])->name('edit');
                 Route::patch('/{id}/update', [MeetingsController::class, 'update'])->name('update');
                 Route::patch('/{id}/restore', [MeetingsController::class, 'restore'])->name('restore');
