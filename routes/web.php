@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('meetings/search/{date}/result', [MeetingController::class, 'result'])->name('meetings.result');
         Route::get('/follow/{user}/follower', [FollowController::class, 'follower'])->name('follow.follower');
         Route::get('/follow/{user}/following', [FollowController::class, 'following'])->name('follow.following');
-        Route::delete('/follow/delete/{id}/unfollow', [FollowController::class, 'unfollow'])->name('follow.unfollow');
+        Route::delete('/follow/delete/{user}/unfollow', [FollowController::class, 'unfollow'])->name('follow.unfollow');
         Route::post('/follow/{user}/follow', [FollowController::class, 'follow'])->name('follow.follow');
     });
 
