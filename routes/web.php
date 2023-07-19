@@ -86,10 +86,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/research/cancel/event/{event}', [EventController::class, 'cancel'])->name('event.cancel');
         Route::post('/research/join/{meeting}', [MeetingController::class, 'join'])->name('meeting.join');
         Route::get('meetings/search/{date}/result', [MeetingController::class, 'result'])->name('meetings.result');
-        Route::get('/follow/{id}/follower', [FollowController::class, 'follower'])->name('follow.follower');
-        Route::get('/follow/{id}/following', [FollowController::class, 'following'])->name('follow.following');
+        Route::get('/follow/{user}/follower', [FollowController::class, 'follower'])->name('follow.follower');
+        Route::get('/follow/{user}/following', [FollowController::class, 'following'])->name('follow.following');
         Route::delete('/follow/delete/{id}/unfollow', [FollowController::class, 'unfollow'])->name('follow.unfollow');
-        Route::post('/follow/{id}/follow', [FollowController::class, 'follow'])->name('follow.follow');
+        Route::post('/follow/{user}/follow', [FollowController::class, 'follow'])->name('follow.follow');
     });
 
     #LOGINED ADMIN ONLY

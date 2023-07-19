@@ -4,23 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Level;
 use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
-    private $user;
-    private $level;
 
-    public function __construct(User $user, Level $level){
-        $this->user = $user;
-        $this->level = $level;
-    }
-
-
-    public function follower($id)
+    public function follower(User $user)
     {
-        $user = $this->user->findOrFail($id);
         $followers = $user->followers;
         $following  = $user->following;
 
@@ -30,9 +20,8 @@ class FollowController extends Controller
         ->with('following', $following);
     }
 
-    public function following($id)
+    public function following(User $user)
     {
-        $user       = $this->user->findOrFail($id);
         $followers  = $user->followers;
         $following  = $user->following;
 
