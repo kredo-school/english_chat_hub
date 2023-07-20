@@ -11,20 +11,25 @@
                 <p class="modal-text mx-auto mb-3">Level: {{ $meeting->level->name }}</p>
 
                 {{-- button --}}
-                <div class="buttons mt-5 mb-3 text-center">
+                <div class="buttons mt-5 mb-3 text-center mx-5">
                     @if (!$meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
                         @if (Auth::user()->meetingCheck($meeting->date, $meeting->start_at) && $meeting->vacanciesCheck())
-                            <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="button btn-orange">Reservation</button>
-                            </form>
-                        @elseif ($meeting->vacanciesCheck())
-                            <p class="text-center text-danger">You already joined another meeting this time.</p>
+                        @if ($meeting->date == now()->format('Y-m-d') && $meeting->start_at > now()->addHour())
+                            <p class="text-danger">Sorry, You can only reserve meetings to one hour before the meeting</p>    
                         @else
-                            <p class="text-center text-danger">This meeting has reached its maximum number of users.</p>
+                            
+                        <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="button btn-orange">Reservation</button>
+                        </form>
+                        @endif
+                        @elseif ($meeting->vacanciesCheck())
+                            <p class="text-danger">You already joined another meeting this time.</p>
+                        @else
+                            <p class="text-danger">This meeting has reached its maximum number of users.</p>
                         @endif
                     @else
-                        <p class="text-center text-danger">You already reserved this meeting.</p>
+                        <p class="text-danger">You already reserved this meeting.</p>
                     @endif
                 </div>
             </div>

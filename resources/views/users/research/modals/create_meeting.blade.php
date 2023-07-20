@@ -1,7 +1,7 @@
 <!--Create Meeting-->
 <div class="modal fade" id="create-meeting">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="width: auto;">
             <form action="{{ route('users.meeting.store') }}" method="post">
             @csrf
                 <div class="modal-header border-0">

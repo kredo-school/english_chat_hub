@@ -19,8 +19,8 @@
                     <tr>
                         <th>{{ $timeTable[$i][0] . '~' . $timeTable[$i][1] }}</th>
                         @foreach ($all_rooms as $room)
-                            @if ($meeting = $room->meetings()->where('date', now()->format('Y-m-d'))->where('start_at', $timeTable[$i][0])->first())
-                                <td>
+                            <td>
+                                @if ($meeting = $room->meetings()->where('date', now()->format('Y-m-d'))->where('start_at', $timeTable[$i][0])->first())
                                     @if ($meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
                                         <button type="button" data-bs-toggle="modal"
                                             data-bs-target="#join-{{ $meeting->id }}" class="date-btn"
@@ -37,21 +37,17 @@
                                             <i class="fa-solid fa-plus"></i> {{ $meeting->category->name }}
                                         </button>
                                     @endif
-                                </td>
-                            @else
-                                @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]))
-                                    <td>
+                                @else
+                                    @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]) && $timeTable[$i][0] >= now()->addMinutes(60)->format('H:i'))
                                         <button type="button" data-bs-toggle="modal"
                                             data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}" class="date-btn"
                                             title="Create Meeting">
                                         </button>
-                                    </td>
-                                @else
-                                    <td>
+                                    @else
                                         <button disabled="disabled" class="date-btn"></button>
-                                    </td>
+                                    @endif
                                 @endif
-                            @endif
+                            </td>
                             @include('users.meetings.modals.calendar-action')
                         @endforeach
                     </tr>

@@ -16,7 +16,7 @@ class MeetingsController extends Controller
     {
         // update Meetings Status
         Meeting::updateStatus();
-        $all_meetings = Meeting::withTrashed()->orderBy('date','desc')->orderBy('start_at', 'desc')->paginate(10);
+        $all_meetings = Meeting::withTrashed()->orderBy('date')->orderBy('start_at')->paginate(10);
         return view('admin.chatrooms.meetings.index')
             ->with('all_meetings', $all_meetings)
             ->with('statusColor', Meeting::statusColor());
