@@ -1,6 +1,6 @@
 @if(isset($user))
     <div class="profile">
-        <a href="{{ route('users.follow.follower', $user->id) }}" class="display-7 h2">PROFILE</a>
+        <a href="{{ route('users.follow.follower', $user->id) }}" class="p-0"><h2 class="display-7">PROFILE</h2></a>
 
         <div class="d-flex align-items-center justify-content-center mt-2">
             @if($user->avatar)

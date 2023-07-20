@@ -6,8 +6,8 @@
             <div class="modal-header border-danger">
                 <h3 class="modal-title text-danger fs-3 fw-bold mx-auto">Are you sure you want to delete your account?</h3>
             </div>
-            <p class="text-danger">If you delete your account, your meetings and reservation for events will be also deleted.</p>
-            <p class="text-muted">If you would like to join again, please contact us from the "Contact Us" form.</p>
+            <p class="text-danger text-center mt-3">If you delete your account, your meetings and reservation for events will be also deleted.</p>
+            <p class="text-muted text-center">If you would like to join again, please contact us from the "Contact Us" form.</p>
 
             <div class="modal-footer border-0">
                 <form action="{{route('users.profile.destroy', $user->id)}}" method="post" class="mt-0">
