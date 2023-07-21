@@ -14,15 +14,15 @@
                 <div class="buttons mt-5 mb-3 text-center mx-5">
                     @if (!$meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
                         @if (Auth::user()->meetingCheck($meeting->date, $meeting->start_at) && $meeting->vacanciesCheck())
-                        @if ($meeting->date == now()->format('Y-m-d') && $meeting->start_at > now()->addHour())
-                            <p class="text-danger">Sorry, You can only reserve meetings to one hour before the meeting</p>    
-                        @else
-                            
-                        <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="button btn-orange">Reservation</button>
-                        </form>
-                        @endif
+                            @if ($meeting->date == now()->format('Y-m-d') && $meeting->start_at < now()->addHour()->format('H:i'))
+                                <p class="text-danger">Sorry, You can only reserve meetings to one hour before the
+                                    meeting</p>
+                            @else
+                                <form action="{{ route('users.meeting.join', $meeting->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="button btn-orange">Reservation</button>
+                                </form>
+                            @endif
                         @elseif ($meeting->vacanciesCheck())
                             <p class="text-danger">You already joined another meeting this time.</p>
                         @else
