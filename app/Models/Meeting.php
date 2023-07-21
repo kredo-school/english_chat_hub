@@ -17,7 +17,7 @@ class Meeting extends Model
         'done'          => ['id' => 3, 'color' => 'secondary']
     ];
     const UNIT_MEETING_TIME = 45;       // minutes / 1 meeting
-    const MEETING_OPEN_FROM = 15;       //minutes before
+    const MEETING_OPEN_FROM = 60;       //minutes before
     const MEETING_MAXIMUM_USERS = 10;   // max number of users
 
     // RELATION
