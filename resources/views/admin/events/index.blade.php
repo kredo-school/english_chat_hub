@@ -13,7 +13,7 @@
             </div>
 
             <form action="#" class="search-bar-sm">
-                <input type="search" class="form-control search-text" placeholder="seaech for events..." id="search-input">
+                <input type="search" class="form-control search-text" placeholder="search for events..." id="search-input">
             </form>
             <div class="status-group-sm">
                 <ul>
