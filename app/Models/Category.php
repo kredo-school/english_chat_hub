@@ -19,6 +19,6 @@ class Category extends Model
     // RELATION
     public function meetings()
     {
-        return $this->hasMany(Meeting::class)->orderBy('date', 'desc')->orderBy('start_at', 'desc');
+        return $this->hasMany(Meeting::class)->orderBy('date')->orderBy('start_at');
     }
 }

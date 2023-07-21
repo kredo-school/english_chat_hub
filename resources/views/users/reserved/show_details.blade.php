@@ -17,13 +17,7 @@
 
                     <h2 class="display-5 pt-0">My Schedule</h2>
                     <h3 class="fs-3 ms-5">Chat Room</h3>
-                    @forelse($user->joinMeetings()->where(function ($query) {
-                                            $query->where('date', '>', today()->toDateString())
-                                                  ->orWhere(function ($query) {
-                                                    $query->where('date', '=', today()->toDateString())
-                                                          ->where('start_at', '>=', now()->format('H:i'));
-                                                  });
-                                            })->orderBy('date')->orderBy('start_at')->get() as $meeting)
+                    @forelse ($all_meetings as $meeting)
                         {{-- Meeting Table --}}
                         <div class="mx-auto mb-2 py-2 meeting-table">
                             <table class="table table-borderless row mb-0 align-middle">
@@ -52,7 +46,7 @@
                                         @endif
                                     </td>
                                     <td class="col-2 text-center">
-                                        @if (Carbon\Carbon::parse($meeting->date . '' . $meeting->start_at) <= now()->addMinutes(60))
+                                        @if($meeting->meetingOpen())
                                             <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal"
                                                 data-bs-target="#join-{{ $meeting->id }}">JOIN</button>
                                             @include('users.reserved.modals.join')
@@ -122,7 +116,7 @@
                                             </a>
                                             <div class="dropdown-menu event-dropdown text-start">
                                                 <a class="dropdown-item text-start text-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel_event-{{ $event->id }}">
+                                                    data-bs-target="#cancel-event-{{ $event->id }}">
                                                     <i class="fa-solid fa-circle-xmark"></i> Not Joining
                                                 </a>
                                                 <a class="dropdown-item text-start"

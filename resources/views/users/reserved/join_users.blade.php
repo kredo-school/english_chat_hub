@@ -36,3 +36,10 @@
 </div>
 @endsection
 
+@section('script')
+    <script>
+        function goBack() {
+            history.back();
+        }
+    </script>
+@endsection

@@ -9,7 +9,7 @@
             <div class=“modal-body”>
                 <h5 class="modal-text mx-auto mb-3">Category: {{ $meeting->category->name }}</h5>
                 <h5 class="modal-text mx-auto mb-3">Date: {{ $meeting->date }}</h5>
-                <h5 class="modal-text mx-auto mb-3">Time: {{ $meeting->start_at }}</h5>
+                <h5 class="modal-text mx-auto mb-3">Time: {{ date('H:i', strtotime($meeting->start_at)) }}</h5>
                 <h5 class="modal-text mx-auto mb-3">Level: {{ $meeting->level->name }}</h5>
             </div>
 

@@ -38,16 +38,19 @@ class HomeController extends Controller
     public function index()
     {
         $all_categories = $this->category->all();
-        $all_meetings = $this->meeting->all();
-        $user = Auth::user();
+        $all_meetings   = $this->meeting->all();
+        $all_rooms      = Room::all();
+        $all_levels     = Level::all();
+        $user           = Auth::user();
 
-        $all_rooms = Room::all();
-        $all_levels = Level::all();
-        $timeTable = [];
+        $now        = now();
+        $date       = now()->format('Y-m-d');
+        $timeTable  = [];
         if (now()->hour < 10) {
             $now = Carbon::parse('10:00:00');
-        } else {
-            $now = now();
+        }
+        if (now()->minute >= 45) {
+            $now = now()->addMinutes(15);
         }
         for ($i = 0; $i < 15; $i++) {
             $timeTable[$i] = [
@@ -61,15 +64,16 @@ class HomeController extends Controller
             ->with('all_meetings', $all_meetings)
             ->with('all_rooms', $all_rooms)
             ->with('all_levels', $all_levels)
-            ->with('date', now()->format('Y-m-d'))
+            ->with('date', $date)
             ->with('timeTable', $timeTable);
     }
 
     public function show()
     {
+        Meeting::updateStatus();
         $user = Auth::user();
         $participant = Participant::where('email', $user->email)->first();
-        $all_meetings = Meeting::all();
+        $all_meetings = $user->joinMeetings()->where('status_id', '!=', Meeting::STATUS['done']['id'])->orderBy('date')->orderBy('start_at')->paginate(10);
 
         return view('users.reserved.show_details')
             ->with('user', $user)
@@ -96,27 +100,26 @@ class HomeController extends Controller
 
     public function showMeeting(Category $category)
     {
-        $all_meetings = $category->meetings()->where(function ($query) {
-            $query->where('date', '>', today()->toDateString())
-                ->orWhere(function ($query) {
-                    $query->where('date', '=', today()->toDateString())
-                        ->where('start_at', '>=', now()->format('H:i'));
-                });
-        })->orderBy('date')->orderBy('start_at')->paginate(10);
-
-        $user = Auth::user();
-        $all_categories = Category::all();
-        $all_levels = Level::all();
-        $all_rooms = Room::all();
-
+        Meeting::updateStatus();
         $today = now();
+        $all_meetings = $category->meetings()->where('status_id', '!=', Meeting::STATUS['done']['id'])->paginate(10);
+
+        $user           = Auth::user();
+        $all_categories = Category::all();
+        $all_levels     = Level::all();
+        $all_rooms      = Room::all();
+
         for ($i = 0; $i < 7; $i++) {
-            $dateList[] = $today->copy()->addDays($i)->format('Y-m-d');
+            if ($i == 0 && $today->hour > 21) {
+                continue;
+            } else {
+                $dateList[] = $today->copy()->addDays($i)->format('Y-m-d');
+            }
         }
         foreach ($dateList as $date) {
             for ($i = 10; $i < 24; $i++) {
                 if ($date == $today->format('Y-m-d')) {
-                    $i = ($i < intval($today->format('H')) ? intval($today->format('H')) : $i);
+                    $i = ($i < intval($today->format('H') + 2) ? intval($today->format('H') + 2) : $i);
                 }
                 $timeList[$date][] = [$i . ':00', $i + 1 . ':00'];
             }
