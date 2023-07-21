@@ -16,6 +16,7 @@ const mix = require('laravel-mix');
     .js('resources/js/contact-us.js', 'public/js')
      .js('resources/js/meeting_calendar.js', 'public/js')
      .js('resources/js/create_meeting.js', 'public/js')
+     .js('resources/js/count-text.js', 'public/js')
     .sass('resources/scss/button.scss', 'public/css')
     .sass('resources/scss/form.scss', 'public/css')
     .sass('resources/scss/style.scss', 'public/css')

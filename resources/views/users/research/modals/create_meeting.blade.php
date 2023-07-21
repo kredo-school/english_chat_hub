@@ -12,7 +12,7 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" name="title" id="title" class="form-control" required>
+                            <input type="text" name="title" id="title" class="form-control js-count-text" required>
                         </div>
 
                         <div class="mb-3">
@@ -81,4 +81,5 @@
         </div>
     </div>
 </div>
-@include('users.modals.error_meeting')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('js/count-text.js')}}"></script>
