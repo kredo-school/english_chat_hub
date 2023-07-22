@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="col-9">
-                        <video controls src="video/Chat-video.mp4" class="video"></video>
+                        <video controls src="video/chatroom.mp4" class="video"></video>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     <div class="col-md-3">
                         <div class="description mx-auto" style="background-image: url({{ asset('image/welcome/bg-tag.png') }});">
                             <img src="image/welcome/event-icon.png" alt="event-icon" class="icon mx-auto">
-                            <h4 class="title">Chat Room</h4>
+                            <h4 class="title">Event</h4>
                             <div class="instruction">
                                 <p class="mx-auto instruct-text">You can get opportunities to speak English face-to-face on any topic/level of your choice
                                 </p>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="col-9">
-                        <video controls src="video/Event-video.mp4" class="video"></video>
+                        <video controls src="video/event.mp4" class="video"></video>
                     </div>
                 </div>
             </div>
