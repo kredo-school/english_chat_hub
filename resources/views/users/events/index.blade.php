@@ -76,7 +76,7 @@
                                                             <span>mainly for</span>
                                                             @foreach ($event->levels as $level)
                                                                 <img src="{{ asset('image/level/' . $level->icon) }}"
-                                                                    class="mb-2 icon-sm" alt="{{ $level->name }}">
+                                                                    class="icon-sm" alt="{{ $level->name }}">
                                                             @endforeach
                                                         @endif
                                                     </div>
