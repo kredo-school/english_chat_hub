@@ -49,25 +49,28 @@
                             @endif
                         </div>
                     </div>
-                    <div class="text-end mt-0">
+                    <div class="text-center mt-5">
                         {{-- Modal --}}
                         @if (auth()->check())
                             @if (!$isJoined)
-                                <button type="button" class="button btn-orange m-4 mt-0" data-bs-toggle="modal"
+                                <button type="button" class="button btn-orange" data-bs-toggle="modal"
                                     data-bs-target="#join-event-{{ $event->id }}">
                                     Join!!
                                 </button>
                             @else
-                                <button type="button" class="button btn-gray m-4 mt-0" data-bs-toggle="modal" 
+                                <button type="button" class="button btn-gray" data-bs-toggle="modal" 
                                     data-bs-target="#cancel-event-{{ $event->id }}">
                                     Cancel Event
                                 </button>
                             @endif
                         @else
-                            <a href="{{ route('events.joinForm', $event->id) }}" class="button btn-orange m-4 mt-0">
+                            <a href="{{ route('events.joinForm', $event->id) }}" class="button btn-orange">
                                 Join!!
                             </a>
                         @endif
+                    </div>
+                    <div class="text-center mt-2 mb-3">
+                        <a href="{{ route('events.index') }}#up-coming-event" class="text-secondary"></i>See other events?</a>
                     </div>
                     @include('users.events.modals.join_event')
                 </div>

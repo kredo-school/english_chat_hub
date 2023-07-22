@@ -31,7 +31,7 @@
                                 {{ $index === 0 ? 'class=active' : '' }}></button>
                         @endforeach
                     </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" id="up-coming-event">
                         @foreach ($filtered_events as $index => $events)
                             <div class="carousel-item{{ $index === 0 ? ' active' : '' }}" data-bs-interval="5000">
                                 <div class="row mt-5 mb-5">
