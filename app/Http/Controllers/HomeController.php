@@ -52,7 +52,7 @@ class HomeController extends Controller
         if (now()->minute >= 45) {
             $now = now()->addMinutes(15);
         }
-        for ($i = 0; $i < 15; $i++) {
+        for ($i =0, $time= intval($now->hour); $i < 15, $time<=23; $i++, $time++) {
             $timeTable[$i] = [
                 date('G:00', strtotime($now->copy()->addHours($i))), date('G:00', strtotime($now->copy()->addHours($i + 1)))
             ];
@@ -109,6 +109,10 @@ class HomeController extends Controller
         $all_levels     = Level::all();
         $all_rooms      = Room::all();
 
+        $filledRooms    = [];
+        $timeList       = [];
+
+        // Get a Week
         for ($i = 0; $i < 7; $i++) {
             if ($i == 0 && $today->hour > 21) {
                 continue;
@@ -116,30 +120,35 @@ class HomeController extends Controller
                 $dateList[] = $today->copy()->addDays($i)->format('Y-m-d');
             }
         }
+
+        // Create $timeList without 
         foreach ($dateList as $date) {
             for ($i = 10; $i < 24; $i++) {
                 if ($date == $today->format('Y-m-d')) {
                     $i = ($i < intval($today->format('H') + 2) ? intval($today->format('H') + 2) : $i);
                 }
-                $timeList[$date][] = [$i . ':00', $i + 1 . ':00'];
+                if ($user->meetingCheck($date, $i . ':00')) {
+                    $timeList[$date][] = [$i . ':00', $i + 1 . ':00'];
+                }
             }
         }
         $rangedMeetings = Meeting::where('date', '>=', $today->format('Y-m-d'))->where('date', '<=', $today->copy()->addDays(7)->format('Y-m-d'))->get();
-        $filledRooms = [];
         foreach ($rangedMeetings as $m) {
             $filledRooms[$m->date][date('H:i', strtotime($m->start_at))][] = $m->room_id;
         }
         foreach ($dateList as $d) {
-            foreach ($timeList[$d] as $t) {
-                foreach ($all_rooms as $r) {
-                    if (
-                        array_key_exists($d, $filledRooms,)
-                        && array_key_exists($t[0], $filledRooms[$d],)
-                        && in_array($r->id, $filledRooms[$d][$t[0]])
-                    ) {
-                        continue;
-                    } else {
-                        $availableRooms[$d][$t[0]][] = $r->id;
+            if (array_key_exists($d, $timeList)) {
+                foreach ($timeList[$d] as $t) {
+                    foreach ($all_rooms as $r) {
+                        if (
+                            array_key_exists($d, $filledRooms,)
+                            && array_key_exists($t[0], $filledRooms[$d],)
+                            && in_array($r->id, $filledRooms[$d][$t[0]])
+                        ) {
+                            continue;
+                        } else {
+                            $availableRooms[$d][$t[0]][] = $r->id;
+                        }
                     }
                 }
             }

@@ -23,11 +23,11 @@
 
                 <table class="table text-center align-middle">
                     <tbody>
-                        @for ($i = 0; $i < 14; $i++)
+                        @foreach ($timeTable as $key => $time)
                             <tr>
-                                <th>{{ $timeTable[$i][0] . '~' . $timeTable[$i][1] }}</th>
+                                <th>{{ $time[0] . '~' . $time[1] }}</th>
                                 @foreach ($all_rooms as $room)
-                                    @if ($meeting = $room->meetings()->where('date', $date)->where('start_at', $timeTable[$i][0] . ':00')->first())
+                                    @if ($meeting = $room->meetings()->where('date', $date)->where('start_at', $time[0] . ':00')->first())
                                         <td>
                                             @if ($meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
                                                 <button type="button" data-bs-toggle="modal"
@@ -47,10 +47,10 @@
                                             @endif
                                         </td>
                                     @else
-                                        @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]))
+                                        @if (Auth::user()->meetingCheck($date, $time[0]))
                                             <td>
                                                 <button type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}"
+                                                    data-bs-target="#create-meeting-{{ $key . '-' . $room->id }}"
                                                     class="date-btn" title="Create Meeting">
                                                 </button>
                                             </td>
@@ -63,7 +63,7 @@
                                     @include('users.meetings.modals.calendar-action')
                                 @endforeach
                             </tr>
-                        @endfor
+                        @endforeach
                     </tbody>
                 </table>
 

@@ -16,39 +16,15 @@ class MeetingController extends Controller
     public function store(Request $request, ZoomController $z)
     {
         $user = Auth::user();
-        if (!Auth::user()->meetingCheck($request->date, $request->start_at)) {
-            return redirect()->back();
-        }
+        $validator = Validator::make($request->all(), [
+            'title'         => 'required|max:50',
+            'category_id'   => 'required',
+            'level_id'      => 'required',
+            'room_id'       => 'required',
+            'date'          => 'required|after_or_equal:today',
+            'start_at'      => 'required'
+        ]);
 
-        if($user->joinMeetings()->where('date', $request->date)->where('start_at', $request->start_at)->count() > 0){
-            return redirect()->back();
-        }
-
-        if($request->start_num){
-            $request->validate([
-                'title'         => 'required|max:50',
-                'category_id'   => 'required',
-                'level_id'      => 'required',
-                'room_id'       => 'required',
-                'date'          => 'required|after_or_equal:today',
-                'start_num'      => 'required'
-            ]);
-        } else{
-            $validator = Validator::make($request->all(),[
-                'title'         => 'required|max:50',
-                'category_id'   => 'required',
-                'level_id'      => 'required',
-                'room_id'       => 'required',
-                'date'          => 'required|after_or_equal:today',
-                'start_at'      => 'required'
-            ]);
-
-            if($validator->fails()){
-                $request->session()->flash('error', true);
-                return redirect()->back();
-            }
-        }
-        
         $meeting = new Meeting;
         $meeting->title         = $request->title;
         $meeting->user_id       = Auth::user()->id;
@@ -56,21 +32,7 @@ class MeetingController extends Controller
         $meeting->room_id       = $request->room_id;
         $meeting->level_id      = $request->level_id;
         $meeting->date          = $request->date;
-        if($request->start_num){
-            $meeting->start_at = date('H:i:s', strtotime($request->start_num . ':00:00'));
-        } else{
-            $meeting->start_at = $request->start_at;
-        }
-
-        $meetingConflicts = $user->joinMeetings()
-            ->where('date', $request->date)
-            ->whereTime('start_at', '=', $meeting->start_at)
-            ->get();
-           
-        if($meetingConflicts->isNotEmpty()){
-            $request->session()->flash('error', true);
-            return redirect()->back()->withErrors(['error' => 'You are already scheduled to participate in this time. Please choose a different schedule.'], 'create-meeting'); 
-        }
+        $meeting->start_at      = $request->start_at;
 
         $meeting->save();
         $meeting->joinMeetings()->attach(Auth::user()->id);
@@ -83,7 +45,8 @@ class MeetingController extends Controller
         return redirect()->back();
     }
 
-    public function edit(Meeting $meeting){
+    public function edit(Meeting $meeting)
+    {
         $meeting->user_id  = Auth::user()->id;
         $all_categories    = Category::all();
         $all_rooms         = Room::all();
@@ -95,7 +58,8 @@ class MeetingController extends Controller
             ->with('all_levels', $all_levels);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'title'         => 'required|max:50',
             'category_id'   => 'required',
@@ -113,7 +77,8 @@ class MeetingController extends Controller
 
     // public function delete(Meeting $meeting){
 
-    public function delete(Meeting $meeting, ZoomController $z){
+    public function delete(Meeting $meeting, ZoomController $z)
+    {
         // Delete Zoom Meeting
         if ($meeting->zoomMeeting) {
             $z->deleteZoomMeeting($meeting);
@@ -121,17 +86,19 @@ class MeetingController extends Controller
         }
 
         $meeting->delete();
-        
+
         return redirect()->back();
     }
 
-    public function cancel(Meeting $meeting){
+    public function cancel(Meeting $meeting)
+    {
         $user = Auth::user();
         $user->joinMeetings()->detach($meeting->id);
         return redirect()->back();
     }
 
-    public function join(Meeting $meeting){
+    public function join(Meeting $meeting)
+    {
         $user = Auth::user();
         $user->joinMeetings()->attach($meeting->id);
         return redirect()->route('users.top');
@@ -146,13 +113,13 @@ class MeetingController extends Controller
         $result = date('Y-m-d', strtotime($date));
         $timeTable = [];
         $now = Carbon::parse('10:00:00');
-        for ($i = 0; $i < 14; $i++) {
+        for ($i = 0, $time = intval($now->hour); $i < 15, $time <= 23; $i++, $time++) {
             $timeTable[$i] = [
                 date('G:00', strtotime($now->copy()->addHours($i))), date('G:00', strtotime($now->copy()->addHours($i + 1)))
             ];
         }
         return view('users.meetings.result')
-        ->with('date', $result)
+            ->with('date', $result)
             ->with('timeTable', $timeTable)
             ->with('all_rooms', $all_rooms)
             ->with('all_meetings', $all_meetings)
