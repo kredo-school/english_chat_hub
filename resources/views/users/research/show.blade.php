@@ -75,9 +75,5 @@
         const availableRooms = {!! json_encode($availableRooms) !!};
     </script>
     <script src="{{ mix('js/create_meeting.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#create-meeting-error').modal('show');
-        });
-    </script>
+    <script src="{{ asset('js/count-text.js') }}"></script>
 @endsection

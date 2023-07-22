@@ -42,3 +42,8 @@
     
     @include('users.meetings.calendar')
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/meeting_calendar.js') }}"></script>
+    <script src="{{ asset('js/count-text.js')}}"></script>
+@endsection

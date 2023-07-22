@@ -1,9 +1,9 @@
-@if ($meeting = $room->meetings()->where('date', $date)->where('start_at', $timeTable[$i][0])->first())
+@if ($meeting = $room->meetings()->where('date', $date)->where('start_at', $time[0])->first())
     <!--Join Modal-->
     @include('users.research.modals.reservation')
 @else
     <!--Create Modal-->
-    <div class="modal fade" id="create-meeting-{{ $i . '-' . $room->id }}">
+    <div class="modal fade" id="create-meeting-{{ $key . '-' . $room->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="{{ route('users.meeting.store') }}" method="post">
@@ -17,7 +17,7 @@
 
                             <div class="mb-3">
                                 <span class="form-label">date</span>
-                                <div class="ps-3">{{ $date . ' ' . $timeTable[$i][0] . '~' . $timeTable[$i][1] }}
+                                <div class="ps-3">{{ $date . ' ' . $time[0] . '~' . $time[1] }}
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                             <input type="text" name="date" class="d-none" value="{{ $date }}" readonly>
-                            <input type="text" name="start_at" class="d-none" value="{{ $timeTable[$i][0] }}"
+                            <input type="text" name="start_at" class="d-none" value="{{ $time[0] }}"
                                 readonly>
                             <input type="text" name="room_id" class="d-none" value="{{ $room->id }}" readonly>
                         </div>
@@ -58,8 +58,7 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/count-text.js')}}"></script>
 @endif
+
 
 

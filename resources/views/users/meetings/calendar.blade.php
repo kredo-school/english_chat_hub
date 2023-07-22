@@ -15,12 +15,12 @@
 
         <table class="table text-center align-middle">
             <tbody>
-                @for ($i = 0, $time = now()->hour; $time < 24 && $i < 14; $i++, $time++)
+                @forelse ($timeTable as $key => $time)
                     <tr>
-                        <th>{{ $timeTable[$i][0] . '~' . $timeTable[$i][1] }}</th>
+                        <th>{{ $time[0] . '~' . $time[1] }}</th>
                         @foreach ($all_rooms as $room)
                             <td>
-                                @if ($meeting = $room->meetings()->where('date', now()->format('Y-m-d'))->where('start_at', $timeTable[$i][0])->first())
+                                @if ($meeting = $room->meetings()->where('date', now()->format('Y-m-d'))->where('start_at', $time[0])->first())
                                     @if ($meeting->joinMeetings()->where('user_id', Auth::user()->id)->first())
                                         <button type="button" data-bs-toggle="modal"
                                             data-bs-target="#join-{{ $meeting->id }}" class="date-btn"
@@ -38,9 +38,9 @@
                                         </button>
                                     @endif
                                 @else
-                                    @if (Auth::user()->meetingCheck($date, $timeTable[$i][0]) && $timeTable[$i][0] >= now()->addMinutes(60)->format('H:i'))
+                                    @if (Auth::user()->meetingCheck($date, $time[0]) && $time[0] >= now()->addMinutes(60)->format('H:i'))
                                         <button type="button" data-bs-toggle="modal"
-                                            data-bs-target="#create-meeting-{{ $i . '-' . $room->id }}" class="date-btn"
+                                            data-bs-target="#create-meeting-{{ $key . '-' . $room->id }}" class="date-btn"
                                             title="Create Meeting">
                                         </button>
                                     @else
@@ -51,7 +51,11 @@
                             @include('users.meetings.modals.calendar-action')
                         @endforeach
                     </tr>
-                @endfor
+                @empty
+                    <tr>
+                        <td colspan="100">All meetings has finished today...</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
