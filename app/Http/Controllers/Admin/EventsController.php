@@ -44,7 +44,9 @@ class EventsController extends Controller
             'location' => 'required|max:255',
             'date' => 'required',
             'time' => 'required',
-            'limit' =>'numeric|max:20'
+            'level_id' => 'required',
+            'limit' =>'numeric|max:20',
+            'image' => 'max:1048|mimes:jpeg,jpg,png,gif'
         ]);
 
         $date = $request->input('date');
@@ -108,7 +110,9 @@ class EventsController extends Controller
             'location' => 'required|max:255',
             'date' => 'required',
             'time' => 'required',
-            'limit' =>'numeric|max:20'
+            'level_id' => 'required',
+            'limit' =>'numeric|max:20',
+            'image' => 'max:1048|mimes:jpeg,jpg,png,gif'
         ]);
 
         $event = $this->event->findOrFail($id);
