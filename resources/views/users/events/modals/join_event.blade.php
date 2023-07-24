@@ -1,26 +1,3 @@
-{{-- Join Event Modal for Auth::user() --}}
-<div class="modal fade" id="join-event-{{$event->id}}">
-    <div class="modal-dialog">
-        <div class="modal-content border-1">
-            <div class="modal-header border-secondary">
-                <h2 class="modal-title text-secondary">
-                    Confirm detail
-                </h2>
-            </div>
-            <div class="modal-body">
-                <p class="h6 text-muted text-center">Join the event on {{$event->date}} at {{$event->location}}?</p>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="button btn-gray" data-bs-dismiss="modal">Cancel</button>
-                <form action="{{route('events.storeAuth', $event)}}" method="post" class="mt-0">
-                    @csrf
-                    <button type="submit" class="button btn-orange">Join</button>  
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 {{-- Cancel Event Modal for Auth::user() --}}
 <div class="modal fade" id="cancel-event-{{$event->id}}">
     <div class="modal-dialog">
@@ -30,13 +7,17 @@
                 <h2 class="modal-title text-danger fs-3 fw-bold mx-auto">Confirmed detail</h2>
             </div>
             <div class="modal-body">
-                <p class="h6 text-muted text-center">Cancel the event on {{$event->date}} at {{$event->location}}?</p>
+                <p class="h6 text-muted text-center">Are ou sure you want to cancel the event on
+                <span class="text-danger">
+                    @php($carbonDateTime = \Carbon\Carbon::parse($event->date))
+                    {{ $carbonDateTime->toDateString() }}&nbsp;<span class="text-muted">at</span>&nbsp;{{ $carbonDateTime->format('H:i') }}
+                </span>?</p>
             </div>
-            <div class="modal-footer border-0">
+            <div class="modal-footer border-0" style="justify-content: center">
                 <form action="{{route('events.destroyAuthParticipant', $event->id)}}" method="post" class="mt-0">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="button btn-gray">Cancel Event</button>
+                    <button type="submit" class="btn btn-danger  btn-lg"><strong>Cancel Event</strong></button>
                 </form>
             </div>
         </div>

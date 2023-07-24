@@ -13,7 +13,7 @@
                         <button class="button btn-gray me-1" data-bs-dismiss="modal">No Cancel</button>
                         <form action="{{ route('users.meeting.cancel', $meeting->id) }}" method="POST">
                         @csrf
-                            <button type="submit" class="button btn-orange ms-1">Cancel</button>
+                            <button type="submit" class="button btn btn-danger btn-lg"><strong>Cancel</strong></button>
                         </form>
                   </div> 
             </div>
