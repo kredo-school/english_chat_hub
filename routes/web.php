@@ -53,7 +53,6 @@ Route::post('/contact-us/store', [ContactController::class, 'store'])->name('con
 //user event
 Route::group(['prefix' => 'events' , 'as' => 'events.'], function(){
     Route::get('/', [EventController::class, 'index'])->name('index');
-    Route::get('/map', [EventController::class, 'map'])->name('map');
     Route::get('/{event}/show', [EventController::class, 'show'])->name('show');
     Route::get('/{event_id}/join', [EventController::class, 'joinForm'])->name('joinForm');
     Route::post('/{event_id}/store', [EventController::class, 'storeGuest'])->name('storeGuest');

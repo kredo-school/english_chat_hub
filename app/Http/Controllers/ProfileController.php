@@ -87,9 +87,6 @@ class ProfileController extends Controller
     public function destroyProfile(Request $request){
         Auth::user()->meetings()->forceDelete();
         Auth::user()->joinMeetings()->detach();
-        if(Auth::user()->avatar){
-            $this->deleteAvatar(Auth::user()->avatar);
-        }  
         Auth::user()->participant()->forceDelete();
         $reviews = Contact::where('subtitle_id', 5)->where('email', Auth::user()->email)->get();
         foreach($reviews as $review){

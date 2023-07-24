@@ -53,10 +53,10 @@
                         {{-- Modal --}}
                         @if (auth()->check())
                             @if (!$isJoined)
-                                <button type="button" class="button btn-orange" data-bs-toggle="modal"
-                                    data-bs-target="#join-event-{{ $event->id }}">
-                                    Join!!
-                                </button>
+                                <form action="{{route('events.storeAuth', $event)}}" method="post" class="mt-0">
+                                    @csrf
+                                    <button type="submit" class="button btn-orange">Join</button>  
+                                </form>                
                             @else
                                 <button type="button" class="button btn-gray" data-bs-toggle="modal" 
                                     data-bs-target="#cancel-event-{{ $event->id }}">
