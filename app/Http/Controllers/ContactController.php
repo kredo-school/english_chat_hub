@@ -40,7 +40,7 @@ class ContactController extends Controller
             'name'          => 'required|max:50',
             'email'         => 'required|email|max:50',
             'title'         => 'required|max:50',
-            'content'       => 'max:1000',
+            'content'       => 'required|max:1000',
             'rating'        => ($request->subtitle_id == 5) ? 'required|integer' : 'nullable',
             'subtitle_id'   => 'required',
         ]);

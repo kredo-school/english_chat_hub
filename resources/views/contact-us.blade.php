@@ -75,11 +75,11 @@
                                         @endif
                                     @endforeach
 
-                                    {{-- Error --}}
-                                    @error('subtitle-id')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
                                 </select>
+                                {{-- Error --}}
+                                @error('subtitle_id')
+                                    <div class="text-danger small">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             @if ($user)
