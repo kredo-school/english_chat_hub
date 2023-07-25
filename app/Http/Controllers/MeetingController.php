@@ -85,7 +85,7 @@ class MeetingController extends Controller
             $meeting->zoomMeeting()->delete();
         }
 
-        $meeting->delete();
+        $meeting->forceDelete();
 
         return redirect()->back();
     }
