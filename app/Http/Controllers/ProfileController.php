@@ -23,12 +23,6 @@ class ProfileController extends Controller
         $this->level = $level;
     }
 
-    public function show($id){
-        $user = $this->user->findOrFail($id);
-        return view('users.profile.show')
-        ->with('user', $user);
-    }
-
     public function edit(){
         $user = $this->user->findOrFail(Auth::user()->id);
 
@@ -47,9 +41,9 @@ class ProfileController extends Controller
         $request->validate([
             'avatar' => 'max:1048|mimes:jpeg,jpg,png,gif',
             'level_id' => 'required',
-            'user_name' => 'required|max:250',
+            'user_name' => 'required|max:250|unique:users,user_name,' .$user->id,
             'comment' => 'max:250',
-            'email' => 'required|max:250'
+            'email' => 'required|max:250|unique:users,email,' .$user->id
         ]);
 
         $user->level_id = $request->level_id;
