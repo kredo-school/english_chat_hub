@@ -25,7 +25,7 @@
                     @endif
                 </div>
                 
-                <a href="{{ route('users.follow.follower', $user->id)}}" class="category-item h5 my-0 ms-3 text-secondary text-decoration-none">{{ $user->user_name }}</a>
+                <a href="{{ route('users.follow.profile-page', $user->id)}}" class="category-item h5 my-0 ms-3 text-secondary text-decoration-none">{{ $user->user_name }}</a>
              </div>
              <hr class="m-0">
             @empty

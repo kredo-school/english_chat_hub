@@ -31,22 +31,18 @@
 .profile-user{
     display: inline-flex;
     display: flex;
+    margin-left: 2rem;
 }
 
 .user-detail{
     display: flex;
 }
 
-.avatar-level{
-    margin-left: 3rem;
-}
-
-.icon-lg {
+.follow-icon-lg {
     font-size: 7rem;
 }
 
-
-.avatar-md{
+.follow-avatar-md{
     width: 120px;
     height: 120px;
     border-radius: 50px;
@@ -58,31 +54,31 @@ h3.username{
     vertical-align: middle;
     margin-bottom: 0px;
     font-family: var(--roundM);
-    font-size: 3rem;
+    font-size: 2rem;
     margin-left: 1rem;
+    margin-right: 3rem;
     color: var(--dark);
+    white-space: nowrap
 }
 
-.avatar-level{
-    width: 70px;
-    height: 70px;
-    border-radius: 40px;
-    background-color: white;
-    display:inline-flex;
-    vertical-align: middle;
-    justify-content: center;
-    align-items: center;
- }
-
-.edit-button{
+.follow-edit-button{
     display: inline-flex;
     margin-left: 2rem;
     margin-top: 1rem;
 }
 
+a.follow-edit-btn{
+    white-space: nowrap;
+}
+
+.sub-detail{
+    display: flex;
+}
+
 .count-users{
-    margin-left: 3rem;
+    margin-left: 2rem;
     margin-top: 1rem;
+    float: left;
 }
 
 a.following{
@@ -90,8 +86,9 @@ a.following{
 }
 
 .comment{
-    margin-left: 3rem;
+    margin-left: 2rem;
     margin-top: 1rem;
+    float: left;
 }
 
 
@@ -141,6 +138,7 @@ p.comment{
     display: flex;
     justify-content: center;
     margin-top: 100px;
+    width: 100%;
 }
 
 .wrapper{
@@ -152,8 +150,13 @@ p.comment{
     border-radius: 10px;
 }
 
-.title{
-    margin-top: 2rem;
+.about-user{
+    width: 100%;
+}
+
+.modal-header{
+    display: inline-block;
+    text-align: center;
 }
 
 .users{
@@ -165,8 +168,8 @@ p.comment{
 .icon-sm {
     font-size: 30px;
     margin-top: 7px;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
 }
 
 a.username{
@@ -191,4 +194,8 @@ button.btn-sm-follow{
 
 button.btn-sm-follow:hover{
     color: var(--gray);
+}
+
+.modal-content{
+    width: 650px;
 }
