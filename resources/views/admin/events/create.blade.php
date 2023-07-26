@@ -39,7 +39,7 @@
                             <input type="checkbox" class="from-check-input" name="level[]" id="1" value="1"> Beginner
                             <input type="checkbox" class="from-check-input ms-3" name="level[]" id="2" value="2"> Intermediate
                             <input type="checkbox" class="from-check-input ms-3" name="level[]" id="3" value="3"> Advanced
-                            @error('level_id')
+                            @error('level')
                             <p class="form-text text-danger mt-0">{{$message}}</p>
                             @enderror
                         </div>
