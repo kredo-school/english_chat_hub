@@ -44,7 +44,7 @@ class EventsController extends Controller
             'location' => 'required|max:255',
             'date' => 'required',
             'time' => 'required',
-            'level_id' => 'required',
+            'level' => 'required|array',
             'limit' =>'numeric|max:20',
             'image' => 'max:1048|mimes:jpeg,jpg,png,gif'
         ]);
@@ -61,8 +61,10 @@ class EventsController extends Controller
 
         $this->event->save();
 
-        foreach($request->level as $level) {
-            $this->event->levels()->attach($level);
+        if ($request->has('level')) {
+            foreach ($request->input('level') as $level) {
+                $this->event->levels()->attach($level);
+            }
         }
 
         return redirect()->route('admin.events.show');
@@ -110,7 +112,7 @@ class EventsController extends Controller
             'location' => 'required|max:255',
             'date' => 'required',
             'time' => 'required',
-            'level_id' => 'required',
+            'level' => 'required|array',
             'limit' =>'numeric|max:20',
             'image' => 'max:1048|mimes:jpeg,jpg,png,gif'
         ]);
