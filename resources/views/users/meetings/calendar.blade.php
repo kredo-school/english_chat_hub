@@ -2,9 +2,8 @@
     <h2 class="display-5">TIME TABLE</h2>
 
     <div class="meeting-table mx-auto">
-        <a href="" class="question fs-5"><i class="fa-solid fa-circle-question fa-lg mb-4"></i> How to use</a>
         <div class="timetable-date fs-5">
-            <button class="calendar-btn fs-5 ms-0 mb-2" data-bs-toggle='modal' data-bs-target='#calendar-modal'
+            <button class="calendar-btn fs-5 ms-0 my-1" data-bs-toggle='modal' data-bs-target='#calendar-modal'
                 type="button">
                 <i class="fa-solid fa-calendar text-dark"></i> {{ date('Y-m-d', strtotime(now())) }}
             </button>
@@ -68,7 +67,7 @@
         <p class="tip-body">Click on the null time where you want to create and you'll get a create form!</p>
     </div>
     <div class="col-8 mx-auto">
-        <p class="">* You can join only one meeting at the same time.</p>
-        <p class="">* If you want to cancel meeting, you can do it in your schedule page.</p>
+        <p>* You can join only one meeting at the same time.</p>
+        <p>* If you want to cancel meeting, you can do it in your schedule page.</p>
     </div>
 </div>
