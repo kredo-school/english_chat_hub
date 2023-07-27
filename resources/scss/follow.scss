@@ -29,13 +29,8 @@
 }
 
 .profile-user{
-    display: inline-flex;
     display: flex;
     margin-left: 2rem;
-}
-
-.user-detail{
-    display: flex;
 }
 
 .follow-icon-lg {
@@ -62,12 +57,12 @@ h3.username{
 }
 
 .follow-edit-button{
-    display: inline-flex;
+    display: inline-block;
     margin-left: 2rem;
     margin-top: 1rem;
 }
 
-a.follow-edit-btn{
+button.follow-edit-btn{
     white-space: nowrap;
 }
 
@@ -164,12 +159,15 @@ p.comment{
     margin-bottom: 2rem;
 }
 
-
-.icon-sm {
-    font-size: 30px;
-    margin-top: 7px;
-    height: 40px;
+.profile-avatar-level{
     width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display:inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
 }
 
 a.username{
@@ -198,4 +196,21 @@ button.btn-sm-follow:hover{
 
 .modal-content{
     width: 650px;
+}
+
+.modal{
+    padding-right: 100px !important;
+}
+
+.as-room{
+    display:flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    width: 90%;
+    align-items: center;
+    border-radius: 5px;
+    color: var(--gray);
+    margin: 0px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
 }

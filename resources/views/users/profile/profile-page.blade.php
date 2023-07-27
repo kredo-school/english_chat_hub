@@ -3,7 +3,6 @@
 @section('style')
     <link rel="stylesheet" href="{{ mix('css/follow.css') }}">
     <link rel="stylesheet" href="{{ mix('css/users-style.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/modal.css') }}">
 @endsection
 @section('content')
 
@@ -23,14 +22,13 @@
         <div class="profile-user mt-2">
             <div class="about-user">
                 <div class="user-detail">
-                    <div class="avatar-level">
-                    <img src="{{ asset('image/level/' . $user->level->icon) }}" class="icon-sm mx-auto" alt="{{ $user->level->name }}">
+                    <div class="profile-avatar-level">
+                        <img src="{{ asset('image/level/' . $user->level->icon) }}" class="icon-sm mx-auto" alt="{{ $user->level->name }}">
                     </div>
                     <h3 class="username">{{ $user->full_name }}</h3>
-    
-                    <div class="edit-button">
+                    <div class="follow-edit-button">
                         @if (Auth::user()->id === $user->id)
-                            <a href="{{ route('users.profile.edit') }}" class="btn btn-light follow-edit-btn mb-3 text-warning w-3">Edit Profile</a> 
+                            <button href="{{ route('users.profile.edit') }}" class="btn btn-light follow-edit-btn mb-3 text-warning w-3">Edit Profile</button> 
                         @else
                             @if ($user->following()->where('id', Auth::user()->id)->exists())
                                 <form action="{{ route('users.follow.unfollow', $user->id) }}" method="post">
