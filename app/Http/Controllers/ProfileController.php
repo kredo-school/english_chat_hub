@@ -73,7 +73,8 @@ class ProfileController extends Controller
     private function saveAvatar($request){
         $file_name = time().".".$request->avatar->extension();
 
-        $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $file_name);
+        // $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $file_name);
+        Storage::disk('public')->putFileAs('/avatars/', $request->avatar, $file_name);
 
         return $file_name;
     }
