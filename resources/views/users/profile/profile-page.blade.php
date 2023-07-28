@@ -28,7 +28,7 @@
                     <h3 class="username">{{ $user->full_name }}</h3>
                     <div class="follow-edit-button">
                         @if (Auth::user()->id === $user->id)
-                            <button href="{{ route('users.profile.edit') }}" class="btn btn-light follow-edit-btn mb-3 text-warning w-3">Edit Profile</button> 
+                            <a href="{{ route('users.profile.edit') }}" class="btn btn-light mb-3 edit-profile text-warning w-3">Edit Profile</a> 
                         @else
                             @if ($user->following()->where('id', Auth::user()->id)->exists())
                                 <form action="{{ route('users.follow.unfollow', $user->id) }}" method="post">

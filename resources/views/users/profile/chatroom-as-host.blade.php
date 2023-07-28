@@ -42,10 +42,10 @@
                                         <a class="text-muted ms-1" data-bs-toggle="modal" data-bs-target="#reservation-{{ $meeting->id }}">
                                             <i class="fa-solid fa-plus fa-xl text-warning"></i>
                                         </a>
-                                        @if($meeting->meetingOpen())
+                                    @elseif($meeting->meetingOpen())
                                             <button class="btn btn-light text-warning" id="btn-join" data-bs-toggle="modal"
                                             data-bs-target="#join-{{ $meeting->id }}">JOIN</button>
-                                        @endif
+                                        
                                     @else
                                         <div class="dropdown">
                                             <a href="" data-bs-toggle="dropdown" aria-haspopup="true">
