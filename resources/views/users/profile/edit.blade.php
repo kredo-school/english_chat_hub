@@ -69,7 +69,7 @@
               </div>
 
               <div class="buttons">
-                <a href="{{ route('users.follow.follower', $user->id) }}" class="button btn-gray text-end">Cancel</a>
+                <a href="{{ route('users.follow.profile-page', $user->id) }}" class="button btn-gray text-end">Cancel</a>
                 <button type="submit" class="button btn-orange text-end">Edit</button>
               </div>
             </form>

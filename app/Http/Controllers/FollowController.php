@@ -8,27 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
-
-    public function follower(User $user)
+    public function profilePage(User $user)
     {
         $followers = $user->followers;
         $following  = $user->following;
 
-        return view('users.profile.follower')
-        ->with('user', $user)
-        ->with('followers', $followers)
-        ->with('following', $following);
-    }
-
-    public function following(User $user)
-    {
-        $followers  = $user->followers;
-        $following  = $user->following;
-
-        return view('users.profile.following')
-        ->with('user', $user)
-        ->with('followers', $followers)
-        ->with('following', $following);
+        return view('users.profile.profile-page', compact('user', 'followers', 'following'));
     }
 
     public function follow($user_id)

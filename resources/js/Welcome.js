@@ -6,10 +6,6 @@ import Pagination from './components/Pagination';
 
 const Welcome = ({reviews, urls}) => {
 
-    console.log(reviews.data, 'test');
-    console.log(urls, 'urls');
-
-
     const [reviewList, setReviewList] = useState(reviews.data);
     const [urlList, setUrlList] = useState(urls);
     const [loading, setLoading] = useState(false);
@@ -28,9 +24,6 @@ const Welcome = ({reviews, urls}) => {
         fetchReviews();
       }, []);
 
-      console.log(reviewList);
-      console.log(urlList);
-
     // Get current reviews
     const indexOfLastReview = currentPage * reviewsPerPage;
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
@@ -40,10 +33,7 @@ const Welcome = ({reviews, urls}) => {
 
     // Change review
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
     const totalReviews = reviewList.length;
-
-    console.log(totalReviews);
 
     return (
         <div className="testimonial mb-5">
