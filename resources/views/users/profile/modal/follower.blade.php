@@ -11,11 +11,13 @@
                     @foreach ($user->following as $following )
                         <div class="row align-items-center-mt-3 users">
                             <div class="col-md-3">
-                                @if ($following->avatar)
-                                    <img src="{{ asset('storage/avatars/' . $following->avatar) }}" alt="{{ $following->avatar }}" class="rounded-circle icon-sm">
-                                @else
-                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-                                @endif
+                                <a href="{{ route('users.follow.profile-page', $following->id) }}">
+                                    @if ($following->avatar)
+                                        <img src="{{ asset('storage/avatars/' . $following->avatar) }}" alt="{{ $following->avatar }}" class="rounded-circle icon-sm">
+                                    @else
+                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+                                    @endif
+                                </a>
                             </div>
                             <div class="col-md-2 text-truncate">
                                 <a href="{{ route('users.follow.profile-page', $following->id) }}" class="text-decoration-none text-dark fw-bold username">{{ $following->user_name }}</a>

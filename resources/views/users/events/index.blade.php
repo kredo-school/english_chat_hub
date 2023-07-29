@@ -42,7 +42,8 @@
                                         @php($carbonDateTime = \Carbon\Carbon::parse($event->date))
                                             <div class="col-lg-4 col-md-6 gx-0 p-0 mx-auto event-info mb-5">
                                                 <div class="card event-card mb-2">
-                                                    <img src="{{ asset('storage/images/' . $event->image) }}"
+                                                    {{-- <img src="{{ asset('storage/images/' . $event->image) }}" --}}
+                                                    <img src="/image/event/{{ $event->image }}"
                                                         class="card-img-top" alt="{{ $event->image }}">
                                                     <div class="event-card-body text-start m-5">
                                                         <p>
