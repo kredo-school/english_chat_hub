@@ -74,7 +74,10 @@ class EventsController extends Controller
     {
         $image_name = time().".". $request->image->extension();
 
-        $request->image->storeAs(self::LOCAL_STORAGE_FOLDER,$image_name);
+        // $request->image->storeAs(self::LOCAL_STORAGE_FOLDER,$image_name);
+        // Storage::disk('public')->putFileAs('/image/event/', $request->image, $image_name);
+        Storage::disk('public')->putFileAs(self::LOCAL_STORAGE_FOLDER, $request->image, $image_name);
+
         return $image_name;
 
     }
