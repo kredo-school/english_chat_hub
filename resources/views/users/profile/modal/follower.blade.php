@@ -11,7 +11,7 @@
                     @foreach ($user->following as $following )
                         <div class="row align-items-center-mt-3 users">
                             <div class="col-md-3">
-                                <a href="{{ route('users.profile.show', $following->id) }}">
+                                <a href="{{ route('users.follow.profile-page', $following->id) }}">
                                     @if ($following->avatar)
                                         <img src="{{ asset('storage/avatars/' . $following->avatar) }}" alt="{{ $following->avatar }}" class="rounded-circle icon-sm">
                                     @else
