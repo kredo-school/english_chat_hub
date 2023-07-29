@@ -164,7 +164,7 @@ class ZoomController extends Controller
 
         // for Request
         $url        = 'https://api.zoom.us/v2/meetings/' . $meeting->zoomMeeting->zoom_meeting_id;
-        $startAt    = date('Y-m-d\TH:m:s', strtotime($meeting->date . $meeting->start_at));
+        $startAt    = date('Y-m-d\TH:h:s', strtotime($meeting->date . $meeting->start_at));
 
         // Request
         $client = new Client([
