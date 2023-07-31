@@ -16,7 +16,7 @@
                                 <div class="d-flex align-items-center gap-5">
                                     @if ($user->avatar)
                                         <div class="avatar-wrap">
-                                            <img src="{{ asset('/storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}" class="avatar">
+                                            <img src="/image/avatars/{{ $user->avatar }}" alt="{{ $user->avatar }}" class="avatar">
                                             <div class="level-wrap">
                                                 <img src="{{ asset('image/level/' . $user->level->icon) }}"
                                                     alt="{{ $user->level->name }}" class="level-icon">

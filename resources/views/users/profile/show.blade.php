@@ -4,7 +4,7 @@
 
         <div class="d-flex align-items-center justify-content-center mt-2">
             @if($user->avatar)
-              <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="avatar-md">
+              <img src="/image/avatars/{{ $user->avatar }}" alt="" class="avatar-md">
             @else
               <i class="fa-solid fa-user text-secondary avatar-md d-inline-flex align-items-center justify-content-center"></i>
             @endif

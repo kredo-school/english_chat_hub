@@ -14,7 +14,7 @@
             <h3 class="edit-title">Edit Profile</h3>
               <div class="edit-avatar mx-auto">
                 @if($user->avatar)
-                <img src="{{ asset('storage/avatars/'.$user->avatar) }}" alt="" class="avatar-md">
+                <img src="/image/avatars/{{ $user->avatar }}" alt="" class="avatar-md">
                 @else
                     <i class="fa-solid fa-user text-secondary text-center avatar-md"></i>
                 @endif
