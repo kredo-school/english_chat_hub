@@ -13,7 +13,7 @@
         </a>
         <div class="user-avatar">
             @if ($user->avatar)
-                <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}" class="follow-avatar-md">
+                <img src="/image/avatars/{{ $user->avatar }}" alt="{{ $user->avatar }}" class="follow-avatar-md">
             @else
                 <i class="fa-solid fa-circle-user text-secondary d-block text-center follow-icon-lg"></i>
             @endif

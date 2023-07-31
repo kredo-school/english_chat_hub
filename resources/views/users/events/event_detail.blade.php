@@ -12,7 +12,7 @@
             <div class="row">
                 <!-- left side picture -->
                 <div class="col-lg-6 col-md-12 event-detail-pic">
-                    <img src="{{ asset('/storage/images/' . $event->image) }}" alt="{{ $event->image }}" class="event-detail-img">
+                    <img src="/image/events/{{ $event->image }}" alt="{{ $event->image }}" class="event-detail-img">
                 </div>
                 <!-- end of left side picture -->
                 <!-- right side  -->

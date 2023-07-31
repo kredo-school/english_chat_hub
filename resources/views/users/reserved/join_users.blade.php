@@ -19,7 +19,7 @@
             <div class="join-users my-2 mx-auto">
                 <div class="join-user">
                     @if($user->avatar)
-                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" class="rounded-circle" id="avatar-sm">
+                        <img src="/image/avatars/{{ $user->avatar }}" class="rounded-circle" id="avatar-sm">
                     @else
                         <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
                     @endif

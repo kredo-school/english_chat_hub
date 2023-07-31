@@ -13,7 +13,7 @@
                             <div class="col-md-3">
                                 <a href="{{ route('users.follow.profile-page', $following->id) }}">
                                     @if ($following->avatar)
-                                        <img src="{{ asset('storage/avatars/' . $following->avatar) }}" alt="{{ $following->avatar }}" class="rounded-circle icon-sm">
+                                        <img src="/image/avatars/{{ $user->avatar }}" alt="{{ $following->avatar }}" class="rounded-circle icon-sm">
                                     @else
                                         <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
                                     @endif

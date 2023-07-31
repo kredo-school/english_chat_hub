@@ -21,7 +21,7 @@
                 <div class="join-users my-2 mx-auto">
                     <div class="join-user">
                         @if ($participant->user_id && $participant->user->avatar)
-                            <img src="{{ asset('storage/avatars/' . $participant->user->avatar) }}" class="rounded-circle"
+                            <img src="/image/avatars/{{ $user->avatar }}" class="rounded-circle"
                                 id="avatar-sm">
                         @else
                             <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
@@ -44,7 +44,7 @@
                                             <div class="modal-title text-center fs-2 my-3 fw-bold">OTHER MEMBER</div>
                                         <div class="avatar mx-auto">
                                             @if ($participant->user->avatar)
-                                                <img src="{{ asset('storage/avatars/' . $participant->user->avatar) }}"
+                                                <img src="/image/avatars/{{ $user->avatar }}"
                                                     alt="" class="avatar-md">
                                             @else
                                                 <i class="fa-solid fa-circle-user fa-2xl text-secondary text-center"></i>
