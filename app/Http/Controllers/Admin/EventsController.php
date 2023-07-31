@@ -18,7 +18,7 @@ class EventsController extends Controller
         $this->event = $event;
     }
 
-    const LOCAL_STORAGE_FOLDER = '/public/images/';
+    const LOCAL_STORAGE_FOLDER = 'image/events/';
 
     // Events
     public function show()
@@ -84,8 +84,8 @@ class EventsController extends Controller
     public function deleteImage($image_name){
         $image_path = self::LOCAL_STORAGE_FOLDER.$image_name;
 
-        if(Storage::disk('local')->exists($image_path)){
-            Storage::disk('local')->delete($image_path);
+        if(Storage::disk('public')->exists($image_path)){
+            Storage::disk('public')->delete($image_path);
         }
     }
 

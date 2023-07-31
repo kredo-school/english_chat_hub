@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    const LOCAL_STORAGE_FOLDER = 'public/avatars/';
+    const LOCAL_STORAGE_FOLDER = 'image/avatars/';
     private $user;
     private $level;
 
@@ -65,8 +65,8 @@ class ProfileController extends Controller
     private function deleteAvatar($file_name){
         $file_path = self::LOCAL_STORAGE_FOLDER. $file_name;
 
-        if(Storage::disk('local')->exists($file_path)){
-            Storage::disk('local')->delete($file_path);
+        if(Storage::disk('public')->exists($file_path)){
+            Storage::disk('public')->delete($file_path);
         }
     }
 
@@ -74,7 +74,7 @@ class ProfileController extends Controller
         $file_name = time().".".$request->avatar->extension();
 
         // $request->avatar->storeAs(self::LOCAL_STORAGE_FOLDER, $file_name);
-        Storage::disk('public')->putFileAs('/image/avatar/', $request->avatar, $file_name);
+        Storage::disk('public')->putFileAs(self::LOCAL_STORAGE_FOLDER, $request->avatar, $file_name);
 
         return $file_name;
     }

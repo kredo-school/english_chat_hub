@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group my-5">
                         <div class="form-text">Exisiting Image</div>
-                        <img src="{{ asset('/storage/images/'. $event->image )}}" alt="" class="w-50 mb-3 img-thumbnail">
+                        <img src="/image/events/{{ $event->image }}" alt="" class="w-50 mb-3 img-thumbnail">
                         <input type="file" name="image" id="image" class="form-control" value="">
                     </div>
                     <div class="form-group my-5">
